@@ -9,6 +9,10 @@ const CheckoutPage = () => {
     email: "",
     address: "",
     pinCode: "",
+    cartItems: [
+      // { name: "Grinder 300hp blue colour variant", quantity: 1, price: 100 },
+      // { name: "Grinder 300hp blue colour variant", quantity: 1, price: 100 },
+    ],
   });
 
   const handleOnChange = (e) => {
@@ -42,6 +46,7 @@ const CheckoutPage = () => {
         email: "",
         address: "",
         pinCode: "",
+        cartItems: [],
       });
     } catch (error) {
       console.error("Error saving user details:", error);
@@ -59,35 +64,41 @@ const CheckoutPage = () => {
       </div>
 
       <div className="container">
+        <h3 style={{ textAlign: "center" }}>Review Your Cart Item</h3>
         <div className="review">
-          <h3>Review Your Cart Item</h3>
           <div className="photo">
-            <div className="items-info">
-              <p>Grinder 300hp blue colour variant</p>
-              <p className="quantity">1</p>
-            </div>
-
-            <hr />
-            <div className="items-info">
-              <p>Grinder 300hp blue colour variant</p>
-              <p className="quantity">1</p>
-            </div>
-            <hr />
-            <div className="items-info">
-              <p>Grinder 300hp blue colour variant</p>
-              <p className="quantity">1</p>
-            </div>
-            <hr />
-            <div className="items-info">
-              <p>Grinder 300hp blue colour variant</p>
-              <p className="quantity">1</p>
-            </div>
-
-            <hr />
-            <div className="items-info">
-              <p>Total Price : </p>
-              <p>100</p>
-            </div>
+            {user.cartItems.length ? (
+              <>
+                {user.cartItems.map((item, index) => (
+                  <div key={index} className="items-info">
+                    <p>{item.name}</p>
+                    <p className="quantity">{item.quantity}</p>
+                    {/* <p className="price">Price: ${item.price}</p> */}
+                  </div>
+                ))}
+                <hr />
+                <div className="items-info">
+                  <p>Total Price:</p>
+                  <p>
+                    $
+                    {user.cartItems.reduce(
+                      (total, item) => total + item.price * item.quantity,
+                      0
+                    )}
+                  </p>
+                </div>
+              </>
+            ) : (
+              <h2
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                Cart is empty
+              </h2>
+            )}
           </div>
         </div>
 
