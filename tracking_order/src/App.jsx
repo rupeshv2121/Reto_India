@@ -1,13 +1,13 @@
 
 import './App.css'
-import TrackingPage from './components/TrackingPage'
+import TrackingPage from './component/TrackingPage'
 
 function App() {
 
 
   return (
     <>
-  <TrackingPage/>
+     <TrackingPage/>
     </>
   )
 }
