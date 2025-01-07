@@ -1,9 +1,3 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-
 .heading{
     text-align: center;
     font-size: 3rem;
@@ -37,6 +31,7 @@ body, html {
     margin-top: 2rem;
     display: flex;
     justify-content: space-around;
+    /* margin-bottom: 3rem; */
 }
 .review .photo {
     height: 75%;
@@ -92,7 +87,6 @@ body, html {
 
 .btn{
     text-align: center;
-    margin-bottom: 3rem;
 }
 
 .btn button {
@@ -123,8 +117,6 @@ body, html {
 }
 
 @media (min-width:1026px) and (max-width:1550px) {
-    body{overflow-y: hidden;}
-
     .vertical-line{height: 25rem;}
     .review {
         width: 27rem;
