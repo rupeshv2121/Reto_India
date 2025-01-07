@@ -1,15 +1,14 @@
-import "./App.css";
-// import Navbar from "./components/Navbar";
-import CheckoutPage from "./components/CheckOutPage/CheckoutPage";
+import './App.css'
+import Header from './components/Header/Header'
+import Product from './components/Product/Product'
 
 function App() {
   return (
-    <>
-      {/* <Navbar /> */}
-
-      <CheckoutPage />
-    </>
-  );
+    <div>
+      {/* <Header/> */}
+      <Product/>
+    </div>
+  )
 }
 
-export default App;
+export default App

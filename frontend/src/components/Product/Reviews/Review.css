@@ -1,0 +1,261 @@
+.ReviewSection {
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap; 
+    margin-top: 4rem;
+    margin-bottom: 40px;
+    height: auto;
+}
+.ReviewText {
+    height: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 10px; 
+}
+.ImgReview {
+    height: auto;
+    width: 35%;
+    max-height: 470px;
+}
+.ReviewText h1 {
+    margin-top: 1.2rem;
+    font-size: 32px;
+    font-weight: 800;
+}
+.para {
+    /* margin-top: 20px; */
+    margin-left: 40px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.rating_img{
+    display: flex;
+}
+.upper_text {
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4%;
+}
+.upper_text p {
+    display: inline-block;
+    margin: 5px;
+    margin-left: 40px;
+}
+.ReviewSection img {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+}
+.rating_img{
+    margin-top: -8px;
+}
+.ImgReview img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10%;
+    box-shadow: 1px 1px 3px 3px #333;
+    background: transparent;
+
+}
+.ReviewCarousel{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.TextAreaBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SubmitBtn button {
+    border-radius: 2rem;
+    font-size: 1rem;
+    padding: 10px 15px 10px 15px;
+    margin-top: 1rem;
+    background-color: rgb(253, 175, 91);
+    color: white;
+    border: 1px solid rgb(255, 132, 0);
+    box-shadow: 0px 1px 12px 0px orange;
+    font-weight: 600;
+    margin-right: 15px;
+    margin-left: 80px;
+
+}
+
+.SubmitBtn button:hover {
+    background-color: bisque;
+    cursor: pointer;
+    font-weight: 600;
+    color: black;
+}
+.UploadBox{
+    margin-left: 80px;
+    margin-top: 1rem;
+}
+
+.UploadBox label{
+    font-size: 18px;
+    font-weight: 600;
+}
+.Crusl{
+    display: flex;
+    justify-content: center;
+}
+.scroll_style::-webkit-scrollbar{
+    display: none;
+}
+.swiper-pagination-bullet {
+    display: none;
+}
+.rvText::-webkit-scrollbar{
+    display: none;
+}
+.img_section img{
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 5%;
+    margin: 0.1rem;
+    
+}
+.img_section::-webkit-scrollbar{
+    display: none;
+}
+.info_box::-webkit-scrollbar{
+    display: none;
+}
+@media (max-width: 920px) {
+    .ReviewSection {
+        gap: 20px;
+        align-items: center;
+    }
+
+    .ImgReview {
+        width: 60%;
+        height: 360px;
+    }
+
+    .ReviewText {
+        width: 80%;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .upper_text p{
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+
+    .ImgReview img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10%;  
+    }
+    .scroll_style{
+        width: 100%;
+    }
+}
+@media ((max-width: 768px) and (min-width: 480px)) {
+    .ReviewSection {
+        align-items: center;
+        width: 100%;
+    }
+    
+    .ImgReview {
+        width: 70%;
+        height: 340px;
+    }
+    .upper_text{
+        width: 100%;
+        gap: 2%;
+    }
+    .ReviewText {
+        width: 85%;
+    }
+    .ReviewText .para{
+        margin-left: 20px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
+    .customer_section p{
+        font-size: 12px;
+    }
+    .star_img .RatingStar{
+        height: 1.2rem;
+        width: 1.2rem;
+    }
+     
+}
+@media (max-width: 480px) {
+    .ImgReview{
+        width:85%;
+        height: 300px;
+    }
+    .ReviewText {
+        font-size: 14px;
+        width: 100%;
+    }
+    .ReviewText h1{
+        margin-left: 20px;
+    }
+    .ReviewText .para{
+        margin-left: 20px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
+
+    .upper_text{
+        width: 96%;
+        display: flex;
+        gap: 2%;
+        align-items: center;
+
+    }
+    
+
+    
+    .ReviewSection {
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+    }
+
+    .customer_section p{
+        font-size: 12px;
+    }
+
+    .arrow{
+        height: 15px;
+        width: 15px;
+        margin:0px;
+        padding: 0px;
+    }
+    .Crusl{
+        margin: 0;
+    }
+    .review_box{
+        width: 100%;
+    }
+    .rvText p{
+        font-size: 10px;
+        padding: 1px;
+    }
+    .star_img .RatingStar{
+        height: 1.2rem;
+        width: 1.2rem;
+    }
+    .para{
+        font-size: 16px;
+    }
+}
