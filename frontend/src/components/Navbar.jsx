@@ -1,7 +1,34 @@
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { useRef } from "react";
 import toggleMenu from "../../public/js/navBar";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const tl = useRef();
+  useGSAP(() => {
+    tl.current = gsap
+      .timeline()
+      .from(".logo", {
+        opacity: 0,
+        y: -50,
+        delay: 0.2,
+        duration: 1,
+      })
+      .from("nav a", {
+        opacity: 0,
+        y: -50,
+        duration: 0.7,
+        stagger: 0.5,
+      });
+
+    return () => {
+      if (tl.current) {
+        tl.current.kill();
+      }
+    };
+  });
+
   return (
     <header>
       <div className="logo">

@@ -1,8 +1,36 @@
+import { useGSAP } from "@gsap/react";
 import axios from "axios";
+import { gsap } from "gsap";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import "./CheckOutPage.css";
 
 const CheckoutPage = () => {
+  useGSAP(() => {
+    gsap.from(".details", {
+      x: 400,
+      opacity: 0,
+      duration: 1,
+      delay: 0.5,
+    });
+  });
+
+  useGSAP(() => {
+    gsap.from(".photo", {
+      x: -200,
+      duration: 1,
+      opacity: 0,
+      delay: 0.5,
+    });
+  });
+
+  useGSAP(() => {
+    gsap.from(".btn", {
+      delay: 1,
+      scale: 0,
+    });
+  });
+
   const [user, setUser] = useState({
     name: "",
     phone: "",
@@ -32,14 +60,14 @@ const CheckoutPage = () => {
       !user.address ||
       !user.pinCode
     ) {
-      alert("Please fill all the fields.");
+      toast("enter details in all fields");
       return;
     }
 
     try {
       const response = await axios.post("http://localhost:5000/checkout", user);
       console.log(response.data);
-      alert("Order placed successfully.");
+      toast("Successful");
       setUser({
         name: "",
         phone: "",
@@ -50,7 +78,7 @@ const CheckoutPage = () => {
       });
     } catch (error) {
       console.error("Error saving user details:", error);
-      alert("There was an error placing your order.");
+      toast("Something went's wrong");
     }
   };
 
@@ -58,6 +86,7 @@ const CheckoutPage = () => {
     <>
       <div style={{ marginBottom: "2rem" }}>
         <h1 className="heading">Checkout</h1>
+        <ToastContainer />
         <div className="options">
           <p className="circle"></p>
           <p className="line"></p>
