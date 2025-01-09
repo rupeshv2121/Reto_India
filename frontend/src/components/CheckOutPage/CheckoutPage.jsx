@@ -1,8 +1,9 @@
 import { useGSAP } from "@gsap/react";
-import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 import { gsap } from "gsap";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { checkout } from "../../API/api";
 import "./CheckOutPage.css";
 
 const CheckoutPage = () => {
@@ -43,6 +44,8 @@ const CheckoutPage = () => {
     ],
   });
 
+  const [isPopupVisible, setPopupVisible] = useState(false);
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({
@@ -51,23 +54,11 @@ const CheckoutPage = () => {
     }));
   };
 
-  const handleOnClick = async (e) => {
-    e.preventDefault();
-    if (
-      !user.name ||
-      !user.phone ||
-      !user.email ||
-      !user.address ||
-      !user.pinCode
-    ) {
-      toast("enter details in all fields");
-      return;
-    }
-
-    try {
-      const response = await axios.post("http://localhost:5000/checkout", user);
-      console.log(response.data);
-      toast("Successful");
+  const { mutate } = useMutation({
+    mutationFn: (newOrder) => checkout(newOrder),
+    onSuccess: () => {
+      // console.log("Order successful:", response);
+      toast("Order placed successfully!");
       setUser({
         name: "",
         phone: "",
@@ -76,14 +67,49 @@ const CheckoutPage = () => {
         pinCode: "",
         cartItems: [],
       });
-    } catch (error) {
-      console.error("Error saving user details:", error);
-      toast("Something went's wrong");
+      setPopupVisible(false);
+    },
+    onError: (error) => {
+      console.error("Error placing order:", error);
+      toast("Failed to place order. Please try again.");
+    },
+  });
+
+  const handleOnClick = (e) => {
+    e.preventDefault();
+    if (
+      !user.name ||
+      !user.phone ||
+      !user.email ||
+      !user.address ||
+      !user.pinCode
+    ) {
+      toast("Enter details in all fields");
+      return;
     }
+
+    // Check if cartItems is not empty before mutation
+    if (user.cartItems.length === 0) {
+      toast("Your cart is empty!");
+      return;
+    }
+
+    // Ensure we log the data being sent
+    console.log("Sending order data:", user);
+    setPopupVisible(true);
+    mutate(user); // Trigger the mutation
   };
 
   return (
     <>
+      {isPopupVisible && (
+        <div className="popup">
+          <div className="popup-content">
+            <div className="spinner"></div>
+            <div className="popup-text">Please wait...</div>
+          </div>
+        </div>
+      )}
       <div style={{ marginBottom: "2rem" }}>
         <h1 className="heading">Checkout</h1>
         <ToastContainer />
