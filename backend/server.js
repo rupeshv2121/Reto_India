@@ -23,9 +23,10 @@ app.post("/checkout", async (req, res) => {
     try {
         const newUser = new userOrderInfo(req.body);
         await newUser.save();
-        res.status(201).send("User details saved.");
+        console.log('Received order data:', req.body);
+        res.status(200).send("User details saved.");
     } catch (e) {
-        console.error(e); // Log error for debugging
+        console.error(e);
         res.status(500).send("Error saving user details.");
     }
 });
