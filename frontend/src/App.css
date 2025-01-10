@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Bricolage Grotesque", Sans-serif;
-    /* height: 100vh; */
 }
 body{
     background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%)

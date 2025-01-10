@@ -1,15 +1,50 @@
-import axios from "axios";
+import { useGSAP } from "@gsap/react";
+import { useMutation } from "@tanstack/react-query";
+import { gsap } from "gsap";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { checkout } from "../../API/api";
 import "./CheckOutPage.css";
 
 const CheckoutPage = () => {
+  useGSAP(() => {
+    gsap.from(".details", {
+      x: 400,
+      opacity: 0,
+      duration: 1,
+      delay: 0.5,
+    });
+  });
+
+  useGSAP(() => {
+    gsap.from(".photo", {
+      x: -200,
+      duration: 1,
+      opacity: 0,
+      delay: 0.5,
+    });
+  });
+
+  useGSAP(() => {
+    gsap.from(".btn", {
+      delay: 1,
+      scale: 0,
+    });
+  });
+
   const [user, setUser] = useState({
     name: "",
     phone: "",
     email: "",
     address: "",
     pinCode: "",
+    cartItems: [
+      { name: "Grinder 300hp blue colour variant", quantity: 1, price: 100 },
+      { name: "Grinder 300hp blue colour variant", quantity: 1, price: 100 },
+    ],
   });
+
+  const [isPopupVisible, setPopupVisible] = useState(false);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -19,7 +54,28 @@ const CheckoutPage = () => {
     }));
   };
 
-  const handleOnClick = async (e) => {
+  const { mutate } = useMutation({
+    mutationFn: (newOrder) => checkout(newOrder),
+    onSuccess: () => {
+      // console.log("Order successful:", response);
+      toast("Order placed successfully!");
+      setUser({
+        name: "",
+        phone: "",
+        email: "",
+        address: "",
+        pinCode: "",
+        cartItems: [],
+      });
+      setPopupVisible(false);
+    },
+    onError: (error) => {
+      console.error("Error placing order:", error);
+      toast("Failed to place order. Please try again.");
+    },
+  });
+
+  const handleOnClick = (e) => {
     e.preventDefault();
     if (
       !user.name ||
@@ -28,123 +84,136 @@ const CheckoutPage = () => {
       !user.address ||
       !user.pinCode
     ) {
-      alert("Please fill all the fields.");
+      toast("Enter details in all fields");
       return;
     }
 
-    try {
-      const response = await axios.post("http://localhost:5000/checkout", user);
-      console.log(response.data);
-      alert("Order placed successfully.");
-      setUser({
-        name: "",
-        phone: "",
-        email: "",
-        address: "",
-        pinCode: "",
-      });
-    } catch (error) {
-      console.error("Error saving user details:", error);
-      alert("There was an error placing your order.");
+    // Check if cartItems is not empty before mutation
+    if (user.cartItems.length === 0) {
+      toast("Your cart is empty!");
+      return;
     }
+
+    // Ensure we log the data being sent
+    console.log("Sending order data:", user);
+    setPopupVisible(true);
+    mutate(user); // Trigger the mutation
   };
 
   return (
     <>
-      <h1 className="heading">Checkout</h1>
-      <div className="options">
-        <p className="circle"></p>
-        <p className="line"></p>
-        <p className="circle"></p>
-      </div>
-
-      <div className="container">
-        <div className="review">
-          <h3>Review Your Cart Item</h3>
-          <div className="photo">
-            <div className="items-info">
-              <p>Grinder 300hp blue colour variant</p>
-              <p className="quantity">1</p>
-            </div>
-
-            <hr />
-            <div className="items-info">
-              <p>Grinder 300hp blue colour variant</p>
-              <p className="quantity">1</p>
-            </div>
-            <hr />
-            <div className="items-info">
-              <p>Grinder 300hp blue colour variant</p>
-              <p className="quantity">1</p>
-            </div>
-            <hr />
-            <div className="items-info">
-              <p>Grinder 300hp blue colour variant</p>
-              <p className="quantity">1</p>
-            </div>
-
-            <hr />
-            <div className="items-info">
-              <p>Total Price : </p>
-              <p>100</p>
-            </div>
+      {isPopupVisible && (
+        <div className="popup">
+          <div className="popup-content">
+            <div className="spinner"></div>
+            <div className="popup-text">Please wait...</div>
           </div>
         </div>
+      )}
+      <div style={{ marginBottom: "2rem" }}>
+        <h1 className="heading">Checkout</h1>
+        <ToastContainer />
+        <div className="options">
+          <p className="circle"></p>
+          <p className="line"></p>
+          <p className="circle"></p>
+        </div>
 
-        <div className="vertical-line"></div>
-
-        <form>
-          <div className="details">
-            <h3>Enter Your Details</h3>
-            <div className="input-details">
-              <input
-                type="text"
-                placeholder="Name"
-                name="name"
-                value={user.name}
-                onChange={handleOnChange}
-                required
-              />
-              <input
-                type="number"
-                placeholder="Phone No"
-                name="phone"
-                value={user.phone}
-                onChange={handleOnChange}
-                required
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                name="email"
-                value={user.email}
-                onChange={handleOnChange}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Address Details"
-                name="address"
-                value={user.address}
-                onChange={handleOnChange}
-                required
-              />
-              <input
-                type="number"
-                placeholder="Pin code"
-                name="pinCode"
-                value={user.pinCode}
-                onChange={handleOnChange}
-                required
-              />
+        <div className="container">
+          <div className="review">
+            <h3>Review Your Cart Item</h3>
+            <div className="photo">
+              {user.cartItems.length ? (
+                <>
+                  {user.cartItems.map((item, index) => (
+                    <div key={index} className="items-info">
+                      <p>{item.name}</p>
+                      <p className="quantity">{item.quantity}</p>
+                      {/* <p className="price">Price: ${item.price}</p> */}
+                    </div>
+                  ))}
+                  <hr />
+                  <div className="items-info">
+                    <p>Total Price:</p>
+                    <p>
+                      $
+                      {user.cartItems.reduce(
+                        (total, item) => total + item.price * item.quantity,
+                        0
+                      )}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <h2
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
+                  }}
+                >
+                  Cart is empty
+                </h2>
+              )}
             </div>
           </div>
-        </form>
-      </div>
-      <div className="btn">
-        <button type="button" onClick={handleOnClick}>
-          Place Your Order
-        </button>
+
+          <div className="vertical-line"></div>
+
+          <form>
+            <div className="details">
+              <h3>Enter Your Details</h3>
+              <div className="input-details">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  name="name"
+                  value={user.name}
+                  onChange={handleOnChange}
+                  required
+                />
+                <input
+                  type="number"
+                  placeholder="Phone No"
+                  name="phone"
+                  value={user.phone}
+                  onChange={handleOnChange}
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  value={user.email}
+                  onChange={handleOnChange}
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Address Details"
+                  name="address"
+                  value={user.address}
+                  onChange={handleOnChange}
+                  required
+                />
+                <input
+                  type="number"
+                  placeholder="Pin code"
+                  name="pinCode"
+                  value={user.pinCode}
+                  onChange={handleOnChange}
+                  required
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="btn">
+          <button type="button" onClick={handleOnClick}>
+            Place Your Order
+          </button>
+        </div>
       </div>
     </>
   );

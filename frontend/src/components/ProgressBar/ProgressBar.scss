@@ -1,0 +1,40 @@
+$waveColor1: #3f77f8; // Abun logo color
+$waveColor2: #a0a0a09a;
+$waveHeight: 5px;
+
+.progressbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $waveHeight;
+  background: linear-gradient(90deg, $waveColor1, $waveColor2);
+  border-radius: 0;
+  z-index: 3;
+  overflow: hidden;
+  height: 5px;
+  opacity: 0; /* Set initial opacity to 0 */
+
+  &.visible {
+    opacity: 1; /* Set opacity to 1 for fade-in effect */
+    transition: opacity 0.5s ease-in-out; /* smooth animation */
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: $waveHeight;
+    background: linear-gradient(90deg, $waveColor2, $waveColor1);
+    animation: waveAnimation 1.5s infinite linear;
+  }
+}
+
+@keyframes waveAnimation {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

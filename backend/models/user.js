@@ -25,7 +25,15 @@ const userOrderSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-})
+
+    cartItems: [
+        {
+            name: { type: String, required: true },
+            quantity: { type: Number, required: true },
+            price: { type: Number, required: true },
+        },
+    ],
+}, { timestamps: true })
 
 const userOrderInfo = mongoose.model("User_Order_Info", userOrderSchema);
 module.exports = userOrderInfo;
