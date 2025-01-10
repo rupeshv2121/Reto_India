@@ -33,5 +33,10 @@
     "globals": "^15.14.0",
     "sass-embedded": "^1.83.1",
     "vite": "^6.0.5"
-  }
+  },
+  "main": "eslint.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
