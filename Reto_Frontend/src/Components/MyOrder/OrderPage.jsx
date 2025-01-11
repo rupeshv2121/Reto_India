@@ -22,8 +22,51 @@ const OrderPage = () => {
     <div className="bg-gray-100 py-10 min-h-screen background">
       <div className="container mx-auto px-3 md:px-4">
         <h2 className="text-3xl font-semibold mb-6 text-gray-800">My Orders</h2>
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-4 gap-6">
           {/* Cart Items */}
+          <div className="bg-slate-100  rounded-lg shadow p-6">
+            
+            <div className="pb-4 mb-4">
+              <div className="flex justify-between items-center pt-2 mb-2">
+                <span className="text-sm font-medium text-gray-600">
+                  Order ID:
+                </span>
+                <span className="text-sm font-medium text-gray-800">
+                  #2312343
+                </span>
+              </div>
+              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
+                <span className="text-sm font-medium text-gray-600">
+                  Delivery Status:
+                </span>
+                <span className="text-sm font-medium text-gray-800">
+                  Delivered
+                </span>
+              </div>
+              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
+                <span className="text-sm font-medium text-gray-600">
+                  Payment Method:
+                </span>
+                <span className="text-sm font-medium text-gray-800">
+                  Online
+                </span>
+              </div>
+              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
+                <span className="text-sm font-medium text-gray-600">Date:</span>
+                <span className="text-sm font-medium text-gray-800">
+                  01/01/2025
+                </span>
+              </div>
+              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
+                <span className="text-sm font-medium text-gray-600">
+                  Delivery Address:
+                </span>
+                <span className="text-sm  font-medium text-gray-800">
+                  247,Aagman Society, Near Simada Gam, Surat
+                </span>
+              </div>
+            </div>
+          </div>
           <div className="lg:col-span-2 bg-white rounded-lg shadow-xl p-6">
             {cartItems.length === 0 ? (
               <div className="flex flex-col gap-6 items-center">
@@ -38,7 +81,7 @@ const OrderPage = () => {
                 </button>
               </div>
             ) : (
-              <>
+              <div>
                 <table className="w-full border-collapse">
                   <thead className="max-md:hidden">
                     <tr className="border-b text-left">
@@ -68,8 +111,8 @@ const OrderPage = () => {
                           </div>
                         </td>
                         <td className="md:px-2 py-2 px-0 text-sm text-gray-700">
-                          <span className="text-sm  border-[1px] border-gray-400 px-3 py-2 text-center">
-                            {item.quantity}
+                          <span className="text-sm  px-3 py-2 text-center">
+                            Qty: {item.quantity}
                           </span>
                         </td>
                         <td className="p-2 text-sm text-gray-700">
@@ -91,23 +134,20 @@ const OrderPage = () => {
                     Continue Shopping
                   </button>
                 </div>
-              </>
+              </div>
             )}
           </div>
 
           {/* Order Summary */}
-          <div className="bg-slate-100 max-h-fit rounded-lg shadow p-6">
-            <h3 className="text-lg font-semibold mb-4 text-gray-800">
-              Order Summary
-            </h3>
+          <div className="bg-slate-100  rounded-lg shadow p-6">
             <div className="pb-4 mb-4">
-              <div className="flex justify-between items-center mb-2">
+              <div className="flex justify-between items-center pt-2 mb-2 ">
                 <span className="text-sm font-medium text-gray-600">Items</span>
                 <span className="text-sm font-medium text-gray-800">
                   {totalQuantity}
                 </span>
               </div>
-              <div className="flex justify-between items-center mb-2">
+              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
                 <span className="text-sm font-medium text-gray-600">
                   Total Item Price
                 </span>
@@ -115,7 +155,7 @@ const OrderPage = () => {
                   {totalPrice}
                 </span>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center pt-2 border-t-[1px] ">
                 <span className="text-sm font-medium text-gray-600">
                   Shipping Charge
                 </span>
