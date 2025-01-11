@@ -1,7 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
-// import { useSelector } from "react-redux";
 import { FaCartShopping } from "react-icons/fa6";
 import { useLocation } from "react-router";
 import toggleMenu from "../../public/js/navBar";
