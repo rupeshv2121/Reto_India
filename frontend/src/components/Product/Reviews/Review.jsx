@@ -69,7 +69,7 @@ const Review = () => {
         formData.append("image", fileInput.files[0]);
       }
 
-      await axios.post("http://localhost:3000/ReviewText", formData, {
+      await axios.post("http://localhost:5000/ReviewText", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

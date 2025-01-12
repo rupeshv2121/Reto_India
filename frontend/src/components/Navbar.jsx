@@ -57,7 +57,7 @@ const Navbar = () => {
           <Link to="/">
             <i className="fa-solid fa-house ho-me"></i>Home
           </Link>
-          <Link href="#products">
+          <Link to="/product">
             <i className="fa-solid fa-cart-shopping pro-dct"></i>Products
           </Link>
           <Link href="#about">
@@ -114,7 +114,7 @@ const Navbar = () => {
           <Link to="/">
             <i className="fa-solid fa-house ho-me"></i>&nbsp;Home
           </Link>
-          <Link href="#products">
+          <Link to="/product">
             <i className="fa-solid fa-cart-shopping pro-dct"></i>&nbsp;Products
           </Link>
           <Link href="#about">
