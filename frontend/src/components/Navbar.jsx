@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 import toggleMenu from "../../public/js/navBar";
 import "./Navbar.css";
 import ProgressBar from "./ProgressBar/ProgressBar";
@@ -53,29 +54,30 @@ const Navbar = () => {
 
         {/* <!-- Desktop Navigation --> */}
         <nav>
-          <a href="#home">
+          <Link to="/">
             <i className="fa-solid fa-house ho-me"></i>Home
-          </a>
-          <a href="#products">
+          </Link>
+          <Link href="#products">
             <i className="fa-solid fa-cart-shopping pro-dct"></i>Products
-          </a>
-          <a href="#about">
+          </Link>
+          <Link href="#about">
             <i className="fa-solid fa-book ab-ut"></i>About
-          </a>
-          <a href="#login">
+          </Link>
+          <Link href="#login">
             <span className="lo-gin">
               <i className="fa-solid fa-user lo-gin"></i>Pooja Naitam
             </span>
-          </a>
+          </Link>
 
-          <a href="#contact">
+          <Link to="/contact">
             <i className="fa-solid fa-phone con-tct"></i>Contact Us
-          </a>
-          <a href="#tracker">
-            <i className="fa-solid fa-location-dot trc-ker"></i>Tracker
-          </a>
+          </Link>
 
-          <a href="#cart">
+          <Link href="#tracker">
+            <i className="fa-solid fa-location-dot trc-ker"></i>Tracker
+          </Link>
+
+          <Link href="#cart">
             {/* <i className="fa-solid fa-cart-shopping ca-rt"></i>(0) */}
             <div className="rounded-full relative ">
               <FaCartShopping className="text-xl cursor-pointer" />
@@ -83,7 +85,7 @@ const Navbar = () => {
                 0
               </p>
             </div>
-          </a>
+          </Link>
           <i className="fa-solid fa-right-from-bracket lo-ut"></i>
 
           {/* <div className="w-full flex justify-end align-center p-5 px-10 fixed z-10"> */}
@@ -109,24 +111,24 @@ const Navbar = () => {
 
         {/* <!-- Mobile Menu --> */}
         <div className="mobile-menu" id="mobileMenu">
-          <a href="#home">
+          <Link to="/">
             <i className="fa-solid fa-house ho-me"></i>&nbsp;Home
-          </a>
-          <a href="#products">
+          </Link>
+          <Link href="#products">
             <i className="fa-solid fa-cart-shopping pro-dct"></i>&nbsp;Products
-          </a>
-          <a href="#about">
+          </Link>
+          <Link href="#about">
             <i className="fa-solid fa-book ab-ut"></i>&nbsp;About
-          </a>
-          <a href="#login">
+          </Link>
+          <Link href="#login">
             <i className="fa-solid fa-user lo-gin"></i>&nbsp;Login
-          </a>
-          <a href="#contact">
+          </Link>
+          <Link href="#contact">
             <i className="fa-solid fa-phone con-tct"></i>&nbsp;Contact Us
-          </a>
-          <a href="#tracker">
+          </Link>
+          <Link href="#tracker">
             <i className="fa-solid fa-location-dot trc-ker"></i>&nbsp;Tracker
-          </a>
+          </Link>
 
           <a href="#products">
             {/* <i className="fa-solid fa-cart-plus"></i>&nbsp;&nbsp;(0) */}

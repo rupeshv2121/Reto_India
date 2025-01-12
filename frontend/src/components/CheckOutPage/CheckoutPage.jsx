@@ -103,7 +103,7 @@ const CheckoutPage = () => {
   return (
     <>
       {isPopupVisible && (
-        <div className="popup">
+        <div className="checkout-popup">
           <div className="popup-content">
             <div className="spinner"></div>
             <div className="popup-text">Please wait...</div>
@@ -111,18 +111,18 @@ const CheckoutPage = () => {
         </div>
       )}
       <div style={{ marginBottom: "2rem" }}>
-        <h1 className="heading">Checkout</h1>
+        <h1 className="checkout-heading">Checkout</h1>
         <ToastContainer />
         <div className="options">
-          <p className="circle"></p>
+          <p className="underline-circle"></p>
           <p className="line"></p>
-          <p className="circle"></p>
+          <p className="underline-circle"></p>
         </div>
 
-        <div className="container">
+        <div className="checkout-container">
           <div className="review">
             <h3>Review Your Cart Item</h3>
-            <div className="photo">
+            <div className="review-photo">
               {user.cartItems.length ? (
                 <>
                   {user.cartItems.map((item, index) => (

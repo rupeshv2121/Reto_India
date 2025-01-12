@@ -3,7 +3,9 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import "./App.css";
 import CheckoutPage from "./components/CheckOutPage/CheckoutPage";
+import Contact from "./components/Contact/Contact";
 import MainLayout from "./components/Layout/MainLayout";
+import Product from "./components/Product/Product";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +15,14 @@ const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <CheckoutPage />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/product",
+        element: <Product />,
       },
     ],
   },
