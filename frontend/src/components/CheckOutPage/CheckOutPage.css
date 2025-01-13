@@ -85,11 +85,11 @@
     box-shadow: 0px 4px 14px -4px rgb(238, 200, 29);
 }
 
-.btn{
+.checkout-btn{
     text-align: center;
 }
 
-.btn button {
+.checkout-btn button {
     border-radius: 2rem;
     font-size: 1rem;
     padding: 10px 15px 10px 15px;
@@ -101,7 +101,7 @@
     font-weight: 600;
 }
 
-.btn button:hover{
+.checkout-btn button:hover{
     background-color: bisque;
     cursor: pointer;
     font-weight: 600;
@@ -190,7 +190,7 @@
         width: 110%;
     }
 
-    .btn{
+    .checkout-btn{
         margin-bottom: 2rem;
 
     }
@@ -311,7 +311,7 @@
         PADDING: 10PX 12PX 54PX 12PX;
         width: 19rem;
       }
-    .btn button{
+    .checkout-btn button{
     margin-top:2rem;
     border: 1px solid rgb(255, 132, 0);
     margin-bottom: 1rem;

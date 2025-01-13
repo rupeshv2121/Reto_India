@@ -26,7 +26,7 @@ const CheckoutPage = () => {
   });
 
   useGSAP(() => {
-    gsap.from(".btn", {
+    gsap.from(".checkout-btn", {
       delay: 1,
       scale: 0,
     });
@@ -209,7 +209,7 @@ const CheckoutPage = () => {
             </div>
           </form>
         </div>
-        <div className="btn">
+        <div className="checkout-btn">
           <button type="button" onClick={handleOnClick}>
             Place Your Order
           </button>

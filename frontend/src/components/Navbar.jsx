@@ -73,7 +73,7 @@ const Navbar = () => {
             <i className="fa-solid fa-phone con-tct"></i>Contact Us
           </Link>
 
-          <Link href="#tracker">
+          <Link to="/tracking">
             <i className="fa-solid fa-location-dot trc-ker"></i>Tracker
           </Link>
 
@@ -126,7 +126,7 @@ const Navbar = () => {
           <Link href="#contact">
             <i className="fa-solid fa-phone con-tct"></i>&nbsp;Contact Us
           </Link>
-          <Link href="#tracker">
+          <Link to="/tracking">
             <i className="fa-solid fa-location-dot trc-ker"></i>&nbsp;Tracker
           </Link>
 

@@ -6,6 +6,7 @@ import CheckoutPage from "./components/CheckOutPage/CheckoutPage";
 import Contact from "./components/Contact/Contact";
 import MainLayout from "./components/Layout/MainLayout";
 import Product from "./components/Product/Product";
+import TrackingPage from "./components/Track_order/TrackingPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/product",
         element: <Product />,
+      },
+      {
+        path: "/tracking",
+        element: <TrackingPage />,
       },
     ],
   },
