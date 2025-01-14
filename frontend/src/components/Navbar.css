@@ -34,13 +34,13 @@ header {
   margin-right: 10px;
 }
 
-/* Navigation Menu */
-nav {
+/* .main-navigation Menu */
+.main-nav {
   display: flex;
   gap: 89px;
 }
 
-nav a {
+.main-nav a {
   font-size: 16px;
   text-decoration: none;
   color: #333;
@@ -48,11 +48,11 @@ nav a {
   gap: 10px;
 }
 
-nav i {
+.main-nav i {
   font-size: 18px;
   color: #f58634;
 }
-nav a span {
+.main-nav a span {
   display: flex;
   gap: 14px;
   text-transform: capitalize;
@@ -67,7 +67,7 @@ nav a span {
   color: black;
 }
 
-nav a:hover {
+.main-nav a:hover {
   color: #fd7e14;
 }
 .ho-me {
@@ -103,7 +103,7 @@ nav a:hover {
   color: black;
 }
 
-nav a:hover {
+.main-nav a:hover {
   color: #fd7e14;
 }
 
@@ -122,7 +122,7 @@ nav a:hover {
   background-color: #333;
 }
 
-.nav-side {
+.main-nav-side {
   margin-left: 330px;
   margin-top: 20px;
 }
@@ -164,10 +164,10 @@ nav a:hover {
   .lo-gin {
     font-size: 21px;
   }
-  nav a span {
+  .main-nav a span {
     gap: 6px;
   }
-  nav i {
+  .main-nav i {
     font-size: 14px;
   }
   .ho-me {
@@ -198,17 +198,17 @@ nav a:hover {
     margin-left: -5px;
     color: #f58634;
   }
-  nav a {
+  .main-nav a {
     font-size: 14px;
   }
-  nav {
+  .main-nav {
     gap: 40px;
     justify-content: center;
     align-items: center;
   }
 }
 @media screen and (max-width: 768px) {
-  nav {
+  .main-nav {
     display: none;
   }
 

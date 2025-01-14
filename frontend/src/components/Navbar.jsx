@@ -53,7 +53,7 @@ const Navbar = () => {
         </div>
 
         {/* <!-- Desktop Navigation --> */}
-        <nav>
+        <nav className="main-nav">
           <Link to="/">
             <i className="fa-solid fa-house ho-me"></i>Home
           </Link>

@@ -4,9 +4,9 @@
     box-sizing: border-box;
     font-family: "Bricolage Grotesque", Sans-serif;
 }
-body{
+/* body{
     background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%)
-}
+} */
 .navbar{
     height: 3rem;
 }
