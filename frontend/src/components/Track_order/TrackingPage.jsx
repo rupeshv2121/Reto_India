@@ -36,7 +36,7 @@ export default function TrackingPage() {
               <div className="divtext">Order delivered Successfully</div>
             </div>
           )}
-          <div className="divider"></div>
+          <div className="trackingPage-divider"></div>
           <div>
             <form
               className="order-form"
@@ -46,6 +46,7 @@ export default function TrackingPage() {
             >
               <label for="order-id">Your Order ID</label>
               <input
+                className="input-details"
                 type="text"
                 id="order-id"
                 name="order-id"
@@ -54,14 +55,16 @@ export default function TrackingPage() {
               />
               <label for="registration">Registration No</label>
               <input
+                className="input-details"
                 type="text"
                 id="registration"
                 name="registration"
-                placeholder="registartion no..."
+                placeholder="registration no..."
                 required
               />
               <label for="order-status">Order Status</label>
               <input
+                className="input-details"
                 type="text"
                 id="order-status"
                 name="order-status"

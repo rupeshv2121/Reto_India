@@ -1,0 +1,209 @@
+/* @import url("../../assets/fonts/customFonts.css"); */
+
+.main-nav {
+  z-index: 999999 !important;
+  /* padding-top: 30px; */
+}
+
+body {
+  background-color: #ffdaaa;
+}
+
+.nav-container {
+  display: flex;
+  width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ffffff;
+  padding: 15px;
+  padding-left: 25px;
+  padding-right: 20px;
+  border-radius: 200px;
+  border: 2px solid #000000;
+  box-shadow: 5px 10px 1px 0px #000000;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: flex-start;
+}
+
+.nav-group ul {
+  display: flex;
+  column-gap: 30px;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-links,
+.header-cta {
+  font-family: "Inter", sans-serif;
+  /* font-size: 18px; */
+  font-weight: 500;
+  color: black;
+  text-decoration: none;
+}
+
+.header-cta {
+  background: #fac44b !important;
+  transition: 0.2s;
+  padding: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 100px !important;
+  border: 1px solid #000000;
+  box-shadow: 0.25rem 0.25rem #000000;
+}
+
+.header-cta:hover {
+  transform: translate(0.2rem, 0.2rem);
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #000000;
+  box-shadow: 0.25rem 0.25rem #00000000;
+}
+
+.res-nav {
+  display: none;
+  height: 30px;
+  width: 30px;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.res-nav span {
+  height: 20px;
+  width: 100%;
+}
+
+.close-nav {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.close-nav svg {
+  width: 20px;
+  height: 20px;
+  fill: black;
+  margin-top: 96px;
+  margin-left: -34px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .main-nav {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .nav-container {
+    padding: 10px 20px;
+  }
+
+  .nav-group ul {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    left: 10px;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .nav-container.open .nav-group ul {
+    display: flex;
+    margin-top: 25px;
+  }
+
+  .nav-links,
+  .header-cta {
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .res-nav {
+    display: flex;
+  }
+
+  .close-nav {
+    display: none; /* Hide the cross icon by default */
+  }
+
+  .nav-container.open .close-nav {
+    display: block; /* Show the cross icon only when menu is open */
+  }
+}
+
+@media only screen and (max-width: 974px) {
+  .nav-container {
+    min-width: 90% !important;
+    max-width: 90% !important;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .res-nav {
+    width: 60px;
+    height: 60px;
+  }
+  .res-nav span {
+    font-size: 33px;
+    /* margin-top: -12px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-links, .header-cta {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+.ct-abtn{
+font-size: 14px !important;
+padding: 10px !important;
+padding-left: 11px !important;
+padding-right: 13px !important;
+}
+.ho-nv{
+    margin-left: -46px;
+}
+.ab-ut{
+    margin-left: -22px;
+}
+.co-tc{
+    margin-left: -10px;
+}
+.tr-k{
+    margin-left: -4px;
+}
+.car-t{
+    margin-left: -15px;
+}
+.lo-gin{
+    margin-left: -47px;
+}
+.last{
+  margin-bottom: 13px !important;
+}
+}
