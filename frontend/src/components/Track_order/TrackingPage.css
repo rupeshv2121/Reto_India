@@ -21,7 +21,7 @@ body{
 
 .tracking_content{
     position: absolute;
-    top: 20%;
+    top: 30%;
 }
 .track-box{
     display: flex;
@@ -151,7 +151,7 @@ background-color: rgb(203, 28, 28);
   .social-links{
     position: absolute;
     z-index: 10;
-    top:25%;
+    top:30%;
     left:2%;
 
     display: flex;
