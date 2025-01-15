@@ -51,14 +51,13 @@ const CartPage = () => {
                   Your cart is empty
                 </p>
                 <button
-                    onClick={handleContinueShopping}
-                    className="text-black  text-sm font-medium md:mb-0 mb-3"
-                  >
+                  onClick={handleContinueShopping}
+                  className="text-black  text-sm font-medium md:mb-0 mb-3"
+                >
                   <p className="background px-4 py-3 rounded-md  border-[1px] border-orange-200 hover:scale-105 duration-100 ease-in">
-                    
                     Continue Shopping
-                    </p>
-                  </button>
+                  </p>
+                </button>
               </div>
             ) : (
               <>
@@ -105,7 +104,9 @@ const CartPage = () => {
                           >
                             -
                           </button>
-                          <span className="text-sm  border-[1px] border-gray-400 px-3 py-2 text-center">{item.quantity}</span>
+                          <span className="text-sm  border-[1px] border-gray-400 px-3 py-2 text-center">
+                            {item.quantity}
+                          </span>
                           <button
                             onClick={() => handleIncrement(item.id)}
                             className=" hover:bg-gray-200 rounded-md text-black font-semibold py-1 px-2 text-lg ml-2"
@@ -114,34 +115,26 @@ const CartPage = () => {
                           </button>
                         </td>
                         <td className="p-2 text-sm text-gray-700">
-                          ${item.price}
+                          $ {item.price}
                         </td>
                         <td className="p-2">
-                          ${(item.price * item.quantity).toFixed(2)}
+                          $ {(item.price * item.quantity).toFixed(2)}
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
                 <div className="mt-6 md:flex md:justify-between text-center">
-                   <button
-                                                          onClick={handleContinueShopping}
-                                                          className="text-blue-500 hover:underline text-sm font-medium md:mb-0 mb-3 flex justify-center items-center gap-3"
-                                                          >
-                                                              <FaArrowLeftLong/>
-                                                          Continue Shopping
-                                                      </button>
-                  <div className="md:text-right">
-                    <h3 className="text-sm font-semibold text-gray-800">
-                      Total Items: <span>{totalQuantity}</span>
-                    </h3>
-                    <h3 className="text-sm font-semibold text-gray-800">
-                      Total Price: <span>${totalPrice.toFixed(2)}</span>
-                    </h3>
-                  </div>
+                  <button
+                    onClick={handleContinueShopping}
+                    className="text-blue-500 hover:underline text-sm font-medium md:mb-0 mb-3 flex justify-center items-center gap-3"
+                  >
+                    <FaArrowLeftLong />
+                    Continue Shopping
+                  </button>
                 </div>
               </>
-            )}
+            )}  
           </div>
 
           {/* Order Summary */}
@@ -151,16 +144,26 @@ const CartPage = () => {
             </h3>
             <div className="border-b pb-4 mb-4">
               <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium text-gray-600">Items</span>
+                <span className="text-sm font-medium text-gray-600">
+                  Total Items:
+                </span>
                 <span className="text-sm font-medium text-gray-800">
                   {totalQuantity}
                 </span>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center mb-2">
                 <span className="text-sm font-medium text-gray-600">
-                  Shipping
+                  Shipping Fees:
                 </span>
-                <span className="text-sm font-medium text-gray-800">$5.00</span>
+                <span className="text-sm font-medium text-gray-800">$ 5.00</span>
+              </div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm font-medium text-gray-600">
+                  Total Price:
+                </span>
+                <span className="text-sm font-medium text-gray-800">
+                  $ {totalPrice.toFixed(2)}
+                </span>
               </div>
             </div>
             <div className="mb-4">
@@ -188,7 +191,7 @@ const CartPage = () => {
                   Total Cost
                 </span>
                 <span className="text-sm font-medium text-gray-800">
-                  ${(totalPrice + 5).toFixed(2)}
+                  $ {(totalPrice + 5).toFixed(2)}
                 </span>
               </div>
               <button className="w-full background text-black hover:scale-105 duration-200 ease-linear border-[1px] border-orange-200 py-2 rounded-md mt-4">

@@ -22,52 +22,9 @@ const OrderPage = () => {
     <div className="bg-gray-100 py-10 min-h-screen background">
       <div className="container mx-auto px-3 md:px-4">
         <h2 className="text-3xl font-semibold mb-6 text-gray-800">My Orders</h2>
-        <div className="grid lg:grid-cols-4 gap-6">
+        <div className="grid lg:grid-cols-3 gap-6">
           {/* Cart Items */}
-          <div className="bg-slate-100  rounded-lg shadow p-6">
-            
-            <div className="pb-4 mb-4">
-              <div className="flex justify-between items-center pt-2 mb-2">
-                <span className="text-sm font-medium text-gray-600">
-                  Order ID:
-                </span>
-                <span className="text-sm font-medium text-gray-800">
-                  #2312343
-                </span>
-              </div>
-              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
-                <span className="text-sm font-medium text-gray-600">
-                  Delivery Status:
-                </span>
-                <span className="text-sm font-medium text-gray-800">
-                  Delivered
-                </span>
-              </div>
-              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
-                <span className="text-sm font-medium text-gray-600">
-                  Payment Method:
-                </span>
-                <span className="text-sm font-medium text-gray-800">
-                  Online
-                </span>
-              </div>
-              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
-                <span className="text-sm font-medium text-gray-600">Date:</span>
-                <span className="text-sm font-medium text-gray-800">
-                  01/01/2025
-                </span>
-              </div>
-              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
-                <span className="text-sm font-medium text-gray-600">
-                  Delivery Address:
-                </span>
-                <span className="text-sm  font-medium text-gray-800">
-                  247,Aagman Society, Near Simada Gam, Surat
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="lg:col-span-2 bg-white rounded-lg shadow-xl p-6">
+          <div className="lg:col-span-2 order-2 lg:order-1 bg-white rounded-lg shadow-xl p-6">
             {cartItems.length === 0 ? (
               <div className="flex flex-col gap-6 items-center">
                 <p className="text-center text-xl text-gray-600">No order</p>
@@ -139,37 +96,75 @@ const OrderPage = () => {
           </div>
 
           {/* Order Summary */}
-          <div className="bg-slate-100  rounded-lg shadow p-6">
+          <div className="bg-slate-100 order-1 lg:oder-2 rounded-lg shadow p-6">
             <div className="pb-4 mb-4">
-              <div className="flex justify-between items-center pt-2 mb-2 ">
-                <span className="text-sm font-medium text-gray-600">Items</span>
+            <div className="flex justify-between items-center pt-2 mb-2">
+                <span className="text-sm font-medium text-gray-600">
+                  Order ID:
+                </span>
+                <span className="text-sm font-medium text-gray-800">
+                  #2312343
+                </span>
+              </div>
+              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
+                <span className="text-sm font-medium text-gray-600">
+                  Delivery Status:
+                </span>
+                <span className="text-sm font-medium text-gray-800">
+                  Delivered
+                </span>
+              </div>
+              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
+                <span className="text-sm font-medium text-gray-600">
+                  Payment Method:
+                </span>
+                <span className="text-sm font-medium text-gray-800">
+                  Online
+                </span>
+              </div>
+              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
+                <span className="text-sm font-medium text-gray-600">Date:</span>
+                <span className="text-sm font-medium text-gray-800">
+                  01/01/2025
+                </span>
+              </div>
+              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
+                <span className="text-sm font-medium text-gray-600">
+                  Delivery Address:
+                </span>
+                <span className="text-sm text-right font-medium text-gray-800">
+                  247,Aagman Society, Surat
+                </span>
+              </div>
+              <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px]">
+                <span className="text-sm font-medium text-gray-600">Total Items:</span>
                 <span className="text-sm font-medium text-gray-800">
                   {totalQuantity}
                 </span>
               </div>
               <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] ">
                 <span className="text-sm font-medium text-gray-600">
-                  Total Item Price
+                  Total Price:
                 </span>
                 <span className="text-sm font-medium text-gray-800">
-                  {totalPrice}
+                  $ {totalPrice}.00
                 </span>
               </div>
               <div className="flex justify-between items-center pt-2 border-t-[1px] ">
                 <span className="text-sm font-medium text-gray-600">
-                  Shipping Charge
+                  Shipping Charge:
                 </span>
-                <span className="text-sm font-medium text-gray-800">$5.00</span>
+                <span className="text-sm font-medium text-gray-800">$ 5.00</span>
               </div>
             </div>
 
             <div className="border-t-[1px] border-gray-400 pt-4">
               <div className="flex justify-between items-center">
                 <span className="text-sm font-medium text-gray-600">
-                  Total Cost
+                  Total Cost:
                 </span>
                 <span className="text-sm font-medium text-gray-800">
-                  ${(totalPrice + 5).toFixed(2)}
+                  $ {(totalPrice + 5).toFixed(2)}
                 </span>
               </div>
             </div>
