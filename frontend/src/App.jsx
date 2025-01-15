@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import "./App.css";
 import CheckoutPage from "./components/CheckOutPage/CheckoutPage";
 import Contact from "./components/Contact/Contact";
+import LandingPage from "./components/LandingPage/LandingPage";
 import MainLayout from "./components/Layout/MainLayout";
 import Login from "./components/Login_Signup_Page/Login";
 import Signup from "./components/Login_Signup_Page/Signup";
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     children: [
+      {
+        path: "/",
+        element: <LandingPage />,
+      },
       {
         path: "/checkout",
         element: <CheckoutPage />,

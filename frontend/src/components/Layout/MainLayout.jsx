@@ -20,6 +20,7 @@ function MainLayout() {
           <Navbar />
         </nav>
       )}
+
       <Outlet />
     </>
   );

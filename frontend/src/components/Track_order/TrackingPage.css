@@ -107,7 +107,7 @@ background-color: rgb(203, 28, 28);
     width: 280px;
     /* filter:drop-shadow(3px 3px 10px rgb(244, 139, 69)); */
 }
-.trackingPage-divider{
+.divider{
   width: 3px;
   background-color: black;
 }
@@ -128,7 +128,7 @@ background-color: rgb(203, 28, 28);
     box-shadow: 0px 1px 12px 0px orange;
 
   }
-  .input-details[type=text],textarea{
+  input[type=text],textarea{
   outline:none;
   color: rgb(0, 0, 0);
   padding: 12px 10px;
@@ -136,7 +136,7 @@ background-color: rgb(203, 28, 28);
   border:none;
   background-color: rgba(255, 255, 255, 0.662);
   }
-  .input-details::placeholder {
+  input::placeholder {
     color: rgb(78, 75, 75); 
       opacity: 1; 
       font-family: var(--my-font1);
@@ -153,7 +153,6 @@ background-color: rgb(203, 28, 28);
     z-index: 10;
     top:30%;
     left:2%;
-
     display: flex;
     flex-direction: column;
     gap:30px;
@@ -167,7 +166,7 @@ background-color: rgb(203, 28, 28);
     transform:rotateY(180deg) scale(1.2);
   
   }
-  .btn{
+  .tracking-btn{
     position: absolute;
     bottom: -20%;
     left: 29%;
@@ -184,7 +183,7 @@ background-color: rgb(203, 28, 28);
 }
 
 
-.btn:hover{
+.tracking-btn:hover{
     background-color: bisque;
     cursor: pointer;
     font-weight: 600;
@@ -230,7 +229,7 @@ background-color: rgb(203, 28, 28);
       font-weight: 400;
       font-size: 12px;
     }
-    .btn{
+    .tracking-btn{
       left: 17%;
       bottom: -10%;
     }
@@ -243,7 +242,7 @@ background-color: rgb(203, 28, 28);
   
   }
   .replace_dmd_box{height: fit-content;}
-  .btn{
+  .tracking-btn{
     bottom: -10%;
   }
     .diamond-div{
@@ -267,7 +266,7 @@ background-color: rgb(203, 28, 28);
       justify-content: center;
       align-items: center;
     }
-  .btn{
+  .tracking-btn{
     bottom: -10%;
   }
  
