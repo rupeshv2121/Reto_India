@@ -1,0 +1,382 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.box {
+  overflow: hidden;
+}
+
+/* Background Styling */
+.box {
+  font-family: "Bricolage Grotesque", sans-serif;
+  background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Background Circle */
+.circle {
+  width: 900px;
+  height: 800px;
+  background: radial-gradient(circle, #f6d283, #f5d691d6);
+  border-radius: 50%;
+  position: absolute;
+  bottom: -400px;
+  left: -300px;
+  z-index: 0;
+}
+
+/* Heading */
+.heading {
+  position: relative;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.heading hr{
+    border: solid;
+}
+
+.heading::before,.heading::after{
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    width: 15px;
+    height: 15px;
+    background-color: #ff9900;
+    border-radius: 50%;
+}
+.heading::before{
+    left: -15%;
+}
+.heading::after{
+    right: -15%;
+}
+.heading::before,.heading::after,.heading{
+    display: inline-block;
+}
+
+/* Container Layout */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85%;
+  max-width: 900px;
+  height: 80vh;
+  margin: 10px;
+  /* padding: 0 20px; */
+}
+
+/* Photo */
+.photo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo img {
+  max-width: 400px;
+  width: 80%;
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Contact Form Styling */
+.contact-form {
+  flex: 1;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: normal;
+  margin-left: 20px;
+  
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+/* Labels */
+.form-group label {
+  flex: 1;
+  text-align: end;
+  margin-right: 0.5rem;
+  font-size: 18px;
+  color: #444;
+  display: block;
+}
+
+/* Input Fields */
+.form-group input,
+.form-group textarea {
+  flex: 3;
+  padding: 10px;
+  font-size: 15px;
+  background-color: #f37d295c;
+  border: 1px solid #ccc;
+  border-radius: 2rem;
+  width: 100%;
+}
+
+/* Textarea */
+.form-group textarea {
+  resize: none;
+  height: 180px;
+}
+
+/* Submit Button */
+.contact-form button {
+  border-radius: 2rem;
+  font-size: 1rem;
+  padding: 10px 15px 10px 15px;
+  background-color: rgb(253, 175, 91);
+  color: white;
+  border: 1px solid rgb(255, 132, 0);
+  box-shadow: 0px 1px 12px 0px orange;
+  font-weight: 600;
+  align-self: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-form button:hover {
+  background-color: bisque;
+  cursor: pointer;
+  font-weight: 600;
+  color: black;
+  transform: scale(1.05);
+}
+
+.contact-form button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Social Icons Container */
+.social-icons {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Social Icon Style */
+.social-icons img {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.1);
+}
+
+/* Popup Styling */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 70px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: popup-show 0.4s ease;
+}
+
+.popup img {
+  height: 90px;
+  width: 90px;
+  margin: 10px;
+}
+
+.popup h3 {
+  font-size: 25px;
+  margin: 10px;
+  color: #333;
+}
+
+.popup p {
+  font-size: 20px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.popup button {
+  border-radius: 2rem;
+  font-size: 1rem;
+  padding: 10px 15px 10px 15px;
+  background-color: rgb(253, 175, 91);
+  color: white;
+  border: 1px solid rgb(255, 132, 0);
+  box-shadow: 0px 1px 12px 0px orange;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.popup button:hover {
+  background-color: bisque;
+  cursor: pointer;
+  font-weight: 600;
+  color: black;
+}
+
+@keyframes popup-show {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 420px) {
+    .social-icons img {
+        width: 30px;
+        height: 30px;
+      }    
+}
+
+
+@media (max-width: 580px) {
+  .form-group input,
+  .form-group textarea {
+    flex: 2;
+    padding: 8px;
+  }
+}
+@media ((min-width:768px) and (max-width:920px)){
+  .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .circle{
+    display: none;
+  }
+  .contact-form{
+    width: 80%;
+    margin: 1rem;
+  }
+  #contactForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+  }
+  .photo{
+    width: 70%;
+  }
+}
+@media (max-width: 768px) {
+  .box {
+    overflow: auto;
+    height: 100vh;
+  }
+  .social-icons {
+    position: fixed;
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+
+  .circle {
+    display: none;
+  }
+
+  .container {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 12px 0 0 0;
+    height: auto;
+  }
+
+  .photo {
+    order: -1;
+    margin-bottom: 20px;
+    width: 80%;
+  }
+
+  .contact-form {
+    margin-left: 0;
+    width: 90%;
+  }
+  .form-group {
+    display: block;
+  }
+
+  .form-group label {
+    font-size: 15px;
+    text-align: start;
+    margin: 0 0 5px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    flex: 2.5;
+  }
+
+  .form-group textarea {
+    height: 110px;
+  }
+
+  .social-icons {
+    bottom: 10px;
+    left: 10px;
+    gap: 10px;
+  }
+  
+  .popup{
+    padding: 40px 50px;
+  }
+}

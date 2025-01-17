@@ -1,0 +1,224 @@
+/* @import "../../assets/themes/mainTheme";
+@import "../../assets/fonts/customFonts"; */
+
+/* bulma overrides */
+.card-content-padding {
+    padding: 4rem;
+}
+.input {
+    box-shadow: inset 0 .0625em .125em rgba(10, 10, 10, .05);
+    max-width: 100%;
+    width: 100%;
+    border: 1px solid gray;
+    background-color: #fff;
+    border-color: #dbdbdb;
+    border-radius: 4px;
+    color: #363636;
+     font-size: 1.25rem;
+     padding: 0.5rem;
+}
+.input-shadow {
+    box-shadow: unset;
+}
+.input-border-color {
+    border-color: #666666;
+}
+.input-color {
+    color: #444444;
+}
+.input-placeholder-color {
+    color: #444444;
+}
+
+.input-field{
+   width: 100%;
+}
+
+/* @import "bulma/sass/utilities/all"; */
+
+/* Full background styling for the modal-like effect */
+.ca-signup-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-image: url('../../assets/images/Article_Gen/article_gen.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(0.5);
+}
+
+.ca-signup-container {
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ca-signup-container .heading-text {
+    font-family: "Archivo", sans-serif;
+    font-size: 2rem;
+    line-height: 1.2em;
+    font-weight: 700;
+    color: #000000;
+    text-align: center;
+}
+
+body{
+    background-color:  #ffdaaa;
+}
+
+@media screen and (max-width: 1560px) {
+    .ca-signup-container .heading-text {
+        font-size: 2.5rem;
+    }
+}
+
+.ca-signup-container .epilogue {
+    font-family: "Epilogue", normal;
+    margin-bottom: 30px;
+}
+
+.ca-signup-container .subtitle-text {
+    font-size: 1.5rem;
+    color: #000000;
+    text-align: center;
+}
+
+@media screen and (max-width: 1560px) {
+    .ca-signup-container .subtitle-text {
+        font-size: 1.25rem;
+    }
+}
+
+.ca-signup-container .signup-card {
+    width: 40%;
+    border-radius: 16px;
+    box-shadow: 0 8px 17px #00000029;
+}
+
+@media screen and (max-width: 1560px) {
+    .ca-signup-container .signup-card {
+        width: 90%;
+    }
+}
+
+.ca-signup-container .signup-card .card-content {
+    padding: 4rem;
+}
+
+@media screen and (max-width: 768px) {
+    .ca-signup-container .signup-card .card-content {
+        padding: 2rem;
+    }
+}
+
+.ca-signup-container .signup-card .card-content .signup-content .signup-btn-border {
+    font-family: "Inter", Sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 15px 50px 15px 60px;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #000000;
+    border-radius: 9px !important;
+    transition: 0.2s;
+    display: block;
+    margin: 1.5rem auto;
+}
+
+.ca-signup-container .signup-card .card-content .signup-content .signup-btn-border:hover {
+    transform: translate(-0.25rem, -0.25rem);
+    background: #fac44b !important;
+    box-shadow: 0.25rem 0.25rem #000000;
+}
+
+.ca-signup-container .signup-card .card-content .signup-content .divider-wrapper {
+    display: flex;
+    flex-direction: row;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 600;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    vertical-align: baseline;
+}
+
+.ca-signup-container .signup-card .card-content .signup-content .divider-wrapper .divider {
+    text-align: center;
+    flex: 0.2 0 auto;
+    margin: 0;
+    background-color: #fff;
+}
+
+.ca-signup-container .signup-card .card-content .signup-content .connect-account {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.ca-signup-container .signup-card .card-content .signup-content .connect-account .google-option {
+    font-weight: 600;
+    background-color: #ffffff;
+    border: 1px solid black;
+    width: 300px;
+    border-radius: 9px;
+    height: 40px;
+    padding: 7px;
+}
+
+.ca-signup-container .signup-card .card-content .signup-content .connect-account .google-option:hover {
+    cursor: pointer;
+    box-shadow: inset 0 0 0 150px #0000001a;
+}
+
+@media only screen and (max-width: 600px) {
+    .signup-container {
+        padding-top: 120px;
+        width: 90% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .signup-btn-border {
+        padding: 15px 20px 15px 20px !important;
+    }
+}
+
+.show-error-message-below {
+    position: relative !important;
+}
+
+.show-error-message-below::after {
+    content: attr(data-err-msg);
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    font-size: .85rem;
+}
+
+.show-error-message-above {
+    position: relative !important;
+}
+
+.show-error-message-above::after {
+    content: attr(data-err-msg);
+    position: absolute;
+    bottom: 3.5rem;
+    left: 0;
+    color: #e12047;
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.is-size-7{
+    text-align: center;
+    font-size: 0.75rem;
+}

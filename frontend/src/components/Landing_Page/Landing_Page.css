@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com');
+@import url('https://fonts.gstatic.com');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Bricolage Grotesque", sans-serif;
+  background-color: #fff6ee;
+  margin: 0;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  background-color: #d97634;
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Container */
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 20px 20px;
+}
+
+.logo {
+  width: 40%;
+  text-align: center;
+  position: relative;
+}
+
+.logo img {
+  max-width: 86%;
+  height: auto;
+}
+
+.circle {
+  position: absolute;
+  bottom: -90px;
+  left: 60%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 160px;
+  background-color: #f9d6b5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  z-index: -1;
+}
+
+.circle-text {
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+}
+
+.reto {
+  font-size: 50px;
+  color: white;
+}
+
+.india {
+  font-size: 40px;
+  color: #000;
+}
+
+.description {
+  width: 50%;
+  text-align: center;
+  font-size: 16px;
+}
+
+.description h1 {
+  font-size: 50px;
+  color: #000;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.shop-now {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #d97634;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+.shop-now:hover {
+  cursor: pointer;
+  background-color: #b8652c;
+}
+
+.highlight {
+  display: inline-block;
+  font-size: 10px;
+  padding: 10px 20px;
+  background-color: #f3b993;
+  border-radius: 30px;
+  color: #333;
+  line-height: 1.2;
+  margin: 10px 40px 0px;
+  /* font-weight: bold; */
+}
+
+@media (max-width:768px) {
+  .logo img{
+    max-width: 40%;
+  }
+  .shop-now{
+    margin: 0px 100px 10px 100px;
+  }
+  .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 100px;
+  }
+
+  .logo {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    width: 100%;
+  }
+
+  .circle {
+    bottom: -115px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    max-width: 86%;
+}
+.shop-now{
+  margin: 0;
+}
+.highlight {
+  margin: 10px 15px 0px;
+}
+}
+@media (max-width: 376px) {
+  .circle{
+    width: 150px;
+    height: 150px;
+  }
+}

@@ -1,15 +1,12 @@
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // Ensure all relevant files are included
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        bricolage: ['Bricolage Grostesque', 'sans-serif'], // Define your font name here
-      },
-    },
+    extend: {},
   },
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-  ],
-};
+  plugins: [],
+}
+
