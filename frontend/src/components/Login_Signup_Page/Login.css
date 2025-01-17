@@ -27,12 +27,14 @@
 .unique-login-container h2 {
   font-family: "Bricolage Grotesque", sans-serif;
   font-size: 1.5rem;
-  /* color: #fff; */
+  color: #222;
   text-align: center;
+  margin: auto;
+  margin-top: 9px;
 }
 
 .unique-login-card {
-  margin-top: 40px;
+  margin-top: 25px;
   background-color: #fefefe;
   border-radius: 16px;
   padding: 40px;

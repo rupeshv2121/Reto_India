@@ -154,6 +154,7 @@ body{
     text-align: center;
     flex: 0.2 0 auto;
     margin: 0;
+    background-color: #fff;
 }
 
 .ca-signup-container .signup-card .card-content .signup-content .connect-account {
