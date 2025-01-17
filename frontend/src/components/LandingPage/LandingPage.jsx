@@ -10,7 +10,7 @@ const LandingPage = () => {
         </div> */}
         {/* <!-- Desktop Navigation --> */}
         {/* <nav>
-          <a href="#home">
+          // <a href="#home">
             <i
               className="fa-solid fa-house ho-me"
               style={{ color: "#f58634" }}
