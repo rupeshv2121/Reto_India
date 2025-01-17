@@ -1,11 +1,15 @@
-// import "../../../public/js/navbar-login-signup";
+import { useState } from "react";
 import "./AuthNavbar.css";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
+
   return (
     <nav className="main-nav">
-      <div className="nav-container">
-        <div className="logo">
+      <div className={`nav-container-auth ${isOpen ? "open" : ""}`}>
+        <div className="logo-auth">
           <a href="#">
             <img
               src="../../../public/img/LogoWoBcg.png"
@@ -88,10 +92,10 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-        <div className="res-nav">
+        <div className="res-nav" onClick={toggleMenu}>
           <span>☰</span>
         </div>
-        <div className="close-nav">
+        <div className="close-nav" onClick={closeMenu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
