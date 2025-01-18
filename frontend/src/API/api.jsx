@@ -36,4 +36,18 @@ export const signUpUser = async (userData) => {
   }
 };
 
-export default api;
+export const loginUser = async (userData) => {
+  try {
+    const response = await api.post("/auth/login", userData);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error during signup:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
+
+// export default api;
