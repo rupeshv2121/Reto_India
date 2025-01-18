@@ -9,44 +9,36 @@ const userOrderInfo = require("./models/user");
 const Product = require("./models/Product");
 const Review = require("./models/Review");
 const ContactInfo = require("./models/ContactInfo");
+const userSignUpInfo = require("./models/signup");
 
 const app = express();
-app.use(cors());
+
+// Configure CORS
+const corsOptions = {
+    origin: "http://localhost:5173", // Allow requests from your React app
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB connection URIs
-const MONGO_URL_1 = "mongodb://localhost:27017/checkoutDB";
-const MONGO_URL_2 = "mongodb://localhost:27017/NewDatabase";
-
-// Connect to checkoutDB
-const checkoutDBConnection = mongoose.createConnection(MONGO_URL_1);
-
-checkoutDBConnection.on('connected', () => {
-    console.log('Connected to checkoutDB');
-});
-
-checkoutDBConnection.on('error', (err) => {
-    console.error('Error connecting to checkoutDB:', err);
-});
-
-// Connect to NewDatabase
-const newDatabaseConnection = mongoose.createConnection(MONGO_URL_2);
-
-newDatabaseConnection.on('connected', () => {
-    console.log('Connected to NewDatabase');
-});
-
-newDatabaseConnection.on('error', (err) => {
-    console.error('Error connecting to NewDatabase:', err);
-});
+const MONGO_URL = "mongodb://localhost:27017/reto_india";
+mongoose
+    .connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => { console.log("connected to reto_india DB") })
+    .catch((err) => { console.log("Error in connecting DB : ", err) });
 
 // Models need to be defined on each connection
-const UserOrderInfo = checkoutDBConnection.model('UserOrderInfo', userOrderInfo.schema);
-const ProductModel = newDatabaseConnection.model('Product', Product.schema);
-const ReviewModel = newDatabaseConnection.model('Review', Review.schema);
-const ContactInfoModel = newDatabaseConnection.model('ContactInfo', ContactInfo.schema);
+const UserOrderInfo = mongoose.model('UserOrderInfo', userOrderInfo.schema);
+const ProductModel = mongoose.model('Product', Product.schema);
+const ReviewModel = mongoose.model('Review', Review.schema);
+const ContactInfoModel = mongoose.model('ContactInfo', ContactInfo.schema);
+const userSignUpModel = mongoose.model('UserSignUp', userSignUpInfo.schema);
 
 
 const storage = multer.diskStorage({
@@ -60,6 +52,24 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Routes
+// Signup Route
+app.post("/auth/signup", async (req, res) => {
+    const { fullName, email, password } = req.body;
+
+    if (!fullName || !email || !password) {
+        return res.status(400).json({ message: "All fields are required" });
+    }
+
+    try {
+        const newUser = new userSignUpModel({ fullName, email, password });
+        await newUser.save();
+        console.log("Signup info:", req.body);
+        res.status(201).json({ message: `${fullName} signed up successfully` });
+    } catch (error) {
+        console.error("Error saving signup info:", error);
+        res.status(500).json({ error: "Error saving signup details" });
+    }
+});
 app.post("/checkout", async (req, res) => {
     try {
         const newUser = new UserOrderInfo(req.body);
@@ -130,7 +140,7 @@ app.post('/ReviewText', upload.single('image'), async (req, res) => {
 });
 
 // Server listen
-const PORT = 5000; // Use one port for simplicity
+const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const sampleProduct = require("./data");
 const product = require("../models/Product");
-const mongoURL = "mongodb://localhost:27017/NewDatabase";
+const mongoURL = "mongodb://localhost:27017/reto_india";
 
 main().then(() => {
     console.log("Sample Product initialised");
