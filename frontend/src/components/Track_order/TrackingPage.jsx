@@ -46,7 +46,7 @@ export default function TrackingPage() {
             >
               <label for="order-id">Your Order ID</label>
               <input
-                className="input-details"
+                className="input-details-tracking"
                 type="text"
                 id="order-id"
                 name="order-id"
@@ -55,7 +55,7 @@ export default function TrackingPage() {
               />
               <label for="registration">Registration No</label>
               <input
-                className="input-details"
+                className="input-details-tracking"
                 type="text"
                 id="registration"
                 name="registration"
@@ -64,7 +64,7 @@ export default function TrackingPage() {
               />
               <label for="order-status">Order Status</label>
               <input
-                className="input-details"
+                className="input-details-tracking"
                 type="text"
                 id="order-status"
                 name="order-status"

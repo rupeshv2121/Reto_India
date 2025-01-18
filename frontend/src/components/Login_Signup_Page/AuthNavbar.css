@@ -1,5 +1,4 @@
 /* @import url("../../assets/fonts/customFonts.css"); */
-
 .main-nav {
   margin: auto;
   z-index: 999999 !important;
@@ -10,7 +9,7 @@ body {
   background-color: #ffdaaa;
 }
 
-.nav-container {
+.nav-container-auth {
   display: flex;
   width: 1100px;
   margin-left: auto;
@@ -26,14 +25,15 @@ body {
   align-items: center;
 }
 
-.logo {
+.logo-auth {
   display: flex;
   align-items: flex-start;
 }
 
 .nav-group ul {
   display: flex;
-  column-gap: 30px;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
   justify-content: flex-end;
   align-items: center;
   list-style: none;
@@ -64,7 +64,7 @@ body {
   background-color: #ffffff !important;
   color: #000000 !important;
   border: 1px solid #000000;
-  box-shadow: 0.25rem 0.25rem #00000000;
+  box-shadow: 0.25rem 0.25rem rgba(0, 0, 0, 0);
 }
 
 .res-nav {
@@ -102,17 +102,17 @@ body {
   .main-nav {
     padding-left: 20px;
     padding-right: 20px;
+    width: 100%;
   }
-
-  .logo {
+  .logo-auth {
     width: 120px;
   }
-
-  .nav-container {
+  .nav-container-auth {
+    margin-top: 0.4px;
+    width: 100%;
     padding: 10px 20px;
   }
-
-  .nav-group ul {
+  /* .nav-group ul {
     display: none;
     position: absolute;
     top: 70px;
@@ -124,35 +124,30 @@ body {
     border-radius: 10px;
     padding: 10px;
     gap: 15px;
-  }
-
-  .nav-container.open .nav-group ul {
+  } */
+  .nav-container-auth.open .nav-group ul {
     display: flex;
-    margin-top: 25px;
+    /* margin-top: 25px; */
   }
-
   .nav-links,
   .header-cta {
     font-family: "Inter", sans-serif;
     font-size: 20px;
     font-weight: 500;
+    font-size: 12px;
   }
-
-  .res-nav {
+  /* .res-nav {
     display: flex;
-  }
-
+  } */
   .close-nav {
     display: none; /* Hide the cross icon by default */
   }
-
-  .nav-container.open .close-nav {
-    display: block; /* Show the cross icon only when menu is open */
-  }
+  /* .nav-container-auth.open .close-nav { */
+  /* display: block; Show the cross icon only when menu is open */
+  /* } */
 }
-
 @media only screen and (max-width: 974px) {
-  .nav-container {
+  .nav-container-auth {
     min-width: 90% !important;
     max-width: 90% !important;
     position: absolute;
@@ -162,7 +157,56 @@ body {
     margin-right: auto;
   }
 }
-
+@media screen and (max-width: 870px) {
+  .logo-auth {
+    width: 66px;
+  }
+  .nav-container-auth {
+    max-width: 97% !important;
+  }
+  .header-cta {
+    font-size: 10px;
+    padding: 5px;
+  }
+}
+@media (max-width: 770px) {
+  .nav-group ul {
+    display: none;
+    position: absolute;
+    top: 97px;
+    right: 10px;
+    left: 10px;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    gap: 15px;
+    height: 130vh;
+  }
+  .nav-group ul li {
+    position: relative;
+    top: -25rem;
+  }
+  .nav-group ul li a {
+    margin: auto;
+  }
+  .lo-gin {
+    position: relative;
+    top: -25rem;
+    margin-left: 10px !important;
+  }
+  .nav-links {
+    font-size: 20px !important;
+  }
+  .nav-container-auth {
+    width: 100%;
+  }
+  .res-nav {
+    font-size: 1.5rem;
+    display: block;
+  }
+}
 @media only screen and (max-width: 320px) {
   .res-nav {
     width: 60px;
@@ -179,32 +223,32 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 16px;
     font-weight: 500;
-}
-.ct-abtn{
-font-size: 14px !important;
-padding: 10px !important;
-padding-left: 11px !important;
-padding-right: 13px !important;
-}
-.ho-nv{
+  }
+  .ct-abtn {
+    font-size: 14px !important;
+    padding: 10px !important;
+    padding-left: 11px !important;
+    padding-right: 13px !important;
+  }
+  .ho-nv {
     margin-left: -46px;
-}
-.ab-ut{
+  }
+  .ab-ut {
     margin-left: -22px;
-}
-.co-tc{
+  }
+  .co-tc {
     margin-left: -10px;
-}
-.tr-k{
+  }
+  .tr-k {
     margin-left: -4px;
-}
-.car-t{
+  }
+  .car-t {
     margin-left: -15px;
-}
-.lo-gin{
+  }
+  .lo-gin {
     margin-left: -47px;
-}
-.last{
-  margin-bottom: 13px !important;
-}
-}
+  }
+  .last {
+    margin-bottom: 13px !important;
+  }
+}/*# sourceMappingURL=authNavbar.css.map */

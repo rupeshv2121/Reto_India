@@ -47,6 +47,7 @@
 .unique-login-content div:nth-child(2) {
   margin: 1.5rem 0 2rem 0;
 }
+
 #unique-errorMessage {
   color: #e63946;
   font-size: 1rem;
@@ -124,3 +125,30 @@
 .unique-google-login-btn i {
   margin-right: 10px;
 }
+
+@media screen and (max-width: 430px) {
+  .unique-login-wrapper {
+    padding: 100px 0 0 0;
+  }
+  .unique-login-container {
+    width: 100%;
+    margin: 0;
+  }
+  .unique-login-container h1 {
+    font-size: 2rem;
+  }
+  .unique-login-container h2 {
+    font-size: 1.2rem;
+  }
+  .unique-login-card {
+    padding: 40px 20px;
+  }
+  .unique-login-btn {
+    font-size: 13px;
+    padding: 10px 23px 10px 29px;
+  }
+  .unique-google-login-btn {
+    padding: 15px 15px 15px 7px;
+    font-size: 13px;
+  }
+}/*# sourceMappingURL=login.css.map */

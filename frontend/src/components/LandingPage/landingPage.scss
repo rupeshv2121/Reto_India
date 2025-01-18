@@ -4,14 +4,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: "Bricolage Grotesque", Sans-serif !important;
   background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%);
   color: #333;
   width: 100%;
 }
-
 header {
   display: flex;
   justify-content: space-between;
@@ -47,11 +45,9 @@ nav a {
   font-weight: bold;
   gap: 10px;
 }
-
 nav i {
   font-size: 18px;
 }
-
 nav a span {
   display: flex;
   gap: 14px;
@@ -70,35 +66,27 @@ nav a span {
 nav a:hover {
   color: #fd7e14;
 }
-
 .ho-me {
   margin-right: 8px;
 }
-
 .pro-dct {
   margin-right: 8px;
 }
-
 .ab-ut {
   margin-right: 8px;
 }
-
 .con-tct {
   margin-right: 8px;
 }
-
 .trc-ker {
   margin-right: 8px;
 }
-
 .lo-gin {
   font-size: 22px;
 }
-
 .lo-ut {
   margin-left: -18px;
 }
-
 .lo-gin {
   color: #fd7e14;
   font-size: 25px;
@@ -144,20 +132,19 @@ nav a:hover {
 }
 
 /* Main Section */
+
 main h1 {
   font-weight: 600;
   font-size: 75px;
 }
-
 main p {
   font-size: 32px;
 }
 
-.logo-img {
+ .logo-img{
   height: 720px;
   width: 660px;
 }
-
 h2 {
   font-size: 180px;
   color: white;
@@ -240,7 +227,6 @@ h2 {
   color: #fd7e14;
   font-weight: bold;
 }
-
 .mobile-menu a:hover {
   text-decoration: none;
   color: #fd7e14;
@@ -286,62 +272,64 @@ h2 {
   text-align: right;
   margin-right: 15rem;
 }
-
 .namaste-head {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .head-parent {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
 }
-
 .reto-parent {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
-
 .img-parent {
   align-items: center;
 }
-
 .head-parent p {
   text-align: center;
 }
 
 @media screen and (max-width: 1024px) {
   /* old */
+
   .landing-btn {
     margin-left: 0;
   }
+
   .btn-2 {
     margin-top: 60px;
     margin-bottom: 50px;
     margin-left: 250px;
   }
+
   main h1 {
     font-size: 75px;
     font-weight: 600;
     margin-top: 70px;
   }
+
   main p {
     font-size: 24px;
     margin-right: 0;
   }
+
   h2 {
     font-size: 80px;
   }
+
   .ind-ia {
     font-weight: 500;
     font-size: 60px;
     margin-left: 28px;
   }
+
   .landing-logo-main {
     margin-top: 20px;
     margin-left: 0;
@@ -457,6 +445,7 @@ h2 {
   /* nav {
     display: none;
   } */
+
   .menu-toggle {
     display: flex;
   }
@@ -468,11 +457,13 @@ h2 {
     margin-top: 3px;
     font-size: 17px;
   }
+
   .btn-2 {
     font-size: 12px;
     padding: 4px;
     width: 300px;
   }
+
   main h1 {
     font-size: 55px;
   }
@@ -480,23 +471,28 @@ h2 {
     margin-top: -20px;
     font-size: 60px;
   }
+
   main p {
     font-size: 1.3rem;
     line-height: 1.1;
   }
+
   h2 {
     font-size: 50px;
     margin-left: -30px;
   }
+
   .ind-ia {
     font-size: 53px;
     font-weight: 500;
     margin-left: -4px;
   }
+
   .landing-logo-main {
     margin-top: 20px;
     margin-left: 0;
   }
+
   .social-icons {
     position: fixed;
     left: 20px;
@@ -572,6 +568,7 @@ h2 {
     gap: 10px;
     z-index: 1000;
   } */
+
   .social-icons {
     position: fixed;
     display: flex;
@@ -589,6 +586,7 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
+
   .social-icons a {
     text-align: center;
     font-size: 32px;
@@ -656,6 +654,7 @@ h2 {
     font-size: 16px;
     padding: 10px;
   }
+
   .logo img {
     width: 55px;
     height: 55px;
@@ -684,4 +683,4 @@ h2 {
   .img-parent {
     position: relative;
   }
-}/*# sourceMappingURL=landingPage.css.map */
+}

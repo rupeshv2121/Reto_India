@@ -8,9 +8,9 @@ const LandingPage = () => {
         {/* <div className="logo">
           <img src="/img/LogoWoBcg.png" alt="Logo" />
         </div> */}
-        {/* <!-- Desktop Navigation --> */}
-        {/* <nav>
-          <a href="#home">
+        {/* <!-- Desktop landing-navigation --> */}
+        {/* <landing-nav>
+          // <a href="#home">
             <i
               className="fa-solid fa-house ho-me"
               style={{ color: "#f58634" }}
@@ -61,7 +61,7 @@ const LandingPage = () => {
             className="fa-solid fa-right-from-bracket lo-ut"
             style={{ color: "#f58634" }}
           ></i>
-        </nav> */}
+        </landing-nav> */}
 
         {/* <!-- Mobile Menu Toggle -->
       <!-- Mobile Menu Toggle --> */}
