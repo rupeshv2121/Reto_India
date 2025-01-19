@@ -79,7 +79,7 @@ export default function TrackingPage() {
                 placeholder="Write details..."
                 required
               />
-              <button type="submit" className="trackinng-btn">
+              <button type="submit" className="tracking-btn">
                 Track Order
               </button>
             </form>
