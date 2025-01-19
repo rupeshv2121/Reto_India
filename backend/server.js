@@ -5,6 +5,8 @@ const cors = require("cors");
 const path = require("path");
 const multer = require("multer");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser")
 
 const userOrderInfo = require("./models/user");
 const Product = require("./models/Product");
@@ -13,6 +15,7 @@ const ContactInfo = require("./models/ContactInfo");
 const userSignUpInfo = require("./models/signup");
 
 const app = express();
+app.use(cookieParser());
 
 // Configure CORS
 const corsOptions = {

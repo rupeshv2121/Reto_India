@@ -36,6 +36,7 @@ export const signUpUser = async (userData) => {
   }
 };
 
+//Login
 export const loginUser = async (userData) => {
   try {
     const response = await api.post("/auth/login", userData);
