@@ -126,6 +126,17 @@
   margin-right: 10px;
 }
 
+.user-login {
+  width: 75%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.user-login a:hover {
+  color: #222;
+  scale: 0.9;
+}
+
 @media screen and (max-width: 430px) {
   .unique-login-wrapper {
     padding: 100px 0 0 0;

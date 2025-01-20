@@ -1,3 +1,6 @@
+/* @import "../../assets/themes/mainTheme";
+@import "../../assets/fonts/customFonts"; */
+/* bulma overrides */
 .card-content-padding {
   padding: 4rem;
 }
