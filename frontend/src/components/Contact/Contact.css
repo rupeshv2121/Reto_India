@@ -180,17 +180,18 @@ form {
 }
 
 /* Social Icons Container */
-.social-icons {
-  position: absolute;
+.contact-social-icons {
+  position: fixed;
   bottom: 20px;
   left: 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
+  font-size: 1.5rem;
 }
 
 /* Social Icon Style */
-.social-icons img {
+.contact-social-icons img {
   width: 40px;
   height: 40px;
   display: flex;
@@ -200,7 +201,7 @@ form {
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.social-icons a:hover {
+.contact-social-icons a:hover {
   transform: scale(1.1);
 }
 
@@ -279,7 +280,7 @@ form {
 }
 /* Responsive Design */
 @media (max-width: 420px) {
-  .social-icons img {
+  .contact-social-icons img {
     width: 30px;
     height: 30px;
   }
@@ -319,7 +320,7 @@ form {
     overflow: auto;
     height: 100vh;
   }
-  .social-icons {
+  .contact-social-icons {
     position: fixed;
     margin-left: 0px;
     display: flex;
@@ -359,7 +360,7 @@ form {
   .form-group textarea {
     height: 110px;
   }
-  .social-icons {
+  .contact-social-icons {
     bottom: 10px;
     left: 10px;
     gap: 10px;

@@ -98,6 +98,25 @@ const Login = () => {
                 <i className="unique-google-icon"></i> Sign in with Google →
               </button>
             </div>
+            <div className="user-login">
+              <a
+                href="#"
+                className="has-text-black is-underlined"
+                id="createAccountLink"
+              >
+                Create New Account
+              </a>
+              <span className="has-text-black">
+                <span className="unique-divider">|</span>
+              </span>
+              <a
+                href="#"
+                className="has-text-black is-underlined"
+                id="forgotPasswordLink"
+              >
+                Forgot Password?
+              </a>
+            </div>
           </form>
         </div>
       </div>

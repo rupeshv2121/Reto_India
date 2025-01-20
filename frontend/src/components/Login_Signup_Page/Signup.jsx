@@ -48,9 +48,7 @@ const Signup = () => {
           style={{ backgroundColor: "#fff", borderRadius: "24px" }}
         >
           <ToastContainer style={{ zIndex: 1000000 }} />
-          <h1 className="heading-text epilogue">
-            SignUp For Free To View Our Services
-          </h1>
+          <h1 className="heading-text epilogue">SignUp To View Our Services</h1>
           <div className="signup-content has-text-centered">
             <form
               onSubmit={handleSubmit}
