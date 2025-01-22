@@ -10,6 +10,7 @@ import LandingPageSm from "./components/LandingPageSm/LandingPageSm";
 import MainLayout from "./components/Layout/MainLayout";
 import Login from "./components/Login_Signup_Page/Login";
 import Signup from "./components/Login_Signup_Page/Signup";
+import ProductView from "./components/ProductView/Product";
 import TrackingPage from "./components/Track_order/TrackingPage";
 
 const router = createBrowserRouter([
@@ -32,6 +33,12 @@ const router = createBrowserRouter([
       {
         path: "/product",
         element: <Product />,
+        children: [
+          {
+            path: "productView",
+            element: <ProductView />,
+          },
+        ],
       },
       {
         path: "/tracking",
