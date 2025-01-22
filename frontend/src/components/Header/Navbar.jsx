@@ -16,7 +16,6 @@ function Navbar() {
           className="md:text-3xl text-xl cursor-pointer"
           onClick={() => navigate("/order")}
         />
-        
       </div>
       <div className="p-3 relative">
         <FaCartShopping

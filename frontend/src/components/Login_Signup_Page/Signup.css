@@ -1,3 +1,6 @@
+/* @import "../../assets/themes/mainTheme";
+@import "../../assets/fonts/customFonts"; */
+/* bulma overrides */
 .card-content-padding {
   padding: 4rem;
 }
@@ -57,6 +60,8 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
+  z-index: -1;
   height: 130vh;
 }
 

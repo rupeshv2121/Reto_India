@@ -93,7 +93,7 @@ const Review = () => {
       <div className="ReviewText">
         <p className="para">Please Share your Valuable Review</p>
 
-        <div>
+        <div className="mb-12">
           <form
             onSubmit={handleSubmit}
             className="TextAreaBox w-full"
@@ -104,7 +104,7 @@ const Review = () => {
               rows="4"
               value={text.Reviews}
               onChange={handleChange}
-              className="Text_Area block p-2.5 my-2 w-4/5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="Text_Area block p-2.5 my-2 w-4/5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ms-[-4rem]"
               placeholder="Write your review here..."
             ></textarea>
             <div className="w-full">
@@ -130,7 +130,7 @@ const Review = () => {
               <label className="block mb-2  text-gray-900" htmlFor="file_input">
                 Upload Image
               </label>
-              <div className="w-full flex justify-center ">
+              <div className="w-full ">
                 <input
                   className="block w-4/5 text-sm my-2 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   id="file_input"
