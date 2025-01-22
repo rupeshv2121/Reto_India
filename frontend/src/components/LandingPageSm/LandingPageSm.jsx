@@ -33,6 +33,7 @@ const LandingPageSm = () => {
           </div>
         </div>
         <div className="description">
+        <div className="description">
           <h1>NAMASTE!</h1>
           <p className="subtitle">LET'S CONNECT WITH OUR SOIL, AGAIN!</p>
           <a href="#" className="shop-now">

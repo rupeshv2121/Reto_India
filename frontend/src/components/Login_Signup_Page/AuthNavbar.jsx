@@ -1,45 +1,47 @@
 import { useState } from "react";
+import { NavLink, useLocation } from "react-router";
 import "./AuthNavbar.css";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+  const location = useLocation();
 
   return (
     <nav className="main-nav">
       <div className={`nav-container-auth ${isOpen ? "open" : ""}`}>
         <div className="logo-auth">
-          <a href="#">
+          <NavLink href="#">
             <img
               src="../../../public/img/LogoWoBcg.png"
               alt="Reto Logo"
               width="60px"
             />
-          </a>
+          </NavLink>
         </div>
         <div className="nav-menu">
           <div className="nav-group">
             <ul>
               <li>
-                <a
+                <NavLink
                   className="nav-links ho-nv"
                   target="_blank"
                   rel="noopener noreferrer"
                   href="#"
                 >
                   Home
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
+                <NavLink
                   className="nav-links"
                   target="_blank"
                   rel="noopener noreferrer"
                   href="#"
                 >
                   Our Services
-                </a>
+                </NavLink>
               </li>
               <li>
                 <a
@@ -52,42 +54,49 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <a
+                <NavLink
                   className="nav-links co-tc"
                   target="_blank"
                   rel="noopener noreferrer"
                   href="#"
                 >
                   Contact Us
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
+                <NavLink
                   className="nav-links tr-k"
                   target="_blank"
                   rel="noopener noreferrer"
                   href="#"
                 >
                   Track Order
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
+                <NavLink
                   className="nav-links car-t"
                   target="_blank"
                   rel="noopener noreferrer"
                   href="#"
                 >
                   Cart Items
-                </a>
+                </NavLink>
               </li>
-              <a className="nav-links lo-gin" href="/auth/login">
-                Login
-              </a>
+              {location.pathname === "/auth/login" ? (
+                <NavLink className="nav-links lo-gin" to="/auth/signup">
+                  Signup
+                </NavLink>
+              ) : (
+                <NavLink className="nav-links lo-gin" to="/auth/login">
+                  Login
+                </NavLink>
+              )}
+
               <li className="last">
-                <a className="header-cta ct-abtn" href="/auth/signup">
+                <NavLink className="header-cta ct-abtn" href="/auth/signup">
                   GET STARTED
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>

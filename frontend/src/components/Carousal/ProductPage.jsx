@@ -1,18 +1,19 @@
+// import React from "react";
 import React from "react";
-import Slider from "react-slick";
+import { AiFillStar } from "react-icons/ai";
+import { IoMdHeartEmpty } from "react-icons/io";
+import { IoCartOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../Redux/CartSlice"; // Adjust the import based on your file structure
-import "slick-carousel/slick/slick.css";
+import { NavLink } from "react-router";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import slider1 from "../../assets/slider1.png";
 import slider2 from "../../assets/slider2.png";
 import slider3 from "../../assets/slider3.png";
-import { IoCartOutline } from "react-icons/io5";
-import { IoMdHeartEmpty } from "react-icons/io";
-import { AiFillStar } from "react-icons/ai";
+import { addToCart } from "../../Redux/CartSlice";
 
 const ProductPage = () => {
-  
   const dispatch = useDispatch();
 
   const images = [
@@ -62,7 +63,6 @@ const ProductPage = () => {
     ],
   };
 
-  
   const handleAddToCart = (product) => {
     console.log("Product added to cart:", product);
     dispatch(addToCart(product));
@@ -75,18 +75,20 @@ const ProductPage = () => {
           Our Products
         </h2>
         <Slider {...settings}>
-          {images.map((image , index) => (
-            <>
+          {images.map((image, index) => (
+            <React.Fragment key={index}>
               <div
                 key={index}
                 className="p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group"
               >
                 {/* Image */}
-                <img
-                  src={image.src}
-                  alt={image.name}
-                  className="h-full w-full mx-auto object-cover rounded-xl hover:scale-105 duration-300 ease-linear"
-                />
+                <NavLink to="/">
+                  <img
+                    src={image.src}
+                    alt={image.name}
+                    className="h-full w-full mx-auto object-cover rounded-xl hover:scale-105 duration-300 ease-linear"
+                  />
+                </NavLink>
 
                 {/* Hover Effects */}
                 <div className="absolute w-full h-16 text-black bottom-0 left-0 bg-orange-300 opacity-90 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out flex items-center justify-between px-3">
@@ -109,7 +111,7 @@ const ProductPage = () => {
                 <h3 className="text-lg font-semibold">{image.name}</h3>
                 <p className="text-md text-gray-600">${image.price}</p>
               </div>
-            </>
+            </React.Fragment>
           ))}
         </Slider>
       </div>

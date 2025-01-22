@@ -3,7 +3,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import XIcon from "@mui/icons-material/X";
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import ModalCard from "../ModalCard/ModalCard";
 import "./Contact.css";
 import ContactI from "./assets/Contact.png";
@@ -53,7 +53,7 @@ const Contact = () => {
         <hr />
       </div>
 
-      <div className="container">
+      <div className="contact-container">
         <div className="photo">
           <img src={ContactI} alt="Profile" />
         </div>
@@ -107,7 +107,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="social-icons">
+      <div className="contact-social-icons">
         <a href="#" target="_blank" rel="noopener noreferrer">
           <XIcon />
         </a>

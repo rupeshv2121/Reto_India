@@ -1,11 +1,11 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { useDispatch, useSelector } from "react-redux";
+// import React from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom"; // Import useNavigate
 
 import {
-  incrementQuantity,
   decrementQuantity,
+  incrementQuantity,
   removeItemCompletely,
 } from "../../Redux/CartSlice";
 
@@ -37,9 +37,9 @@ const CartPage = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-10 min-h-screen background">
+    <div className=" py-10 min-h-screen background">
       <div className="container mx-auto px-3 md:px-4">
-        <h2 className="text-3xl font-semibold mb-6 text-gray-800">
+        <h2 className="text-3xl font-semibold mb-6 text-gray-800 text-center">
           Shopping Cart
         </h2>
         <div className="grid lg:grid-cols-3 gap-6">
@@ -134,7 +134,7 @@ const CartPage = () => {
                   </button>
                 </div>
               </>
-            )}  
+            )}
           </div>
 
           {/* Order Summary */}
@@ -155,7 +155,9 @@ const CartPage = () => {
                 <span className="text-sm font-medium text-gray-600">
                   Shipping Fees:
                 </span>
-                <span className="text-sm font-medium text-gray-800">$ 5.00</span>
+                <span className="text-sm font-medium text-gray-800">
+                  $ 5.00
+                </span>
               </div>
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm font-medium text-gray-600">
@@ -194,9 +196,12 @@ const CartPage = () => {
                   $ {(totalPrice + 5).toFixed(2)}
                 </span>
               </div>
-              <button className="w-full background text-black hover:scale-105 duration-200 ease-linear border-[1px] border-orange-200 py-2 rounded-md mt-4">
-                Checkout
-              </button>
+              <NavLink to="/checkout">
+                {" "}
+                <button className="w-full background text-black hover:scale-105 duration-200 ease-linear border-[1px] border-orange-200 py-2 rounded-md mt-4">
+                  Checkout
+                </button>
+              </NavLink>
             </div>
           </div>
         </div>

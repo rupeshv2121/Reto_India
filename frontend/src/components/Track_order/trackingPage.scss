@@ -17,23 +17,31 @@ body{
     justify-content: center;
     background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%);
 }
+.tracking_container h2 {
+  font-size: 40px;
+  color: black;
+  position: absolute;
+    left: 39rem;
+
+}
 
 
 .tracking_content{
     position: absolute;
-    top: 30%;
+    top: 14rem;
 }
 .track-box{
     display: flex;
     flex-shrink: 1;
     gap:70px;
+    margin-left: 10rem;
     
 }
 .diamond-div{
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 4rem 0px;
+    padding: 1rem 0 6rem 0;
     font-family:var(--my-font1);
 
 }
@@ -60,12 +68,12 @@ body{
 }
 
 .dotsandline{
-  width: 200px;
+  width: 222px;
   height: 3px;
   background-color: black;
-  position: relative;
-  left: 28%;
-  top:-50px;
+  position: absolute;
+  left: 41%;
+  top: 162px;
 }
 .dotsandline::before{
 content: "";
@@ -76,7 +84,7 @@ left: -10%;
 top:-3px;
 display: block;
 border-radius: 10px;
-background-color: rgb(203, 28, 28);
+background-color: #f28908;
 }
 .dotsandline::after{
   content: "";
@@ -87,14 +95,14 @@ background-color: rgb(203, 28, 28);
   right:-10%;
   top:-3px;
   border-radius: 10px;
-  background-color: rgb(203, 28, 28);
+  background-color: #f28908;
 }
-.dotsandline>h2{
-  position: relative;
-  top:-2.5rem;
-  text-align: center;
-  font-size: 30px;
-}
+// .dotsandline>h2{
+//   position: relative;
+//   top:-2.5rem;
+//   text-align: center;
+//   font-size: 30px;
+// }
 .diamond-div h2{
   font-family: "Bricolage Grotesque", Sans-serif !important;
   color: black;
@@ -102,7 +110,6 @@ background-color: rgb(203, 28, 28);
   text-shadow: 2px 2px 20px  #ffc9a8, 1px 2px 10px rgb(250, 156, 68);
 }
 .diamond{
-    margin-top: 20px;
     height: 220px;
     width: 280px;
     /* filter:drop-shadow(3px 3px 10px rgb(244, 139, 69)); */
@@ -112,26 +119,25 @@ background-color: rgb(203, 28, 28);
   background-color: black;
 }
 .order-form{
-    display:flex;
-    flex-direction: column;
+  height: 80%;
     text-align:left;
-    gap:15px;
+    gap:38px;
     width: 500px;
     font-weight: 400;
     font-family: var(--my-font1);
     font-size: 16px;
     font-style: normal;
-    flex-grow:0;
     border: 2px solid black;
     border-radius: 20px;
     padding: 20px  35px;
     box-shadow: 0px 1px 12px 0px orange;
-
+    padding-top: 4rem;
   }
-  .input-details-tracking,textarea{
+  .input-details-tracking{
+    width:90%;
   outline:none;
   color: rgb(0, 0, 0);
-  padding: 12px 10px;
+  padding: 12px 22px;
   border-radius: 20px;
   border:none;
   background-color: rgba(255, 255, 255, 0.662);
@@ -149,9 +155,9 @@ background-color: rgb(203, 28, 28);
         }
 
   .social-links{
-    position: absolute;
+    position: fixed;
     z-index: 10;
-    top:30%;
+    top:63%;
     left:2%;
     display: flex;
     flex-direction: column;
@@ -169,17 +175,22 @@ background-color: rgb(203, 28, 28);
   .tracking-btn{
     position: absolute;
     bottom: -20%;
-    left: 29%;
+    left: 39%;
     border-radius: 2rem;
     font-size: 1rem;
     padding: 10px 50px 10px 50px;
     margin-top: 2rem;
-    
     background-color: rgb(253, 175, 91);
     color: rgb(14, 14, 14);
     border: 1px solid rgb(255, 132, 0);
     box-shadow: 0px 1px 12px 0px orange;
     font-weight: 600;
+}
+
+.trackingPage-divider{
+  height: 306px;
+  background: black;
+  width: 3px;
 }
 
 

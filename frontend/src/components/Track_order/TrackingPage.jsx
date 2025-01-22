@@ -1,11 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { useState } from "react";
-import {
-  FaCameraRetro,
-  FaFacebook,
-  FaLinkedin,
-  FaTwitter,
-} from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import "./TrackingPage.css";
 export default function TrackingPage() {
   const [show_dmd, setshow_dmd] = useState(true);
@@ -15,10 +10,9 @@ export default function TrackingPage() {
   }
   return (
     <div className="tracking_container">
+      <h2>Track Order</h2>
+      <div className="dotsandline"></div>
       <div className="tracking_content">
-        <div className="dotsandline">
-          <h2>Track Order</h2>
-        </div>
         <div className="track-box">
           {show_dmd ? (
             <div className="diamond-div">
@@ -44,39 +38,20 @@ export default function TrackingPage() {
                 handleClick(e);
               }}
             >
-              <label for="order-id">Your Order ID</label>
               <input
                 className="input-details-tracking"
                 type="text"
                 id="order-id"
                 name="order-id"
-                placeholder="dmd-asxxyy-zz..."
+                placeholder="Your-Order-ID"
                 required
               />
-              <label for="registration">Registration No</label>
               <input
                 className="input-details-tracking"
                 type="text"
                 id="registration"
                 name="registration"
-                placeholder="registration no..."
-                required
-              />
-              <label for="order-status">Order Status</label>
-              <input
-                className="input-details-tracking"
-                type="text"
-                id="order-status"
-                name="order-status"
-                placeholder="Order status.."
-                required
-              />
-              <label for="details">Order Details</label>
-              <textarea
-                id="details"
-                rows="5"
-                name="details"
-                placeholder="Write details..."
+                placeholder="Email"
                 required
               />
               <button type="submit" className="tracking-btn">
@@ -87,17 +62,17 @@ export default function TrackingPage() {
         </div>
       </div>
       <div className="social-links">
-        <div style={{ color: "aqua" }}>
+        <div>
           <FaTwitter />
         </div>
         <div>
-          <FaFacebook style={{ color: "blue" }} />
+          <FaFacebook />
         </div>
         <div>
-          <FaCameraRetro />
+          <FaInstagram />
         </div>
         <div>
-          <FaLinkedin style={{ color: "blue" }} />
+          <FaLinkedin />
         </div>
       </div>
     </div>
