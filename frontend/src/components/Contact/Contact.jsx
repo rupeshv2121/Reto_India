@@ -53,7 +53,7 @@ const Contact = () => {
         <hr />
       </div>
 
-      <div className="container">
+      <div className="contact-container">
         <div className="photo">
           <img src={ContactI} alt="Profile" />
         </div>

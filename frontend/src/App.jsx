@@ -1,14 +1,15 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import "./App.css";
 import CheckoutPage from "./components/CheckOutPage/CheckoutPage";
 import Contact from "./components/Contact/Contact";
-import LandingPage from "./components/LandingPage/LandingPage";
+// import LandingPage from "./components/LandingPage/LandingPage";
+import Product from "./components/Carousal/ProductPage";
+import CartPage from "./components/CartPage/CartPage";
+import LandingPageSm from "./components/LandingPageSm/LandingPageSm";
 import MainLayout from "./components/Layout/MainLayout";
 import Login from "./components/Login_Signup_Page/Login";
 import Signup from "./components/Login_Signup_Page/Signup";
-import Product from "./components/Product/Product";
 import TrackingPage from "./components/Track_order/TrackingPage";
 
 const router = createBrowserRouter([
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <LandingPage />,
+        element: <LandingPageSm />,
       },
       {
         path: "/checkout",
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/tracking",
         element: <TrackingPage />,
+      },
+      {
+        path: "/cartPage",
+        element: <CartPage />,
       },
       {
         path: "/auth",
@@ -59,7 +64,7 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}></RouterProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </>
   );

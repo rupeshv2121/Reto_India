@@ -48,7 +48,9 @@
   right: 0;
   bottom: 0;
   z-index: -1;
-background-color: #ffdaaa;
+  background-image: url("../../assets/images/Article_Gen/article_gen.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   filter: brightness(0.5);
 }
 
@@ -58,6 +60,8 @@ background-color: #ffdaaa;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
+  z-index: -1;
   height: 130vh;
 }
 

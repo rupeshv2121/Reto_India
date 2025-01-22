@@ -2,7 +2,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
-import { useLocation } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import toggleMenu from "../../public/js/navBar";
 import "./Navbar.css";
@@ -54,30 +54,30 @@ const Navbar = () => {
 
         {/* <!-- Desktop Navigation --> */}
         <nav className="main-nav-landing">
-          <Link to="/">
+          <NavLink to="/">
             <i className="fa-solid fa-house ho-me"></i>Home
-          </Link>
-          <Link to="/product">
+          </NavLink>
+          <NavLink to="/product">
             <i className="fa-solid fa-cart-shopping pro-dct"></i>Products
-          </Link>
-          <Link href="#about">
+          </NavLink>
+          <NavLink href="#about">
             <i className="fa-solid fa-book ab-ut"></i>About
-          </Link>
-          <Link to="/auth/login">
+          </NavLink>
+          <NavLink to="/auth/login">
             <span className="lo-gin">
               <i className="fa-solid fa-user lo-gin"></i>Login
             </span>
-          </Link>
+          </NavLink>
 
-          <Link to="/contact">
+          <NavLink to="/contact">
             <i className="fa-solid fa-phone con-tct"></i>Contact Us
-          </Link>
+          </NavLink>
 
-          <Link to="/tracking">
+          <NavLink to="/tracking">
             <i className="fa-solid fa-location-dot trc-ker"></i>Tracker
-          </Link>
+          </NavLink>
 
-          <Link href="#cart">
+          <Link to="/cartPage">
             {/* <i className="fa-solid fa-cart-shopping ca-rt"></i>(0) */}
             <div className="rounded-full relative ">
               <FaCartShopping className="text-xl cursor-pointer" />
@@ -126,19 +126,21 @@ const Navbar = () => {
           <Link href="#contact">
             <i className="fa-solid fa-phone con-tct"></i>&nbsp;Contact Us
           </Link>
-          <Link to="/tracking">
+          <NavLink to="/tracking">
             <i className="fa-solid fa-location-dot trc-ker"></i>&nbsp;Tracker
-          </Link>
+          </NavLink>
 
-          <a href="#products">
-            {/* <i className="fa-solid fa-cart-plus"></i>&nbsp;&nbsp;(0) */}
-            <div className="rounded-full relative inline-block">
+          {/* <i className="fa-solid fa-cart-plus"></i>&nbsp;&nbsp;(0) */}
+
+          <div className="rounded-full relative inline-block">
+            <Link to="/cartPage">
               <FaCartShopping className="text-xl cursor-pointer md-hidden" />
-              <p className="absolute -top-3 -right-3 text-lg text-red-600 md-inline-block ">
-                0
-              </p>
-            </div>
-          </a>
+            </Link>
+            <p className="absolute -top-3 -right-3 text-lg text-red-600 md-inline-block ">
+              0
+            </p>
+          </div>
+
           <i className="fa-solid fa-right-from-bracket lo-ut"></i>
         </div>
       </header>

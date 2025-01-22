@@ -1,7 +1,14 @@
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
-// https://vite.dev/config/
 export default defineConfig({
+  optimizeDeps: {
+    include: ['slick-carousel/slick/slick.css', 'slick-carousel/slick/slick-theme.css'],
+  },
+  server: {
+    hmr: {
+      overlay: false, // Optional: Disables the overlay for errors
+    },
+  },
   plugins: [react()],
-})
+});

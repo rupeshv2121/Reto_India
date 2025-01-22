@@ -68,7 +68,7 @@
 }
 
 /* Container Layout */
-.container {
+.contact-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -293,7 +293,7 @@ form {
   }
 }
 @media ((min-width: 768px) and (max-width: 920px)) {
-  .container {
+  .contact-container {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -330,7 +330,7 @@ form {
   .circle {
     display: none;
   }
-  .container {
+  .contact-container {
     flex-direction: column;
     justify-content: flex-start;
     padding: 12px 0 0 0;

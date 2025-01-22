@@ -1,6 +1,7 @@
 import StarRateIcon from "@mui/icons-material/StarRate";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router";
 import "./Product.css";
 import Review from "./Reviews/Review";
 
@@ -92,7 +93,9 @@ const Product = () => {
 
               <div className="BtnBar">
                 <button>Add to Cart</button>
-                <button>Buy Now</button>
+                <NavLink to="/checkout">
+                  <button>Buy Now</button>
+                </NavLink>
               </div>
             </div>
           </div>
