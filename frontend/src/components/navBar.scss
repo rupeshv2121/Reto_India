@@ -38,6 +38,8 @@ header {
 .main-nav-landing {
   display: flex;
   gap: 89px;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-nav-landing a {
@@ -53,6 +55,7 @@ header {
   color: #f58634;
 }
 .main-nav-landing a span {
+  align-items: center;
   display: flex;
   gap: 14px;
   text-transform: capitalize;

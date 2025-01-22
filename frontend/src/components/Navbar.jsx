@@ -63,9 +63,9 @@ const Navbar = () => {
           <Link href="#about">
             <i className="fa-solid fa-book ab-ut"></i>About
           </Link>
-          <Link href="#login">
+          <Link to="/auth/login">
             <span className="lo-gin">
-              <i className="fa-solid fa-user lo-gin"></i>Pooja Naitam
+              <i className="fa-solid fa-user lo-gin"></i>Login
             </span>
           </Link>
 

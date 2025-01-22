@@ -48,9 +48,7 @@
   right: 0;
   bottom: 0;
   z-index: -1;
-  background-image: url("../../assets/images/Article_Gen/article_gen.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+background-color: #ffdaaa;
   filter: brightness(0.5);
 }
 
