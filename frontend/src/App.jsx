@@ -10,6 +10,7 @@ import Login from "./components/Login_Signup_Page/Login";
 import Signup from "./components/Login_Signup_Page/Signup";
 import Product from "./components/Product/Product";
 import TrackingPage from "./components/Track_order/TrackingPage";
+import LandingPageSm from "./components/LandingPageSm/LandingPageSm";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/tracking",
         element: <TrackingPage />,
+      },
+      {
+        path: "/landingsm",
+        element: <LandingPageSm />,
       },
       {
         path: "/auth",
