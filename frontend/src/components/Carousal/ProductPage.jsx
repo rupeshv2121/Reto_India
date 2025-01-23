@@ -4,7 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router";
+import { Link } from "react-router";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -82,13 +82,13 @@ const ProductPage = () => {
                 className="p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group"
               >
                 {/* Image */}
-                <NavLink to="/product/productView">
+                <Link to="productView">
                   <img
                     src={image.src}
                     alt={image.name}
                     className="h-full w-full mx-auto object-cover rounded-xl hover:scale-105 duration-300 ease-linear"
                   />
-                </NavLink>
+                </Link>
 
                 {/* Hover Effects */}
                 <div className="absolute w-full h-16 text-black bottom-0 left-0 bg-orange-300 opacity-90 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out flex items-center justify-between px-3">

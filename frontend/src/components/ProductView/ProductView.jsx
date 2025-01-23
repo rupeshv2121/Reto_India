@@ -5,7 +5,7 @@ import { NavLink } from "react-router";
 import "./Product.css";
 import Review from "./Reviews/Review";
 
-const Product = () => {
+const ProductView = () => {
   const [data, setData] = useState([{}]);
 
   const fetchData = async () => {
@@ -109,4 +109,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductView;
