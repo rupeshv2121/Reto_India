@@ -109,16 +109,16 @@ const Contact = () => {
 
       <div className="contact-social-icons">
         <a href="#" target="_blank" rel="noopener noreferrer">
-          <XIcon />
+          <XIcon sx={{ fontSize: "1.8rem" }} />
         </a>
         <a href="#" target="_blank" rel="noopener noreferrer">
-          <FacebookIcon />
+          <FacebookIcon sx={{ fontSize: "1.8rem" }} />
         </a>
         <a href="#" target="_blank" rel="noopener noreferrer">
-          <InstagramIcon />
+          <InstagramIcon sx={{ fontSize: "1.8rem" }} />
         </a>
         <a href="#" target="_blank" rel="noopener noreferrer">
-          <LinkedInIcon />
+          <LinkedInIcon sx={{ fontSize: "1.8rem" }} />
         </a>
       </div>
 

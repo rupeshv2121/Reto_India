@@ -1,25 +1,42 @@
 import StarRateIcon from "@mui/icons-material/StarRate";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useParams } from "react-router";
 import "./Product.css";
 import Review from "./Reviews/Review";
 
 const ProductView = () => {
   const [data, setData] = useState([{}]);
+  const { productId } = useParams();
+  console.log(productId);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/ProductInfo");
-      setData(response.data);
-    } catch (error) {
-      console.error("error fetching data", error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:5000/products/${productId}`
+  //     );
+  //     setData(response.data);
+  //   } catch (error) {
+  //     console.error("error fetching data", error);
+  //   }
+  // };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/products/${productId}`
+        );
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
+
+    if (productId) {
+      fetchData();
+    }
+  }, [productId]);
 
   return (
     <div className="MainPage">

@@ -205,6 +205,10 @@ form {
   transform: scale(1.1);
 }
 
+.contact-social-icons a svg {
+  font-size: 2rem;
+}
+
 /* Popup Styling */
 .popup-overlay {
   position: fixed;

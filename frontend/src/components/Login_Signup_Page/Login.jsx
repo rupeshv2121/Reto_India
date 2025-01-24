@@ -22,13 +22,13 @@ const Login = () => {
 
   const { mutate } = useMutation({
     mutationFn: (user) => loginUser(user),
-    onSuccess: () => {
+    onSuccess: (response) => {
+      console.log(response);
       toast.success("Login Successfully");
       setUser({
         email: "",
         password: "",
       });
-
       navigate("/");
     },
 
@@ -46,6 +46,7 @@ const Login = () => {
       toast.warn("Please fill out all fields!", { position: "top-center" });
       return;
     }
+    console.log(user);
     mutate(user);
   };
 
@@ -57,7 +58,7 @@ const Login = () => {
         <h2>One Aim. More Organic Traffic to you, effortlessly.</h2>
 
         <div className="unique-login-card">
-          <form action="" onSubmit={handleSubmit}>
+          <form>
             <div className="unique-login-content">
               {/* Email Input */}
 
@@ -85,7 +86,11 @@ const Login = () => {
                   <i className="unique-eye-icon"></i>
                 </span>
               </div>
-              <button id="unique-loginButton" className="unique-login-btn">
+              <button
+                id="unique-loginButton"
+                className="unique-login-btn"
+                onClick={handleSubmit}
+              >
                 LOGIN →
               </button>
               <div className="unique-divider">
