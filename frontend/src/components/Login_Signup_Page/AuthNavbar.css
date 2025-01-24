@@ -9,6 +9,10 @@ body {
   background-color: #ffdaaa;
 }
 
+.auth-navbar {
+  padding-bottom: 12px;
+}
+
 .nav-container-auth {
   display: flex;
   width: 1100px;
@@ -170,6 +174,9 @@ body {
   }
 }
 @media (max-width: 770px) {
+  .main-nav {
+    height: 5.5rem;
+  }
   .nav-group ul {
     display: none;
     position: absolute;
@@ -183,6 +190,7 @@ body {
     padding: 10px;
     gap: 15px;
     height: 130vh;
+    z-index: 1;
   }
   .nav-group ul li {
     position: relative;

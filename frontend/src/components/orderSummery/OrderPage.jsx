@@ -1,7 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { useDispatch, useSelector } from "react-redux";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const OrderPage = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -98,7 +98,7 @@ const OrderPage = () => {
           {/* Order Summary */}
           <div className="bg-slate-100 order-1 lg:oder-2 rounded-lg shadow p-6">
             <div className="pb-4 mb-4">
-            <div className="flex justify-between items-center pt-2 mb-2">
+              <div className="flex justify-between items-center pt-2 mb-2">
                 <span className="text-sm font-medium text-gray-600">
                   Order ID:
                 </span>
@@ -137,7 +137,9 @@ const OrderPage = () => {
                 </span>
               </div>
               <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px]">
-                <span className="text-sm font-medium text-gray-600">Total Items:</span>
+                <span className="text-sm font-medium text-gray-600">
+                  Total Items:
+                </span>
                 <span className="text-sm font-medium text-gray-800">
                   {totalQuantity}
                 </span>
@@ -154,7 +156,9 @@ const OrderPage = () => {
                 <span className="text-sm font-medium text-gray-600">
                   Shipping Charge:
                 </span>
-                <span className="text-sm font-medium text-gray-800">$ 5.00</span>
+                <span className="text-sm font-medium text-gray-800">
+                  $ 5.00
+                </span>
               </div>
             </div>
 

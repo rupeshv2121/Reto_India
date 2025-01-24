@@ -15,13 +15,12 @@ const ContactInfo = require("./models/ContactInfo");
 const userSignUpInfo = require("./models/signup");
 
 const app = express();
-app.use(cookieParser());
 
 // Configure CORS
 const corsOptions = {
-    origin: "http://localhost:5173", // Allow requests from your React app
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
@@ -29,11 +28,19 @@ app.use(bodyParser.json());
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use(cookieParser());
+
+// res.cookie("token", token, {
+//     httpOnly: true,
+//     secure: true,
+//     sameSite: "strict",
+//     maxAge: 3600 * 1000, // 1 hour in milliseconds
+// });
 
 // MongoDB connection URIs
 const MONGO_URL = "mongodb://localhost:27017/reto_india";
 mongoose
-    .connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(MONGO_URL)
     .then(() => { console.log("connected to reto_india DB") })
     .catch((err) => { console.log("Error in connecting DB : ", err) });
 
@@ -58,43 +65,88 @@ const upload = multer({ storage: storage });
 // Routes
 // Signup Route
 app.post("/auth/signup", async (req, res) => {
-    const { fullName, email, password } = req.body;
-    if (!fullName || !email || !password) {
-        return res.status(400).json({ message: "All fields are required" });
-    }
     try {
+        const { fullName, email, password } = req.body;
+
+        // Validate input
+        if (!fullName || !email || !password) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        // Check if user already exists
         const existingUser = await userSignUpModel.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "Email already exists" });
         }
-        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Hash the password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Save the new user
         const newUser = new userSignUpModel({ fullName, email, password: hashedPassword });
         await newUser.save();
-        res.status(201).json({ message: `${fullName} signed up successfully` });
 
+        // Respond with success
+        res.status(201).json({ message: "Signup successful!" });
     } catch (error) {
         console.error("Error during signup:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ message: "Internal Server Error" });
     }
 });
+
+
+// const { fullName, email, password } = req.body;
+// console.log(req.body)
+
+// bcrypt.genSalt(10, async (err, salt) => {
+//     bcrypt.hash(password, salt, async (err, hash) => {
+//         if (err) {
+//             return res.status(500).send("Error hashing password");
+//         }
+//         let newUser = await userSignUpModel.create({ fullName, email, password: hash });
+//         await newUser.save();
+
+//     });
+// });
+// if (!fullName || !email || !password) {
+//     return res.status(400).json({ message: "All fields are required" });
+// }
+// try {
+// const existingUser = await userSignUpModel.findOne({ email });
+// if (existingUser) {
+//     return res.status(400).json({ message: "Email already exists" });
+// }
+
+// const salt = await bcrypt.genSalt(10);
+// const hashedPassword = await bcrypt.hash(password, salt);
+// const newUser = await userSignUpModel.create({ fullName, email, password: hashedPassword });
+// await newUser.save();
+// } catch (error) {
+//     console.error("Error during signup:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+// }
+
 
 // Login Route
 app.post("/auth/login", async (req, res) => {
     const { email, password } = req.body;
+
     if (!email || !password) {
         return res.status(400).json({ message: "All fields are required" });
     }
+
     try {
         const user = await userSignUpModel.findOne({ email });
-
         if (!user) {
-            return res.status(404).json({ message: "User not found" });
+            return res.status(401).json({ message: "Invalid email or password" });
         }
+
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
-        res.status(200).json({ message: "Login successful", user: { fullName: user.fullName, email: user.email } });
+
     } catch (error) {
         console.error("Error during login:", error);
         res.status(500).json({ error: "Internal Server Error" });

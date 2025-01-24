@@ -61,7 +61,6 @@
   align-items: center;
   gap: 0.5rem;
   position: relative;
-  z-index: -1;
   height: 130vh;
 }
 
