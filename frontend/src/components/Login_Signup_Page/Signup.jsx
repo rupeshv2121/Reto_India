@@ -1,5 +1,10 @@
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { IconButton } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { signUpUser } from "../../API/api";
 import "./Signup.css";
 
 const Signup = () => {
@@ -8,10 +13,13 @@ const Signup = () => {
     email: "",
     password: "",
   });
-  // const [showPassword, setShowPassword] = useState(false);
-
-  // const togglePassword = () => {
-  //   setShowPassword((prev) => !prev);
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  // const handleMouseDownPassword = (event) => {
+  //   event.preventDefault();
+  // };
+  // const handleMouseUpPassword = (event) => {
+  //   event.preventDefault();
   // };
 
   const handleOnChange = (e) => {
@@ -22,22 +30,22 @@ const Signup = () => {
     }));
   };
 
-  // const { mutate, isLoading } = useMutation({
-  //   mutationFn: (user) => signUpUser(user),
-  //   onSuccess: (response) => {
-  //     console.log("Signup successful - onSuccess triggered", response);
-  //     setUser({ fullName: "", email: "", password: "" });
-  //     toast.success("Signup successful! Redirecting...", {
-  //       position: "top-center",
-  //     });
-  //   },
-  //   onError: (error) => {
-  //     console.error("Error signing up:", error.message);
-  //     toast.error("Signup failed. Please try again.", {
-  //       position: "top-center",
-  //     });
-  //   },
-  // });
+  const { mutate, isLoading } = useMutation({
+    mutationFn: (user) => signUpUser(user),
+    onSuccess: (response) => {
+      console.log("Signup successful - onSuccess triggered", response);
+      setUser({ fullName: "", email: "", password: "" });
+      toast.success("Signup successful", {
+        position: "top-center",
+      });
+    },
+    onError: (error) => {
+      console.error("Error signing up:", error.message);
+      toast.error("Signup failed. Please try again.", {
+        position: "top-center",
+      });
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -101,20 +109,24 @@ const Signup = () => {
               >
                 <input
                   className="input is-medium"
-                  // type={showPassword ? "text" : "password"}
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   value={user.password}
                   name="password"
                   placeholder="Password"
                   onChange={handleOnChange}
                 />
-                {/*<span className="eye-icon" onClick={togglePassword}>
-                  {showPassword ? (
-                    <i className="icon icon-eye"></i>
-                  ) : (
-                    <i className="icon icon-eye-off"></i>
-                  )}
-                </span>*/}
+                <IconButton
+                  aria-label={
+                    showPassword ? "hide the password" : "display the password"
+                  }
+                  onClick={handleClickShowPassword}
+                  // onMouseDown={handleMouseDownPassword}
+                  // onMouseUp={handleMouseUpPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
               </div>
               <button
                 className="button signup-btn-border is-large is-responsive mt-5"

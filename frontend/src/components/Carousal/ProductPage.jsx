@@ -17,21 +17,21 @@ const ProductPage = () => {
   const dispatch = useDispatch();
 
   const images = [
-    { src: slider1, name: "Product 1", price: 100, id: 1 },
-    { src: slider2, name: "Product 2", price: 150, id: 2 },
-    { src: slider3, name: "Product 3", price: 200, id: 3 },
-    { src: slider1, name: "Product 4", price: 100, id: 4 },
-    { src: slider2, name: "Product 5", price: 150, id: 5 },
-    { src: slider3, name: "Product 6", price: 200, id: 6 },
-    { src: slider1, name: "Product 7", price: 100, id: 7 },
-    { src: slider2, name: "Product 8", price: 150, id: 8 },
-    { src: slider3, name: "Product 9", price: 200, id: 9 },
-    { src: slider1, name: "Product 10", price: 100, id: 10 },
-    { src: slider2, name: "Product 11", price: 150, id: 11 },
-    { src: slider3, name: "Product 12", price: 200, id: 12 },
-    { src: slider1, name: "Product 13", price: 100, id: 13 },
-    { src: slider2, name: "Product 14", price: 150, id: 14 },
-    { src: slider3, name: "Product 15", price: 200, id: 15 },
+    { src: slider1, name: "Product 1", price: 100 },
+    { src: slider2, name: "Product 2", price: 150 },
+    { src: slider3, name: "Product 3", price: 200 },
+    { src: slider1, name: "Product 4", price: 100 },
+    { src: slider2, name: "Product 5", price: 150 },
+    { src: slider3, name: "Product 6", price: 200 },
+    { src: slider1, name: "Product 7", price: 100 },
+    { src: slider2, name: "Product 8", price: 150 },
+    { src: slider3, name: "Product 9", price: 200 },
+    { src: slider1, name: "Product 10", price: 100 },
+    { src: slider2, name: "Product 11", price: 150 },
+    { src: slider3, name: "Product 12", price: 200 },
+    { src: slider1, name: "Product 13", price: 100 },
+    { src: slider2, name: "Product 14", price: 150 },
+    { src: slider3, name: "Product 15", price: 200 },
   ];
 
   const settings = {
@@ -82,7 +82,7 @@ const ProductPage = () => {
                 className="p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group"
               >
                 {/* Image */}
-                <NavLink to="/product/productView">
+                <NavLink to={`/product/${image.productId}`}>
                   <img
                     src={image.src}
                     alt={image.name}

@@ -38,6 +38,12 @@
   width: 100%;
 }
 
+.input-field button {
+  position: absolute;
+  top: 48%;
+  left: 63%;
+}
+
 /* @import "bulma/sass/utilities/all"; */
 /* Full background styling for the modal-like effect */
 .ca-signup-container::before {
