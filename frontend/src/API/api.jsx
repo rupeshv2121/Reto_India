@@ -24,9 +24,9 @@ export const checkout = async (userData) => {
 // For Signup Page
 export const signUpUser = async (userData) => {
   try {
+    console.log("Signup successful:");
     const response = await api.post("/auth/signup", userData);
-    console.log("Signup successful:", response);
-    return response.data;
+    return response?.data;
   } catch (error) {
     console.error(
       "Error during signup:",

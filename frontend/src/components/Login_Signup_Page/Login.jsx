@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { loginUser } from "../../API/api";
 import "./Login.css";
@@ -99,23 +99,23 @@ const Login = () => {
               </button>
             </div>
             <div className="user-login">
-              <a
-                href="#"
+              <NavLink
+                to="/auth/signup"
                 className="has-text-black is-underlined"
                 id="createAccountLink"
               >
                 Create New Account
-              </a>
+              </NavLink>
               <span className="has-text-black">
                 <span className="unique-divider">|</span>
               </span>
-              <a
+              <NavLink
                 href="#"
                 className="has-text-black is-underlined"
                 id="forgotPasswordLink"
               >
                 Forgot Password?
-              </a>
+              </NavLink>
             </div>
           </form>
         </div>

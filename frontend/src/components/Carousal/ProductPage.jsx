@@ -82,7 +82,7 @@ const ProductPage = () => {
                 className="p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group"
               >
                 {/* Image */}
-                <NavLink to="/">
+                <NavLink to="/product/productView">
                   <img
                     src={image.src}
                     alt={image.name}
