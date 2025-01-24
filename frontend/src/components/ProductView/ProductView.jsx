@@ -5,7 +5,7 @@ import { NavLink, useParams } from "react-router";
 import "./Product.css";
 import Review from "./Reviews/Review";
 
-const Product = () => {
+const ProductView = () => {
   const [data, setData] = useState([{}]);
   const { productId } = useParams();
   console.log(productId);
@@ -126,4 +126,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductView;

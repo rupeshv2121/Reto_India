@@ -4,23 +4,6 @@ import "./LandingPageSm.css";
 const LandingPageSm = () => {
   return (
     <>
-      {/* <nav className="navbar">
-        <ul className="nav-list">
-          <li className="nav-item">
-            <a href="#">Home</a>
-          </li>
-          <li className="nav-item">
-            <a href="#">About</a>
-          </li>
-          <li className="nav-item">
-            <a href="#">Services</a>
-          </li>
-          <li className="nav-item">
-            <a href="#">Contact</a>
-          </li>
-        </ul>
-      </nav> */}
-
       <div className="container-sm">
         <div className="logo-sm">
           <img src={logo} alt="Logo" />
@@ -32,9 +15,10 @@ const LandingPageSm = () => {
             </p>
           </div>
         </div>
+        {/* <div className="description"> */}
         <div className="description">
           <h1>NAMASTE!</h1>
-          <p className="subtitle">LETS CONNECT WITH OUR SOIL, AGAIN!</p>
+          <p className="subtitle">LET &#39;s CONNECT WITH OUR SOIL, AGAIN!</p>
           <a href="#" className="shop-now">
             SHOP NOW
           </a>
@@ -49,3 +33,22 @@ const LandingPageSm = () => {
 };
 
 export default LandingPageSm;
+
+{
+  /* <nav className="navbar">
+        <ul className="nav-list">
+          <li className="nav-item">
+            <a href="#">Home</a>
+          </li>
+          <li className="nav-item">
+            <a href="#">About</a>
+          </li>
+          <li className="nav-item">
+            <a href="#">Services</a>
+          </li>
+          <li className="nav-item">
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+      </nav> */
+}
