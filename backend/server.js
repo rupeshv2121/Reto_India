@@ -9,10 +9,11 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser")
 
 const userOrderInfo = require("./models/user");
-const Product = require("./models/ProductView");
+const ProductView = require("./models/ProductView");
 const Review = require("./models/Review");
 const ContactInfo = require("./models/ContactInfo");
 const userSignUpInfo = require("./models/signup");
+const AllProducts = require("./models/AllProduct");
 
 const app = express();
 
@@ -21,6 +22,7 @@ const corsOptions = {
     origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
 };
 
 app.use(cors(corsOptions));
@@ -28,14 +30,7 @@ app.use(bodyParser.json());
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-// app.use(cookieParser());
-
-// res.cookie("token", token, {
-//     httpOnly: true,
-//     secure: true,
-//     sameSite: "strict",
-//     maxAge: 3600 * 1000, // 1 hour in milliseconds
-// });
+app.use(cookieParser());
 
 // MongoDB connection URIs
 const MONGO_URL = "mongodb://localhost:27017/reto_india";
@@ -46,10 +41,11 @@ mongoose
 
 // Models need to be defined on each connection
 const UserOrderInfo = mongoose.model('UserOrderInfo', userOrderInfo.schema);
-const ProductModel = mongoose.model('Product', Product.schema);
+const ProductViewModel = mongoose.model('ProductView', ProductView.schema);
 const ReviewModel = mongoose.model('Review', Review.schema);
 const ContactInfoModel = mongoose.model('ContactInfo', ContactInfo.schema);
 const userSignUpModel = mongoose.model('UserSignUp', userSignUpInfo.schema);
+const AllProductsModel = mongoose.model('AllProducts', AllProducts.schema);
 
 
 const storage = multer.diskStorage({
@@ -85,6 +81,9 @@ app.post("/auth/signup", async (req, res) => {
 
         // Save the new user
         const newUser = new userSignUpModel({ fullName, email, password: hashedPassword });
+        let token = jwt.sign({ email }, "rupesh");
+        res.cookie("token", token);
+        console.log("Cookie sent:", token);
         await newUser.save();
 
         // Respond with success
@@ -95,42 +94,10 @@ app.post("/auth/signup", async (req, res) => {
     }
 });
 
-
-// const { fullName, email, password } = req.body;
-// console.log(req.body)
-
-// bcrypt.genSalt(10, async (err, salt) => {
-//     bcrypt.hash(password, salt, async (err, hash) => {
-//         if (err) {
-//             return res.status(500).send("Error hashing password");
-//         }
-//         let newUser = await userSignUpModel.create({ fullName, email, password: hash });
-//         await newUser.save();
-
-//     });
-// });
-// if (!fullName || !email || !password) {
-//     return res.status(400).json({ message: "All fields are required" });
-// }
-// try {
-// const existingUser = await userSignUpModel.findOne({ email });
-// if (existingUser) {
-//     return res.status(400).json({ message: "Email already exists" });
-// }
-
-// const salt = await bcrypt.genSalt(10);
-// const hashedPassword = await bcrypt.hash(password, salt);
-// const newUser = await userSignUpModel.create({ fullName, email, password: hashedPassword });
-// await newUser.save();
-// } catch (error) {
-//     console.error("Error during signup:", error);
-//     res.status(500).json({ error: "Internal Server Error" });
-// }
-
-
 // Login Route
 app.post("/auth/login", async (req, res) => {
     const { email, password } = req.body;
+    // console.log(email, password)
 
     if (!email || !password) {
         return res.status(400).json({ message: "All fields are required" });
@@ -138,13 +105,30 @@ app.post("/auth/login", async (req, res) => {
 
     try {
         const user = await userSignUpModel.findOne({ email });
+        // console.log(user);
         if (!user) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
-        if (!isPasswordValid) {
+        console.log(isPasswordValid);
+        if (isPasswordValid) {
+            let token = jwt.sign({ email: user.email }, "rupesh");
+            res.cookie("token", token, {
+                httpOnly: true, // Prevent client-side JavaScript access for security
+                secure: false, // Set to `true` if using HTTPS
+                sameSite: "strict", // Ensures the cookie is sent only with same-site requests
+            });
+            console.log("Cookie sent:", token);
+            return res.status(200).json({
+                message: "Login successful",
+                token,
+                user: { fullName: user.fullName, email: user.email },
+            });
+            return res.status(200).json({ message: "Login successful", token });
+        } else {
             return res.status(401).json({ message: "Invalid email or password" });
+
         }
 
     } catch (error) {
@@ -177,7 +161,7 @@ app.get('/Review', async (req, res) => {
 
 app.get("/product", async (req, res) => {
     try {
-        const products = await Product.find({});
+        const products = await AllProductsModel.find({});
         res.status(200).json(products);
     } catch (err) {
         res.status(500).json({ error: "Error fetching products" });
@@ -186,7 +170,7 @@ app.get("/product", async (req, res) => {
 
 app.get('/product/:productId', async (req, res) => {
     try {
-        const product = await ProductModel.findById({ productId: req.params.productId });
+        const product = await ProductViewModel.findById({ productId: req.params.productId });
         console.log(req.params);
         res.json(product);
     } catch (error) {
