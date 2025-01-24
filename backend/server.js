@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser")
 
 const userOrderInfo = require("./models/user");
-const Product = require("./models/Product");
+const Product = require("./models/ProductView");
 const Review = require("./models/Review");
 const ContactInfo = require("./models/ContactInfo");
 const userSignUpInfo = require("./models/signup");
@@ -175,9 +175,19 @@ app.get('/Review', async (req, res) => {
     }
 });
 
-app.get('/ProductInfo', async (req, res) => {
+app.get("/product", async (req, res) => {
     try {
-        const product = await ProductModel.find();
+        const products = await Product.find({});
+        res.status(200).json(products);
+    } catch (err) {
+        res.status(500).json({ error: "Error fetching products" });
+    }
+})
+
+app.get('/product/:productId', async (req, res) => {
+    try {
+        const product = await ProductModel.findById({ productId: req.params.productId });
+        console.log(req.params);
         res.json(product);
     } catch (error) {
         console.error("Error fetching product:", error);

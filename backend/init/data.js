@@ -1,6 +1,8 @@
+const { v4: uuidv4 } = require("uuid");
+
 const sampleProduct = [
     {
-        OrderId: "p28cs2",
+        productId: uuidv4(),
         name: "SOFA",
         Rating: 4,
         NoOfRating: 421,
@@ -13,8 +15,16 @@ const sampleProduct = [
         Img2: "/uploads/sofa_img3.jpg",
         Img3: "/uploads/sofa_img2.jpeg",
         Img4: "/uploads/sofa_img4.jpg",
-
     }
 ]
 
-module.exports = product = { data: sampleProduct }
+const allProduct = [
+    {
+        productId: sampleProduct[0].productId,
+        name: "Sofa 1",
+        Image: '/uploads/sofa_img1.jpg',
+        price: 200
+    }
+]
+
+module.exports = { data: sampleProduct, allData: allProduct }

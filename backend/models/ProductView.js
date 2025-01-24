@@ -1,7 +1,13 @@
 const mongoose = require('mongoose');
+const { v4: uuidv4 } = require("uuid")
 
 const ProductSchema = new mongoose.Schema({
-    // OrderId: String,
+    productId: {
+        type: String,
+        default: () => uuidv4(),
+        unique: true,
+        required: true,
+    },
     name: String,
     Rating: Number,
     NoOfRating: Number,
