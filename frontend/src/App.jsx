@@ -11,6 +11,7 @@ import MainLayout from "./components/Layout/MainLayout";
 import Login from "./components/Login_Signup_Page/Login";
 import Signup from "./components/Login_Signup_Page/Signup";
 import ProductView from "./components/Product/Product";
+import ProductView from "./components/ProductView/ProductView.jsx";
 import TrackingPage from "./components/Track_order/TrackingPage";
 import OrderPage from "./components/orderSummery/OrderPage";
 
