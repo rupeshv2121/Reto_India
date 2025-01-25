@@ -33,7 +33,7 @@ const CartPage = () => {
   };
 
   const handleContinueShopping = () => {
-    navigate("/"); // Redirect to the home page
+    navigate("/product"); // Redirect to the home page
   };
 
   return (
@@ -44,19 +44,19 @@ const CartPage = () => {
         </h2>
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Cart Items */}
-          <div className="lg:col-span-2 bg-white rounded-lg shadow-xl p-6">
+          <div className="lg:col-span-2 bg-white w-full rounded-lg shadow-xl p-6">
             {cartItems.length === 0 ? (
-              <div className="flex flex-col gap-6 items-center">
-                <p className="text-center text-xl text-gray-600">
+              <div className="flex flex-col  gap-6 items-center">
+                <p className="text-center text-3xl text-gray-600">
                   Your cart is empty
                 </p>
                 <button
                   onClick={handleContinueShopping}
                   className="text-black  text-sm font-medium md:mb-0 mb-3"
                 >
-                  <p className="background px-4 py-3 rounded-md  border-[1px] border-orange-200 hover:scale-105 duration-100 ease-in">
+                  <NavLink to="/product" className="background px-4 py-3 rounded-md  border-[1px] border-orange-200 hover:bg-orange-400 hover:scale-105 duration-200 ease-linear">
                     Continue Shopping
-                  </p>
+                  </NavLink>
                 </button>
               </div>
             ) : (
@@ -198,7 +198,7 @@ const CartPage = () => {
               </div>
               <NavLink to="/checkout">
                 {" "}
-                <button className="w-full background text-black hover:scale-105 duration-200 ease-linear border-[1px] border-orange-200 py-2 rounded-md mt-4">
+                <button className="w-full background text-black hover:scale-105 duration-200 ease-linear border-[1px] border-orange-200 bg-orange-200 hover:bg-orange-300 py-2 rounded-md mt-4">
                   Checkout
                 </button>
               </NavLink>

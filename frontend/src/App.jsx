@@ -3,17 +3,17 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import "./App.css";
 import CheckoutPage from "./components/CheckOutPage/CheckoutPage";
 import Contact from "./components/Contact/Contact";
-// import LandingPage from "./components/LandingPage/LandingPage";
+import LandingPage from "./components/LandingPage/LandingPage";
 import CartPage from "./components/CartPage/CartPage";
-import Product from "./components/Home/Home";
-import LandingPageSm from "./components/LandingPageSm/LandingPageSm";
+import Product from "./components/ProductPage/ProductPage.jsx";
+// import LandingPageSm from "./components/LandingPageSm/LandingPageSm";
 import MainLayout from "./components/Layout/MainLayout";
 import Login from "./components/Login_Signup_Page/Login";
 import Signup from "./components/Login_Signup_Page/Signup";
-import ProductView from "./components/Product/Product";
+// import ProductView from "./components/Product/Product";
 import ProductView from "./components/ProductView/ProductView.jsx";
 import TrackingPage from "./components/Track_order/TrackingPage";
-import OrderPage from "./components/orderSummery/OrderPage";
+import OrderPage from "./components/OrderPage/OrderPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <LandingPageSm />,
+        element: <LandingPage />,
       },
       {
         path: "/checkout",
