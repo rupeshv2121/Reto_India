@@ -13,13 +13,13 @@ function MainLayout() {
       <Provider store={store}>
         {isAuthRoute ? (
           <nav
-            className="auth-navbar"
+            className="auth-navbar "
             style={{ backgroundColor: "rgb(255, 218, 170)" }}
           >
             <AuthNavbar />
           </nav>
         ) : (
-          <nav className="main-navbar">
+          <nav className="main-navbar w-full">
             <Navbar />
           </nav>
         )}
