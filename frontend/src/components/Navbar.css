@@ -15,9 +15,10 @@ body {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 2px 28px;
+  width: 100%;
+  padding: 2px 20px;
   position: relative;
 }
 
@@ -28,11 +29,6 @@ header {
   font-size: 24px;
   font-weight: bold;
   color: #fd7e14;
-}
-
-.logo img {
-  width: 100px;
-  margin-right: 10px;
 }
 
 /* .main-nav-landingigation Menu */
@@ -68,9 +64,7 @@ header {
   font-size: 24px;
 }
 
-.lo-gin:hover {
-  color: black;
-}
+
 
 .main-nav-landing a:hover {
   color: #fd7e14;
@@ -144,6 +138,7 @@ header {
 .mobile-menu {
   display: none;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
   background: #ffd5a0;
   position: absolute;
@@ -171,12 +166,19 @@ header {
   font-weight: bold;
 }
 
-@media screen and (max-width: 1024px) {
-  .logo img {
-    width: 100px;
-    margin-right: 10px;
-    margin-left: 5px;
+@media screen and (max-width: 1200px) {
+  .main-nav-landing {
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
   }
+}
+
+
+@media screen and (max-width: 1024px) {
+header{
+  justify-content: space-between;
+}
   .lo-gin {
     font-size: 21px;
   }
@@ -296,9 +298,6 @@ header {
   }
 }
 @media screen and (max-width: 320px) {
-  header {
-    padding: 2px 10px;
-  }
   main .logo-main {
     margin-top: -436px;
     margin-bottom: 178px;
@@ -308,9 +307,7 @@ header {
     text-align: center;
     padding: 0px 20px;
   }
-  .to-gl {
-    margin-right: 10px;
-  }
+
   .ho-me {
     margin-right: 8px;
     margin-left: 31px;
@@ -341,10 +338,6 @@ header {
   .lo-ut {
     margin-left: -18px;
     color: #f58634;
-  }
-  .logo img {
-    width: 76px;
-    margin-right: 10px;
   }
 }
 @media screen and (max-width: 320px) {
