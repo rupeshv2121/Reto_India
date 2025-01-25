@@ -107,25 +107,25 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="contact-social-icons">
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <XIcon />
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <FacebookIcon />
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <InstagramIcon />
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <LinkedInIcon />
-        </a>
-      </div>
 
       <ModalCard
         isPopupVisible={isPopupVisible}
         closePopup={() => setPopupVisible(false)}
       />
+      <div className="social-icon">
+        <a href="#">
+          <i className="fab fa-twitter"></i>
+        </a>
+        <a href="#">
+          <i className="fab fa-facebook"></i>
+        </a>
+        <a href="#">
+          <i className="fab fa-instagram"></i>
+        </a>
+        <a href="#">
+          <i className="fas fa-arrow-down"></i>
+        </a>
+      </div>
     </div>
   );
 };
