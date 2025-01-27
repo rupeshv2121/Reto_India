@@ -7,9 +7,10 @@ import { Link } from "react-router-dom";
 import toggleMenu from "../../public/js/navBar";
 import "./Navbar.css";
 import ProgressBar from "./ProgressBar/ProgressBar";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  // const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const tl = useRef();
   useGSAP(() => {
@@ -47,7 +48,7 @@ const Navbar = () => {
   return (
     <>
       <ProgressBar show={isLoading} />
-      <header>
+      <header className="">
         <div className="logo">
           <img src="./img/LogoWoBcg.png" alt="Logo" />
         </div>
@@ -82,7 +83,7 @@ const Navbar = () => {
             <div className="rounded-full relative ">
               <FaCartShopping className="text-xl cursor-pointer" />
               <p className="absolute -top-3 -right-3 text-lg text-red-600 ">
-                0
+                {totalQuantity}
               </p>
             </div>
           </Link>
@@ -137,7 +138,7 @@ const Navbar = () => {
               <FaCartShopping className="text-xl cursor-pointer md-hidden" />
             </Link>
             <p className="absolute -top-3 -right-3 text-lg text-red-600 md-inline-block ">
-              0
+              {totalQuantity}
             </p>
           </div>
 

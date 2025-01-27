@@ -107,6 +107,8 @@ const Contact = () => {
         </div>
       </div>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
       <div className="contact-social-icons">
         <a href="#" target="_blank" rel="noopener noreferrer">
           <XIcon sx={{ fontSize: "1.8rem" }} />
@@ -121,11 +123,29 @@ const Contact = () => {
           <LinkedInIcon sx={{ fontSize: "1.8rem" }} />
         </a>
       </div>
+=======
+>>>>>>> 8d8d8db (add social media icons)
+=======
+>>>>>>> 8de5bf848e10ff1ab746314d566ab08ebeeb9477
 
       <ModalCard
         isPopupVisible={isPopupVisible}
         closePopup={() => setPopupVisible(false)}
       />
+      <div className="social-icon">
+        <a href="#">
+          <i className="fab fa-twitter"></i>
+        </a>
+        <a href="#">
+          <i className="fab fa-facebook"></i>
+        </a>
+        <a href="#">
+          <i className="fab fa-instagram"></i>
+        </a>
+        <a href="#">
+          <i className="fas fa-arrow-down"></i>
+        </a>
+      </div>
     </div>
   );
 };
