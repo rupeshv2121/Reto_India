@@ -11,8 +11,11 @@ import MainLayout from "./components/Layout/MainLayout";
 import Login from "./components/Login_Signup_Page/Login";
 import Signup from "./components/Login_Signup_Page/Signup";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import ProductView from "./components/ProductView/ProductView";
 =======
+=======
+>>>>>>> 8de5bf848e10ff1ab746314d566ab08ebeeb9477
 // import ProductView from "./components/Product/Product";
 import ProductView from "./components/ProductView/ProductView.jsx";
 >>>>>>> 8de5bf8 (some other changes)
