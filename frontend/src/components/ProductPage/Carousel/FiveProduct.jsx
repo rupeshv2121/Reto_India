@@ -82,15 +82,12 @@ const ProductPage = () => {
                 className="p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group"
               >
                 {/* Image */}
-<<<<<<< HEAD
-<<<<<<< HEAD:frontend/src/components/Carousal/ProductPage.jsx
+{/* // <<<<<<< HEAD:frontend/src/components/Carousal/ProductPage.jsx */}
                 <NavLink to={`/product/${image.productId}`}>
-=======
-=======
->>>>>>> 8de5bf848e10ff1ab746314d566ab08ebeeb9477
+{/* ======= */}
                 {/* <NavLink to="/product/productView"> */}
-                <Link to="productView">
->>>>>>> 06fc441 (ProductPage add):frontend/src/components/ProductPage/Carousel/FiveProduct.jsx
+                {/* <Link to="productView"> */}
+{/* >>>>>>> 06fc441 (ProductPage add):frontend/src/components/ProductPage/Carousel/FiveProduct.jsx */}
                   <img
                     src={image.src}
                     alt={image.name}

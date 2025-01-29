@@ -35,6 +35,9 @@ const CartPage = () => {
   const handleContinueShopping = () => {
     navigate("/product"); // Redirect to the home page
   };
+  const handleCheckout = () => {
+    navigate('/payment')
+  }
 
   return (
     <div className=" py-10 min-h-screen background">
@@ -196,7 +199,7 @@ const CartPage = () => {
                   $ {(totalPrice + 5).toFixed(2)}
                 </span>
               </div>
-              <NavLink to="/checkout">
+              <NavLink to="/payment">
                 {" "}
                 <button className="w-full background text-black hover:scale-105 duration-200 ease-linear border-[1px] border-orange-200 bg-orange-200 hover:bg-orange-300 py-2 rounded-md mt-4">
                   Checkout

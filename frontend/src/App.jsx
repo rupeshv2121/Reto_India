@@ -10,17 +10,22 @@ import Product from "./components/ProductPage/ProductPage.jsx";
 import MainLayout from "./components/Layout/MainLayout";
 import Login from "./components/Login_Signup_Page/Login";
 import Signup from "./components/Login_Signup_Page/Signup";
-<<<<<<< HEAD
-<<<<<<< HEAD
+// <<<<<<< HEAD
+// <<<<<<< HEAD
 import ProductView from "./components/ProductView/ProductView";
-=======
-=======
->>>>>>> 8de5bf848e10ff1ab746314d566ab08ebeeb9477
+// =======
+// =======
+// >>>>>>> 8de5bf848e10ff1ab746314d566ab08ebeeb9477
 // import ProductView from "./components/Product/Product";
-import ProductView from "./components/ProductView/ProductView.jsx";
->>>>>>> 8de5bf8 (some other changes)
+// import ProductView from "./components/ProductView/ProductView.jsx";
+// >>>>>>> 8de5bf8 (some other changes)
 import TrackingPage from "./components/Track_order/TrackingPage";
 import OrderPage from "./components/OrderPage/OrderPage.jsx";
+import PaymentPage from "./components/PaymentPage/MainPaymentPage.jsx";
+import GPayPaymentTemplate from "./components/PaymentPage/GPayPaymentTemplate.jsx";
+import PhonepePaymentTemplate from "./components/PaymentPage/PhonePe.jsx";
+import UPIPaymentTemplate from "./components/PaymentPage/Upi.jsx";
+import CardPaymentTemplate from "./components/PaymentPage/CardPaymentTemplate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +77,24 @@ const router = createBrowserRouter([
         path: "/orderPage",
         element: <OrderPage />,
       },
+      ,
+      {
+        path: "/payment",
+        element: <PaymentPage />
+      },
+      {
+        path: "/gpayPayment",
+        element: <GPayPaymentTemplate />
+      }, {
+        path: "/phonepe",
+        element: <PhonepePaymentTemplate />
+      }, {
+        path: "/upipay",
+        element: <UPIPaymentTemplate />
+      }, {
+        path: "/card",
+        element: <CardPaymentTemplate />
+      }
     ],
   },
 ]);
