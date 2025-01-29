@@ -1,10 +1,10 @@
 # Reto_India
 
 Follow these steps ---
-1. 
-git clone https://github.com/rupeshv2121/reto_india2.git
+<br>
+1. git clone https://github.com/rupeshv2121/reto_india2.git
 
-2.  Cd (path to react folder where package.json is located)
+2. cd (path to react folder where package.json is located)
 
 3. npm install
 4. git checkout main.
