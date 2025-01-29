@@ -106,7 +106,6 @@ const Contact = () => {
           </form>
         </div>
       </div>
-
       <div className="contact-social-icons">
         <a href="#" target="_blank" rel="noopener noreferrer">
           <XIcon sx={{ fontSize: "1.8rem" }} />

@@ -7,7 +7,15 @@ import Contact from "./components/Contact/Contact";
 import LandingPage from "./components/LandingPage/LandingPage";
 import MainLayout from "./components/Layout/MainLayout";
 import Login from "./components/Login_Signup_Page/Login";
-import Signup from "./components/Login_Signup_Page/Signup";
+import Signup from "./components/Login_Signup_Page/Signup
+import ProductView from "./components/ProductView/ProductView";
+import TrackingPage from "./components/Track_order/TrackingPage";
+import OrderPage from "./components/OrderPage/OrderPage.jsx";
+import PaymentPage from "./components/PaymentPage/MainPaymentPage.jsx";
+import GPayPaymentTemplate from "./components/PaymentPage/GPayPaymentTemplate.jsx";
+import PhonepePaymentTemplate from "./components/PaymentPage/PhonePe.jsx";
+import UPIPaymentTemplate from "./components/PaymentPage/Upi.jsx";
+import CardPaymentTemplate from "./components/PaymentPage/CardPaymentTemplate.jsx";
 import OrderPage from "./components/OrderPage/OrderPage.jsx";
 import Product from "./components/ProductPage/ProductPage.jsx";
 import ProductView from "./components/ProductView/ProductView.jsx";
@@ -63,6 +71,24 @@ const router = createBrowserRouter([
         path: "/orderPage",
         element: <OrderPage />,
       },
+      ,
+      {
+        path: "/payment",
+        element: <PaymentPage />
+      },
+      {
+        path: "/gpayPayment",
+        element: <GPayPaymentTemplate />
+      }, {
+        path: "/phonepe",
+        element: <PhonepePaymentTemplate />
+      }, {
+        path: "/upipay",
+        element: <UPIPaymentTemplate />
+      }, {
+        path: "/card",
+        element: <CardPaymentTemplate />
+      }
     ],
   },
 ]);
