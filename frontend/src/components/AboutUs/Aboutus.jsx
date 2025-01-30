@@ -22,7 +22,7 @@ const AboutPage = () => {
       <section className="why-join-section">
         <div className="image-container">
           <img
-            src="first.jpeg"
+            src="/img/first.jpeg"
             alt="Artisan Painting"
           />
         </div>
@@ -53,7 +53,7 @@ const AboutPage = () => {
       {/* Cards Section */}
       <section className="cards-section">
         <div className="card">
-          <img src="second.jpeg" alt="Traditional Art" />
+          <img src="/img/second.jpeg" alt="Traditional Art" />
           <h3>Preserving Traditional Art and Craft</h3>
           <p>
             We Strive To Preserve And Promote The Rich Cultural Heritage Of Our
@@ -63,7 +63,7 @@ const AboutPage = () => {
           <button>Read More</button>
         </div>
         <div className="card">
-          <img src="third.jpeg" alt="Community Connection" />
+          <img src="/img/third.jpeg" alt="Community Connection" />
           <h3>Connecting with Communities</h3>
           <p>
             Our Mission Is To Connect Local Creators With Global Buyers,
@@ -73,7 +73,7 @@ const AboutPage = () => {
           <button>Read More</button>
         </div>
         <div className="card">
-          <img src="fourth.jpeg" alt="Sustainability" />
+          <img src="/img/fourth.jpeg" alt="Sustainability" />
           <h3>Building a Sustainable Future</h3>
           <p>
             By Encouraging Handmade And Eco-Friendly Products, We Are Committed
