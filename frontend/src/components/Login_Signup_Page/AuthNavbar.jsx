@@ -94,7 +94,7 @@ const Navbar = () => {
               )}
 
               <li className="last">
-                <NavLink className="header-cta ct-abtn" href="/auth/signup">
+                <NavLink className="header-cta ct-abtn" to="/auth/signup">
                   GET STARTED
                 </NavLink>
               </li>

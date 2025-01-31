@@ -138,9 +138,22 @@
   scale: 0.9;
 }
 
+@media screen and (max-width: 1024px) {
+  .user-login {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .unique-login-container {
+    width: 70%;
+  }
+  .unique-login-card {
+    padding: 40px 0;
+  }
+}
 @media screen and (max-width: 430px) {
   .unique-login-wrapper {
-    padding: 100px 0 0 0;
+    padding: 30px 0 0 0;
   }
   .unique-login-container {
     width: 100%;
@@ -152,8 +165,11 @@
   .unique-login-container h2 {
     font-size: 1.2rem;
   }
+  .unique-login-content {
+    width: 80%;
+  }
   .unique-login-card {
-    padding: 40px 20px;
+    padding: 40px 0px;
   }
   .unique-login-btn {
     font-size: 13px;
@@ -162,5 +178,12 @@
   .unique-google-login-btn {
     padding: 15px 15px 15px 7px;
     font-size: 13px;
+  }
+  .user-login {
+    width: 82%;
+    font-size: 12px;
+  }
+  .unique-divider {
+    margin: 14px 0;
   }
 }/*# sourceMappingURL=login.css.map */
