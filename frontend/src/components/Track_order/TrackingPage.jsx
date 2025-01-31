@@ -31,7 +31,7 @@ export default function TrackingPage() {
             </div>
           )}
           <div className="trackingPage-divider"></div>
-          <div>
+          <div className="order-form-div">
             <form
               className="order-form"
               onSubmit={(e) => {

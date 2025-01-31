@@ -36,11 +36,16 @@ const CartPage = () => {
     navigate("/product"); // Redirect to the home page
   };
   const handleCheckout = () => {
-    navigate('/payment')
-  }
+    navigate("/payment");
+  };
 
   return (
-    <div className=" py-10 min-h-screen background">
+    <div
+      className=" py-10 min-h-screen"
+      style={{
+        background: "linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%)",
+      }}
+    >
       <div className="container mx-auto px-3 md:px-4">
         <h2 className="text-3xl font-semibold mb-6 text-gray-800 text-center">
           Shopping Cart
@@ -57,7 +62,10 @@ const CartPage = () => {
                   onClick={handleContinueShopping}
                   className="text-black  text-sm font-medium md:mb-0 mb-3"
                 >
-                  <NavLink to="/product" className="background px-4 py-3 rounded-md  border-[1px] border-orange-200 hover:bg-orange-400 hover:scale-105 duration-200 ease-linear">
+                  <NavLink
+                    to="/product"
+                    className="background px-4 py-3 rounded-md  border-[1px] border-orange-200 hover:bg-orange-400 hover:scale-105 duration-200 ease-linear"
+                  >
                     Continue Shopping
                   </NavLink>
                 </button>
@@ -199,7 +207,7 @@ const CartPage = () => {
                   $ {(totalPrice + 5).toFixed(2)}
                 </span>
               </div>
-              <NavLink to="/payment">
+              <NavLink to="/checkout">
                 {" "}
                 <button className="w-full background text-black hover:scale-105 duration-200 ease-linear border-[1px] border-orange-200 bg-orange-200 hover:bg-orange-300 py-2 rounded-md mt-4">
                   Checkout

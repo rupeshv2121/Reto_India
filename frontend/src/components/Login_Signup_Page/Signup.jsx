@@ -69,7 +69,7 @@ const Signup = () => {
 
   return (
     <div className="ca-signup-container" style={{ backgroundColor: "#ffdaaa" }}>
-      <div className="card signup-card mt-5">
+      <div className=" signup-card mt-5">
         <div
           className="card-content"
           style={{ backgroundColor: "#fff", borderRadius: "24px" }}
@@ -137,7 +137,7 @@ const Signup = () => {
                 {isLoading ? "Signing Up..." : "SIGNUP →"}
               </button>
               <div className="divider-wrapper mt-4 mb-4">
-                <span className="divider">OR</span>
+                <span>OR</span>
               </div>
               <button className="button signup-btn-border" type="button">
                 <i className="icon icon-google"></i>

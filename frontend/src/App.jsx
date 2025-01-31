@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import "./App.css";
+import AboutUs from "./components/About/AboutUs.jsx";
 import CartPage from "./components/CartPage/CartPage";
 import CheckoutPage from "./components/CheckOutPage/CheckoutPage";
 import Contact from "./components/Contact/Contact";
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <LandingPage />,
+      },
+      {
+        path: "/about",
+        element: <AboutUs />,
       },
       {
         path: "/checkout",

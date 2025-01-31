@@ -110,7 +110,12 @@ const CheckoutPage = () => {
           </div>
         </div>
       )}
-      <div style={{ marginBottom: "2rem" }}>
+      <div
+        style={{
+          marginBottom: "2rem",
+          background: "linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%)",
+        }}
+      >
         <h1 className="checkout-heading">Checkout</h1>
         <ToastContainer />
         <div className="options">

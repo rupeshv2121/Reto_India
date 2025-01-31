@@ -57,14 +57,14 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <a
+                  <NavLink
                     className="nav-links ab-ut"
                     target="_blank"
                     rel="noopener noreferrer"
                     to="/about"
                   >
                     About Us
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
                   <NavLink
