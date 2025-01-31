@@ -40,11 +40,10 @@
 
 .input-field button {
   position: absolute;
-  top: 48%;
-  left: 63%;
+  top: 57%;
+  left: 72%;
 }
 
-/* @import "bulma/sass/utilities/all"; */
 /* Full background styling for the modal-like effect */
 .ca-signup-container::before {
   content: "";
@@ -118,6 +117,10 @@ body {
   .ca-signup-container .signup-card {
     width: 50%;
   }
+  .input-field button {
+    top: 54%;
+    left: 64%;
+  }
 }
 @media screen and (max-width: 865px) {
   .ca-signup-container .signup-card {
@@ -137,6 +140,10 @@ body {
   }
   .ca-signup-container .heading-text {
     font-size: 2rem;
+  }
+  .input-field button {
+    top: 57%;
+    left: 69%;
   }
 }
 .ca-signup-container .signup-card .card-content .signup-content .signup-btn-border {
@@ -247,6 +254,9 @@ body {
   .ca-signup-container .signup-card {
     width: 90%;
   }
+  .input-field button {
+    left: 75%;
+  }
 }
 @media screen and (max-width: 325px) {
   .nav-container-auth {
@@ -261,5 +271,9 @@ body {
   }
   .input {
     font-size: 1rem;
+  }
+  .input-field button {
+    top: 55.5%;
+    left: 74%;
   }
 }/*# sourceMappingURL=signup.css.map */
