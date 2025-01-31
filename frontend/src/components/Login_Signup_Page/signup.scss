@@ -2,6 +2,7 @@
 @import "../../assets/fonts/customFonts"; */
 
 /* bulma overrides */
+
 .card-content-padding {
     padding: 4rem;
 }
@@ -63,6 +64,7 @@
     position: relative;
     // z-index: -1;
     height: 130vh;
+    background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%)
 }
 
 .ca-signup-container .heading-text {
