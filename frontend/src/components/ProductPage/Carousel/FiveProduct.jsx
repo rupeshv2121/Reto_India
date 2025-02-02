@@ -6,6 +6,7 @@ import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router";
 import Slider from "react-slick";
+import { toast, ToastContainer } from "react-toastify";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import slider1 from "../../../assets/slider1.png";
@@ -17,21 +18,21 @@ const ProductPage = () => {
   const dispatch = useDispatch();
 
   const images = [
-    { src: slider1, name: "Product 1", price: 100 },
-    { src: slider2, name: "Product 2", price: 150 },
-    { src: slider3, name: "Product 3", price: 200 },
-    { src: slider1, name: "Product 4", price: 100 },
-    { src: slider2, name: "Product 5", price: 150 },
-    { src: slider3, name: "Product 6", price: 200 },
-    { src: slider1, name: "Product 7", price: 100 },
-    { src: slider2, name: "Product 8", price: 150 },
-    { src: slider3, name: "Product 9", price: 200 },
-    { src: slider1, name: "Product 10", price: 100 },
-    { src: slider2, name: "Product 11", price: 150 },
-    { src: slider3, name: "Product 12", price: 200 },
-    { src: slider1, name: "Product 13", price: 100 },
-    { src: slider2, name: "Product 14", price: 150 },
-    { src: slider3, name: "Product 15", price: 200 },
+    { src: slider1, name: "Product 1", price: 100, id: 1 },
+    { src: slider2, name: "Product 2", price: 150, id: 2 },
+    { src: slider3, name: "Product 3", price: 200, id: 3 },
+    { src: slider1, name: "Product 4", price: 100, id: 4 },
+    { src: slider2, name: "Product 5", price: 150, id: 5 },
+    { src: slider3, name: "Product 6", price: 200, id: 6 },
+    { src: slider1, name: "Product 7", price: 100, id: 7 },
+    { src: slider2, name: "Product 8", price: 150, id: 8 },
+    { src: slider3, name: "Product 9", price: 200, id: 9 },
+    { src: slider1, name: "Product 10", price: 100, id: 10 },
+    { src: slider2, name: "Product 11", price: 150, id: 11 },
+    { src: slider3, name: "Product 12", price: 200, id: 12 },
+    { src: slider1, name: "Product 13", price: 100, id: 13 },
+    { src: slider2, name: "Product 14", price: 150, id: 14 },
+    { src: slider3, name: "Product 15", price: 200, id: 15 },
   ];
 
   const settings = {
@@ -65,11 +66,13 @@ const ProductPage = () => {
 
   const handleAddToCart = (product) => {
     console.log("Product added to cart:", product);
+    toast("Item added Successfully");
     dispatch(addToCart(product));
   };
 
   return (
     <div className="flex items-center justify-center">
+      <ToastContainer />
       <div className="w-full lg:w-[90%] bg-white/20 rounded-lg shadow-2xl border border-white/30 p-6">
         <h2 className="text-2xl font-bold font-bricolage text-center mb-8">
           Our Products

@@ -37,52 +37,27 @@ const Navbar = () => {
             <div className="nav-group">
               <ul>
                 <li>
-                  <NavLink
-                    className="nav-links ho-nv"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    to="/"
-                  >
+                  <NavLink className="nav-links ho-nv" to="/">
                     Home
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className="nav-links"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    to="/product"
-                  >
+                  <NavLink className="nav-links" to="/product">
                     Products
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className="nav-links ab-ut"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    to="/about"
-                  >
+                  <NavLink className="nav-links ab-ut" to="/about">
                     About Us
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className="nav-links co-tc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    to="/contact"
-                  >
+                  <NavLink className="nav-links co-tc" to="/contact">
                     Contact Us
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    className="nav-links tr-k"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    to="/tracking"
-                  >
+                  <NavLink className="nav-links tr-k" to="/tracking">
                     Track Order
                   </NavLink>
                 </li>

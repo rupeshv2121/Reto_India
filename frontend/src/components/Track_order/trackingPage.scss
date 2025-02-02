@@ -258,7 +258,9 @@ background-color: #f28908;
 }
 
 .track-box{
-  display: block;
+        flex-direction: column;
+      justify-content: center;
+      align-items: center;
   margin-bottom: 5rem;
 }
 
@@ -266,11 +268,10 @@ background-color: #f28908;
   height: 160px;
   width: 200px;
   position: relative;
-  left: 12%;
+  left: -8%;
 }
 
   .diamond-div{
-    margin-bottom:3rem;
     padding: 0;
   }
 
@@ -285,5 +286,48 @@ background-color: #f28908;
 
 .tracking_container{
   height: 110vh;
+}
+
+.tracking_content {
+  margin-left: 4rem;
+}
+
+.order-form
+{
+  padding: 33px 26px;
+}
+}
+
+@media screen and (max-width:376px) {
+  .dotsandline{
+    left: 22%;
+  }
+  .tracking_container h2 {
+    left: 5.6rem;}
+
+    .tracking_content {
+      margin-left: 4rem;
+  }
+  .social-links{
+    font-size: 25px;
+    top: 67%;
+    left: 3%;
+  }
+  .order-form {
+    padding: 27px 9px;
+    padding-top: 2rem;
+  }
+}
+
+@media screen and (max-width:321px) {
+  .dotsandline{
+    left: 17%;
+  }
+  .tracking_container h2 {
+    left: 3.6rem;
+}
+
+.order-form-div {
+  width: 100%;
 }
 }

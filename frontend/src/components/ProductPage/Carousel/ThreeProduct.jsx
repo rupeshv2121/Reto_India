@@ -1,12 +1,12 @@
 import React from "react";
+import { AiFillStar } from "react-icons/ai";
+import { IoMdHeartEmpty } from "react-icons/io";
+import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
+import { useDispatch } from "react-redux";
 import Slider from "react-slick";
 import slider1 from "../../../assets/slider1.png";
 import slider2 from "../../../assets/slider2.png";
 import slider3 from "../../../assets/slider3.png";
-import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
-import { IoMdHeartEmpty } from "react-icons/io";
-import { AiFillStar } from "react-icons/ai";
-import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Redux/CartSlice";
 
 const MainCarousel = () => {
@@ -53,10 +53,10 @@ const MainCarousel = () => {
     ],
   };
 
-    const handleAddToCart = (product) => {
-      console.log("Product added to cart:", product);
-      dispatch(addToCart(product));
-    };
+  const handleAddToCart = (product) => {
+    console.log("Product added to cart:", product);
+    dispatch(addToCart(product));
+  };
 
   return (
     <div className="w-full bg-white/20 rounded-lg shadow-2xl lg:max-w-[80%] mx-auto p-5">
@@ -83,14 +83,17 @@ const MainCarousel = () => {
                 <button className="py-2 font-semibold">Buy Now</button>
                 <div className="flex gap-2">
                   <IoEyeOutline className="cursor-pointer w-7 h-7" />
-                  <IoCartOutline className="cursor-pointer w-7 h-7" onClick={() => handleAddToCart(image)} />
+                  <IoCartOutline
+                    className="cursor-pointer w-7 h-7"
+                    onClick={() => handleAddToCart(image)}
+                  />
                   <IoMdHeartEmpty className="cursor-pointer w-7 h-7" />
                 </div>
               </div>
 
               {/* Rating (Visible on Hover) */}
               <div className="absolute top-3 right-3 bg-orange-300  px-2 py-1 rounded-md shadow-md opacity-0 group-hover:opacity-90 transition-opacity duration-300 ease-in-out flex items-center gap-1">
-                4.5 <AiFillStar/>                
+                4.5 <AiFillStar />
               </div>
             </div>
             {/* Name and Price */}
@@ -103,6 +106,6 @@ const MainCarousel = () => {
       </Slider>
     </div>
   );
-}
+};
 
 export default MainCarousel;
