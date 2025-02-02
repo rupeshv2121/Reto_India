@@ -18,7 +18,7 @@ const CartPage = () => {
   );
 
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   const handleIncrement = (id) => {
     dispatch(incrementQuantity(id));
@@ -33,10 +33,16 @@ const CartPage = () => {
   };
 
   const handleContinueShopping = () => {
-    navigate("/product"); // Redirect to the home page
+    navigate("/product");
   };
   const handleCheckout = () => {
-    navigate("/payment");
+    navigate("/checkout", {
+      state: {
+        cartItems,
+        totalQuantity,
+        totalPrice: totalPrice + 5,
+      },
+    });
   };
 
   return (
@@ -166,9 +172,15 @@ const CartPage = () => {
                 <span className="text-sm font-medium text-gray-600">
                   Shipping Fees:
                 </span>
-                <span className="text-sm font-medium text-gray-800">
-                  $ 5.00
-                </span>
+                {cartItems.length === 0 ? (
+                  <span className="text-sm font-medium text-gray-800">
+                    $ 0.00
+                  </span>
+                ) : (
+                  <span className="text-sm font-medium text-gray-800">
+                    $ 5.00
+                  </span>
+                )}
               </div>
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm font-medium text-gray-600">
@@ -209,7 +221,10 @@ const CartPage = () => {
               </div>
               <NavLink to="/checkout">
                 {" "}
-                <button className="w-full background text-black hover:scale-105 duration-200 ease-linear border-[1px] border-orange-200 bg-orange-200 hover:bg-orange-300 py-2 rounded-md mt-4">
+                <button
+                  className="w-full background text-black hover:scale-105 duration-200 ease-linear border-[1px] border-orange-200 bg-orange-200 hover:bg-orange-300 py-2 rounded-md mt-4"
+                  onClick={handleCheckout}
+                >
                   Checkout
                 </button>
               </NavLink>
