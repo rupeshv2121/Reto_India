@@ -215,9 +215,15 @@ const CartPage = () => {
                 <span className="text-sm font-medium text-gray-600">
                   Total Cost
                 </span>
-                <span className="text-sm font-medium text-gray-800">
-                  $ {(totalPrice + 5).toFixed(2)}
-                </span>
+                {cartItems.length === 0 ? (
+                  <span className="text-sm font-medium text-gray-800">
+                    $ 0.00
+                  </span>
+                ) : (
+                  <span className="text-sm font-medium text-gray-800">
+                    $ {(totalPrice + 5).toFixed(2)}
+                  </span>
+                )}
               </div>
               <NavLink to="/checkout">
                 {" "}
