@@ -4,7 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import Slider from "react-slick";
 import { toast, ToastContainer } from "react-toastify";
 import "slick-carousel/slick/slick-theme.css";
@@ -64,7 +64,16 @@ const ProductPage = () => {
     ],
   };
 
+  const navigate = useNavigate();
   const handleAddToCart = (product) => {
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      setTimeout(() => {
+        navigate("/auth/signup");
+      });
+      return;
+    }
+
     console.log("Product added to cart:", product);
     toast("Item added Successfully");
     dispatch(addToCart(product));

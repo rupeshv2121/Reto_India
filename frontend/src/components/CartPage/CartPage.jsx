@@ -42,7 +42,6 @@ const CartPage = () => {
       setTimeout(() => {
         navigate("/auth/signup");
       });
-
       return;
     }
     navigate("/checkout", {
