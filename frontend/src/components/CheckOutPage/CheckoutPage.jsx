@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import { useMutation } from "@tanstack/react-query";
 import { gsap } from "gsap";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { checkout } from "../../API/api";
 import "./CheckOutPage.css";
@@ -31,6 +32,11 @@ const CheckoutPage = () => {
       scale: 0,
     });
   });
+  const cartItems = useSelector((state) => state.cart.items);
+  const totalPrice =
+    cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) + 5; // Including shipping fee
+
+  console.log("Cart Items in Checkout:", cartItems); // ✅ Debugging
 
   const [user, setUser] = useState({
     name: "",
@@ -38,10 +44,7 @@ const CheckoutPage = () => {
     email: "",
     address: "",
     pinCode: "",
-    cartItems: [
-      { name: "Grinder 300hp blue colour variant", quantity: 1, price: 100 },
-      { name: "Grinder 300hp blue colour variant", quantity: 1, price: 100 },
-    ],
+    cartItems: [],
   });
 
   const [isPopupVisible, setPopupVisible] = useState(false);
@@ -110,7 +113,12 @@ const CheckoutPage = () => {
           </div>
         </div>
       )}
-      <div style={{ marginBottom: "2rem" }}>
+      <div
+        style={{
+          marginBottom: "2rem",
+          background: "linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%)",
+        }}
+      >
         <h1 className="checkout-heading">Checkout</h1>
         <ToastContainer />
         <div className="options">
@@ -123,9 +131,9 @@ const CheckoutPage = () => {
           <div className="review">
             <h3>Review Your Cart Item</h3>
             <div className="review-photo">
-              {user.cartItems.length ? (
+              {cartItems.length ? (
                 <>
-                  {user.cartItems.map((item, index) => (
+                  {cartItems.map((item, index) => (
                     <div key={index} className="items-info">
                       <p>{item.name}</p>
                       <p className="quantity">{item.quantity}</p>
@@ -135,13 +143,7 @@ const CheckoutPage = () => {
                   <hr />
                   <div className="items-info">
                     <p>Total Price:</p>
-                    <p>
-                      $
-                      {user.cartItems.reduce(
-                        (total, item) => total + item.price * item.quantity,
-                        0
-                      )}
-                    </p>
+                    <p>{totalPrice}</p>
                   </div>
                 </>
               ) : (

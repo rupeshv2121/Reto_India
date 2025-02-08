@@ -124,7 +124,7 @@ const LandingPage = () => {
           <i className="fab fa-instagram"></i>
         </a>
         <a href="#">
-          <i className="fas fa-arrow-down"></i>
+          <i className="fab fa-linkedin"></i>
         </a>
       </div>
     </div>

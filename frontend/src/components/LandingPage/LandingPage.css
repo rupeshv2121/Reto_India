@@ -1,19 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Sans&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:wght@300;400&display=swap");
 .landing {
+  background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%);
   /* Logo Section */
   /* Navigation Menu */
   /* Buttons */
   /* Main Section */
+  /* .logo-img {
+    height: 720px;
+    width: 660px;
+  } */
   /* Social Icons */
   /* Responsive Menu for Mobile */
   /* 31-12-2024 */
   /* //......................................  */
+  /* @media (max-width: 376px) {
+    .circle-sm {
+      width: 150px;
+      height: 150px;
+    }
+  } */
 }
 .landing header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 16px 20px;
   position: relative;
 }
 .landing .logo {
@@ -25,7 +35,6 @@
 }
 .landing .logo img {
   width: 100px;
-  margin-right: 10px;
 }
 .landing nav {
   display: flex;
@@ -49,9 +58,6 @@
 .landing .lo-gin {
   color: #fd7e14;
   font-size: 24px;
-}
-.landing .lo-gin:hover {
-  color: black;
 }
 .landing nav a:hover {
   color: #fd7e14;
@@ -81,9 +87,6 @@
   color: #fd7e14;
   font-size: 25px;
 }
-.landing .lo-gin:hover {
-  color: black;
-}
 .landing nav a:hover {
   color: #fd7e14;
 }
@@ -100,8 +103,8 @@
   background-color: #f5720b;
 }
 .landing .btn-2 {
-  margin-right: 280px;
-  margin-top: -50px;
+  /* margin-right: 280px; */
+  /* margin-top: -50px; */
   background-color: #ffd7a5;
   color: black;
   padding: 20px 50px;
@@ -115,23 +118,19 @@
 }
 .landing main h1 {
   font-weight: 600;
-  font-size: 75px;
+  font-size: 5vw;
 }
 .landing main p {
-  font-size: 32px;
-}
-.landing .logo-img {
-  height: 720px;
-  width: 660px;
+  font-size: 2vw;
 }
 .landing h2 {
-  font-size: 180px;
+  font-size: 8vw;
   color: white;
   font-weight: 400;
   margin-left: -50px;
 }
 .landing .ind-ia {
-  font-size: 147px;
+  font-size: 7vw;
   color: black;
   font-weight: lighter;
   margin-left: 25px;
@@ -227,8 +226,7 @@
   display: flex;
 }
 .landing .btns-2 {
-  text-align: right;
-  margin-right: 15rem;
+  text-align: center;
 }
 .landing .namaste-head {
   display: flex;
@@ -240,6 +238,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  margin-left: 5rem;
 }
 .landing .reto-parent {
   display: flex;
@@ -253,6 +252,44 @@
 .landing .head-parent p {
   text-align: center;
 }
+.landing .logo-sm {
+  width: 40%;
+  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.landing .logo-sm img {
+  max-width: 86%;
+  height: auto;
+}
+.landing .circle-sm {
+  position: absolute;
+  bottom: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  background-color: #f9d6b5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  z-index: -1;
+}
+.landing .circle-text {
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+}
+.landing #landing-logo-main {
+  width: 90%;
+}
 @media screen and (max-width: 1024px) {
   .landing {
     /* old */
@@ -260,15 +297,25 @@
   .landing .landing-btn {
     margin-left: 0;
   }
+  .landing header {
+    justify-content: space-between;
+  }
+  .landing .img-parent {
+    display: block;
+  }
+  .landing .reto-text {
+    border-radius: 100%;
+    text-align: center;
+  }
   .landing .btn-2 {
     margin-top: 60px;
     margin-bottom: 50px;
-    margin-left: 250px;
+    /* margin-left: 250px; */
   }
   .landing main h1 {
     font-size: 75px;
     font-weight: 600;
-    margin-top: 70px;
+    /* margin-top: 70px; */
   }
   .landing main p {
     font-size: 24px;
@@ -296,8 +343,13 @@
   .landing .logo img {
     width: 75px;
     height: 75px;
-    margin-right: 10px;
-    margin-left: 5px;
+  }
+  .landing .img-parent {
+    margin: auto;
+    width: 100%;
+  }
+  .landing .logo-img {
+    width: 70%;
   }
   .landing .lo-gin {
     font-size: 21px;
@@ -369,28 +421,43 @@
   }
 }
 @media screen and (max-width: 1024px) {
+  .landing {
+    /* .namaste-head {
+      flex-direction: column;
+      flex-direction: column-reverse;
+    }  */
+    /* .reto-text {
+      margin-left: 20px;
+      margin-top: 70px;
+    } */
+  }
   .landing .namaste-head {
-    flex-direction: column;
+    display: flex;
+    flex-direction: column-reverse;
   }
   .landing .btns-2 {
     text-align: center;
     margin-right: 0;
   }
   .landing .logo-img {
-    width: 50%;
+    /* width: 50%; */
     justify-content: end;
     display: flex;
   }
-  .landing .reto-text {
-    margin-left: 20px;
-    margin-top: 70px;
-  }
   .landing .social-icons {
     position: fixed;
-    top: 400px;
+    /* top: 400px; */
     flex-direction: column;
     gap: 15px;
     justify-content: center;
+  }
+}
+@media screen and (min-width: 769px) {
+  .landing .logo-sm {
+    display: none;
+  }
+  .landing .img-parent {
+    display: flex;
   }
 }
 @media screen and (max-width: 768px) {
@@ -399,6 +466,34 @@
       display: none;
     } */
     /* today */
+  }
+  .landing .head-parent {
+    margin-left: 0;
+  }
+  .landing .img-parent {
+    display: none !important;
+  }
+  .landing .logo-sm {
+    display: block;
+  }
+  .landing .logo-sm img {
+    max-width: 40%;
+    margin: auto;
+  }
+  .landing .logo-sm {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .landing .reto {
+    font-size: 50px;
+    color: white;
+  }
+  .landing .india {
+    font-size: 40px;
+    color: #000;
+  }
+  .landing h2 {
+    font-size: 12vw; /* Adjust for smaller screens */
   }
   .landing .menu-toggle {
     display: flex;
@@ -486,20 +581,35 @@
     margin-left: -18px;
   }
 }
-@media screen and (max-width: 320px) {
-  .landing {
-    /* 
-    .social-icons {
-      position: fixed;
-      bottom: 0px;
-      flex-direction: row;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      z-index: 1000;
-    } */
+@media (max-width: 480px) {
+  .landing .logo-sm img {
+    max-width: 75%;
   }
+  .landing .shop-now {
+    margin: 0;
+  }
+  .landing h2 {
+    font-size: 14vw; /* Further adjust for very small screens */
+  }
+}
+@media screen and (max-width: 426px) {
+  .landing .social-icons > a {
+    font-size: 29px;
+  }
+  .landing .btn-2 {
+    width: 260px;
+  }
+  .landing main h1 {
+    font-size: 48px;
+  }
+  .landing main p {
+    font-size: 1rem;
+  }
+  .landing .social-icons {
+    left: 10px;
+  }
+}
+@media screen and (max-width: 320px) {
   .landing body {
     margin: 0;
     padding: 0;
@@ -510,28 +620,11 @@
   }
   .landing main h1 {
     font-size: 3rem;
-    margin-top: 110px;
+    margin-top: 10px;
   }
   .landing main .landing-logo-main {
     height: 265px;
     width: 240px;
-  }
-  .landing .social-icons {
-    position: fixed;
-    display: flex;
-    gap: 10px;
-    bottom: 10px;
-    max-width: 300px;
-    width: 100%;
-    height: 70px;
-    top: 70%;
-    padding: 8px;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   .landing .social-icons a {
     text-align: center;
@@ -539,6 +632,7 @@
     color: #333;
     text-decoration: none;
     transition: color 0.3s ease;
+    font-size: 26px;
   }
   .landing h2 {
     font-size: 55px;
@@ -550,7 +644,7 @@
   }
   .landing .btn-2 {
     margin-bottom: 0;
-    margin-left: 11px;
+    /* margin-left: 11px; */
   }
   .landing .sp-an {
     margin-left: -16px;
@@ -558,7 +652,7 @@
     font-size: 30px;
   }
   .landing .logo {
-    margin-left: -32px;
+    /* margin-left: -32px; */
     display: flex;
     align-items: center;
     font-size: 24px;
@@ -600,20 +694,14 @@
     font-size: 16px;
     padding: 10px;
   }
-  .landing .logo img {
-    width: 55px;
-    height: 55px;
-    margin-left: 25px;
-  }
 }
 @media screen and (max-width: 320px) {
   .landing .namaste-head {
     flex-direction: column-reverse;
-    gap: 2rem;
   }
   .landing .logo-img {
     height: 11rem;
-    aspect-ratio: 1;
+    /* aspect-ratio: 1; */
     width: 9rem;
     margin-left: 3rem;
     display: flex;

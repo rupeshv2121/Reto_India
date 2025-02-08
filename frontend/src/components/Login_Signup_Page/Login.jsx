@@ -3,9 +3,11 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { loginUser } from "../../API/api";
+import { useAuth } from "../../Context/AuthContext";
 import "./Login.css";
 
 const Login = () => {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -25,11 +27,14 @@ const Login = () => {
     onSuccess: (response) => {
       console.log(response);
       toast.success("Login Successfully");
+      console.log(response.data);
+      login(response.token, response.user);
       setUser({
         email: "",
         password: "",
       });
       navigate("/");
+      window.location.reload();
     },
 
     onError: (error) => {

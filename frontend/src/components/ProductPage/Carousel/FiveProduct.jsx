@@ -4,8 +4,9 @@ import { AiFillStar } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
+import { toast, ToastContainer } from "react-toastify";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { addToCart } from "../../../Redux/CartSlice";
@@ -55,14 +56,25 @@ const ProductPage = () => {
     ],
   };
 
+  const navigate = useNavigate();
   const handleAddToCart = (product) => {
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      setTimeout(() => {
+        navigate("/auth/signup");
+      });
+      return;
+    }
+
     console.log("Product added to cart:", product);
+    toast("Item added Successfully");
     dispatch(addToCart(product));
   };
 
   return (
     
     <div className="flex items-center justify-center">
+      <ToastContainer />
       <div className="w-full lg:w-[90%] bg-white/20 rounded-lg shadow-2xl border border-white/30 p-6">
         <h2 className="text-2xl font-bold font-bricolage text-center mb-8">
           Our Products
@@ -75,7 +87,6 @@ const ProductPage = () => {
                 className="p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group"
               >
                 {/* Image */}
-
                 {/* <NavLink to="/product/productView"> */}
                 {/* <Link to="productView"> */}
 
