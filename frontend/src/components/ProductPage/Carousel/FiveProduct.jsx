@@ -1,45 +1,37 @@
 // import React from "react";
-import React from "react";
+import React, { useState ,useEffect} from "react";
 import { AiFillStar } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import slider1 from "../../../assets/slider1.png";
-import slider2 from "../../../assets/slider2.png";
-import slider3 from "../../../assets/slider3.png";
 import { addToCart } from "../../../Redux/CartSlice";
-
+import axios from 'axios';
 const ProductPage = () => {
   const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/Product');
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
-  const images = [
-    { src: slider1, name: "Product 1", price: 100 },
-    { src: slider2, name: "Product 2", price: 150 },
-    { src: slider3, name: "Product 3", price: 200 },
-    { src: slider1, name: "Product 4", price: 100 },
-    { src: slider2, name: "Product 5", price: 150 },
-    { src: slider3, name: "Product 6", price: 200 },
-    { src: slider1, name: "Product 7", price: 100 },
-    { src: slider2, name: "Product 8", price: 150 },
-    { src: slider3, name: "Product 9", price: 200 },
-    { src: slider1, name: "Product 10", price: 100 },
-    { src: slider2, name: "Product 11", price: 150 },
-    { src: slider3, name: "Product 12", price: 200 },
-    { src: slider1, name: "Product 13", price: 100 },
-    { src: slider2, name: "Product 14", price: 150 },
-    { src: slider3, name: "Product 15", price: 200 },
-  ];
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: products.length > 3, // Only enable infinite if there are more than 3 products
     speed: 1000,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: Math.min(3, products.length), // Show fewer slides if there are fewer products
+    slidesToScroll: Math.min(3, products.length),
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
@@ -47,7 +39,7 @@ const ProductPage = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: Math.min(2, products.length),
           slidesToScroll: 1,
           dots: false,
         },
@@ -69,14 +61,15 @@ const ProductPage = () => {
   };
 
   return (
+    
     <div className="flex items-center justify-center">
       <div className="w-full lg:w-[90%] bg-white/20 rounded-lg shadow-2xl border border-white/30 p-6">
         <h2 className="text-2xl font-bold font-bricolage text-center mb-8">
           Our Products
         </h2>
         <Slider {...settings}>
-          {images.map((image, index) => (
-            <React.Fragment key={index}>
+          {products.map((product, index) => (
+            <React.Fragment key={product._id}>
               <div
                 key={index}
                 className="p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group"
@@ -86,13 +79,14 @@ const ProductPage = () => {
                 {/* <NavLink to="/product/productView"> */}
                 {/* <Link to="productView"> */}
 
-                <NavLink to={`/product/${image.productId}`}>
+                <NavLink to={`/product/${product._id}`} state={{ product }} >
                   {/* <NavLink to="/product/productView"> */}
 
                   <img
-                    src={image.src}
-                    alt={image.name}
+                    src={`http://localhost:3000${product.image1}`}
+                    alt={product.title}
                     className="h-full w-full mx-auto object-cover rounded-xl group-hover:scale-105 duration-300 ease-linear"
+                    style={{height: "450px",width: "100%"}}
                   />
                 </NavLink>
 
@@ -103,7 +97,7 @@ const ProductPage = () => {
                     <IoEyeOutline className="cursor-pointer w-7 h-7" />
                     <IoCartOutline
                       className="cursor-pointer w-7 h-7"
-                      onClick={() => handleAddToCart(image)}
+                      onClick={() => handleAddToCart(product)}
                     />
                     <IoMdHeartEmpty className="cursor-pointer w-7 h-7" />
                   </div>
@@ -115,8 +109,8 @@ const ProductPage = () => {
                 </div>
               </div>
               <div className="text-center mt-2">
-                <h3 className="text-lg font-semibold">{image.name}</h3>
-                <p className="text-md text-gray-600">${image.price}</p>
+                <h3 className="text-lg font-semibold">{product.title}</h3>
+                <p className="text-md text-gray-600">${product.price}</p>
               </div>
             </React.Fragment>
           ))}

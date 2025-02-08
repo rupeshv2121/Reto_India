@@ -14,7 +14,7 @@ const Review = require("./models/Review");
 const ContactInfo = require("./models/ContactInfo");
 const userSignUpInfo = require("./models/signup");
 const AllProducts = require("./models/AllProduct");
-
+const AddProduct = require('./models/AddProduct');
 const app = express();
 
 // Configure CORS
@@ -57,6 +57,16 @@ const storage = multer.diskStorage({
     }
 });
 const upload = multer({ storage: storage });
+
+
+app.get('/Product', async (req, res) => {
+    try {
+        const product = await AddProduct.find();
+        res.json(product);
+    } catch (error) {
+        console.error("Error fetching product:", error);
+    }
+});
 
 // Routes
 // Signup Route
