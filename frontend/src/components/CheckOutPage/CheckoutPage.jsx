@@ -1,10 +1,11 @@
 import { useGSAP } from "@gsap/react";
 import { useMutation } from "@tanstack/react-query";
 import { gsap } from "gsap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { checkout } from "../../API/api";
+import { jwtDecode } from "jwt-decode"; // Correct import
 import "./CheckOutPage.css";
 
 const CheckoutPage = () => {
@@ -32,11 +33,23 @@ const CheckoutPage = () => {
       scale: 0,
     });
   });
+
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice =
     cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) + 5; // Including shipping fee
 
-  console.log("Cart Items in Checkout:", cartItems); // ✅ Debugging
+  // Function to extract userId from the JWT token
+  const getUserIdFromToken = () => {
+    const token = localStorage.getItem("token"); // Assuming the token is stored in localStorage
+    if (token) {
+      const decoded = jwtDecode(token); // Use jwtDecode here
+      return decoded.userId; // Extract userId from the token
+    }
+    return null;
+  };
+
+  const userId = getUserIdFromToken(); // Get userId from the JWT token
+  console.log("User ID from Token:", userId); // Debugging
 
   const [user, setUser] = useState({
     name: "",
@@ -46,6 +59,13 @@ const CheckoutPage = () => {
     pinCode: "",
     cartItems: [],
   });
+
+  useEffect(() => {
+    setUser((prevUser) => ({
+      ...prevUser,
+      cartItems: cartItems, // Update cartItems in user state
+    }));
+  }, [cartItems]);
 
   const [isPopupVisible, setPopupVisible] = useState(false);
 
@@ -60,7 +80,6 @@ const CheckoutPage = () => {
   const { mutate } = useMutation({
     mutationFn: (newOrder) => checkout(newOrder),
     onSuccess: () => {
-      // console.log("Order successful:", response);
       toast("Order placed successfully!");
       setUser({
         name: "",
@@ -80,6 +99,12 @@ const CheckoutPage = () => {
 
   const handleOnClick = (e) => {
     e.preventDefault();
+
+    if (!userId) {
+      toast("Please log in to proceed with checkout.");
+      return;
+    }
+
     if (
       !user.name ||
       !user.phone ||
@@ -91,17 +116,25 @@ const CheckoutPage = () => {
       return;
     }
 
-    // Check if cartItems is not empty before mutation
     if (user.cartItems.length === 0) {
       toast("Your cart is empty!");
       return;
     }
 
-    // Ensure we log the data being sent
-    console.log("Sending order data:", user);
+    // Add userId to the user data before sending it to the backend
+    const orderData = {
+      ...user,
+      userId: userId, // Add userId here
+    };
+
+    console.log("Sending order data:", orderData);
     setPopupVisible(true);
-    mutate(user); // Trigger the mutation
+    mutate(orderData); // Trigger the mutation with orderData
   };
+
+  if (!userId) {
+    return <div>Please log in to proceed with checkout.</div>;
+  }
 
   return (
     <>
@@ -135,9 +168,9 @@ const CheckoutPage = () => {
                 <>
                   {cartItems.map((item, index) => (
                     <div key={index} className="items-info">
-                      <p>{item.name}</p>
+                      <p>{item.title}</p>
                       <p className="quantity">{item.quantity}</p>
-                      {/* <p className="price">Price: ${item.price}</p> */}
+                      <p className="price">Price: ${item.price}</p>
                     </div>
                   ))}
                   <hr />

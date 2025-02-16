@@ -11,17 +11,27 @@ const api = axios.create({
 // For Checkout Page
 export const checkout = async (userData) => {
   try {
-    const response = await api.post("/checkout", userData);
+    const token = localStorage.getItem("token"); // Get the token from localStorage
+    if (!token) {
+      throw new Error("No token found. Please log in.");
+    }
+
+    console.log("Sending order data to backend:", userData); // Debugging
+    const response = await api.post("/checkout", userData, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Send the token in the Authorization header
+      },
+    });
+    console.log("Order placed successfully:", response.data); // Debugging
     return response.data;
   } catch (error) {
     console.error(
       "Error during checkout:",
       error.response?.data || error.message
     );
-    throw error;
+    throw new Error(error.response?.data?.message || "Failed to place order. Please try again.");
   }
 };
-
 // For Signup Page
 export const signUpUser = async (userData) => {
   try {
@@ -53,5 +63,6 @@ export const loginUser = async (userData) => {
     throw error;
   }
 };
+
 
 // export default api;
