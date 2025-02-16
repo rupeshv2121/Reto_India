@@ -2,6 +2,8 @@ import { useGSAP } from "@gsap/react";
 import { useMutation } from "@tanstack/react-query";
 import { gsap } from "gsap";
 import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { checkout } from "../../API/api";
 import "./CheckOutPage.css";
@@ -14,9 +16,14 @@ const CheckoutPage = () => {
     gsap.from(".photo", { x: -200, duration: 1, opacity: 0, delay: 0.5 });
     gsap.from(".checkout-btn", { delay: 1, scale: 0 });
   });
+ 
+
+  console.log("Cart Items in Checkout:", cartItems); // ✅ Debugging
 
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.items);
+  const totalPrice =
+    cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) + 5; // Including shipping fee
   const [user, setUser] = useState({
     name: "",
     phone: "",
@@ -28,6 +35,9 @@ const CheckoutPage = () => {
       quantity: item.quantity,
       price: item.price,
     })),
+
+    cartItems: [],
+
   });
 
   const [isPopupVisible, setPopupVisible] = useState(false);
@@ -149,51 +159,106 @@ const CheckoutPage = () => {
           </div>
         </div>
       )}
+
       <div className="checkout-wrapper">
         <h1 className="checkout-heading">Checkout</h1>
         <ToastContainer />
+
         <div className="options">
           <p className="underline-circle"></p>
           <p className="line"></p>
           <p className="underline-circle"></p>
         </div>
+
         <div className="checkout-container">
+          {/* Review Your Cart */}
           <div className="review">
             <h3>Review Your Cart Items</h3>
             <div className="review-photo">
-              {user.cartItems.length ? (
-                user.cartItems.map((item, index) => (
-                  <div key={index} className="items-info">
-                    <p>{item.name}</p>
-                    <p className="quantity">{item.quantity}</p>
+              {user.cartItems && user.cartItems.length > 0 ? (
+                <>
+                  {user.cartItems.map((item, index) => (
+                    <div key={index} className="items-info">
+                      <p>{item.name}</p>
+                      <p className="quantity">Quantity: {item.quantity}</p>
+                      <p className="price">Price: ${item.price}</p>
+                    </div>
+                  ))}
+                  <hr />
+                  <div className="items-info">
+                    <p>Total Price:</p>
+                    <p>
+                      $
+                      {user.cartItems.reduce(
+                        (total, item) => total + item.price * item.quantity,
+                        0
+                      )}
+                    </p>
                   </div>
-                ))
+                </>
               ) : (
                 <h2 className="empty-cart">Cart is empty</h2>
               )}
-              <hr />
-              <div className="items-info">
-                <p>Total Price:</p>
-                <p>${user.cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
-              </div>
             </div>
           </div>
+
           <div className="vertical-line"></div>
+
+          {/* User Details Form */}
           <form>
             <div className="details">
               <h3>Enter Your Details</h3>
               <div className="input-details">
-                <input type="text" placeholder="Name" name="name" value={user.name} onChange={handleOnChange} required />
-                <input type="number" placeholder="Phone No" name="phone" value={user.phone} onChange={handleOnChange} required />
-                <input type="email" placeholder="Email" name="email" value={user.email} onChange={handleOnChange} required />
-                <input type="text" placeholder="Address Details" name="address" value={user.address} onChange={handleOnChange} required />
-                <input type="number" placeholder="Pin code" name="pinCode" value={user.pinCode} onChange={handleOnChange} required />
+                <input
+                  type="text"
+                  placeholder="Name"
+                  name="name"
+                  value={user.name}
+                  onChange={handleOnChange}
+                  required
+                />
+                <input
+                  type="number"
+                  placeholder="Phone No"
+                  name="phone"
+                  value={user.phone}
+                  onChange={handleOnChange}
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  value={user.email}
+                  onChange={handleOnChange}
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Address Details"
+                  name="address"
+                  value={user.address}
+                  onChange={handleOnChange}
+                  required
+                />
+                <input
+                  type="number"
+                  placeholder="Pin code"
+                  name="pinCode"
+                  value={user.pinCode}
+                  onChange={handleOnChange}
+                  required
+                />
               </div>
             </div>
           </form>
         </div>
+
+        {/* Checkout Button */}
         <div className="checkout-btn">
-          <button type="button" onClick={handleOnClick}>Proceed to Payment</button>
+          <button type="button" onClick={handleOnClick}>
+            Proceed to Payment
+          </button>
         </div>
       </div>
     </>

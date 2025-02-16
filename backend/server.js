@@ -33,9 +33,11 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(cookieParser());
 
 // MongoDB Connection
-mongoose.connect("mongodb+srv://amansinghas9140:ASgyi0y6jSJnIJGP@data.hdgwu.mongodb.net/Reto")
-    .then(() => console.log("Connected to reto_india DB"))
-    .catch(err => console.log("Error in connecting DB:", err));
+const MONGO_URL = "mongodb://localhost:27017/reto_india";
+mongoose
+    .connect(MONGO_URL)
+    .then(() => { console.log("connected to reto_india DB") })
+    .catch((err) => { console.log("Error in connecting DB : ", err) });
 
 const UserOrderInfo = mongoose.model('UserOrderInfo', userOrderInfo.schema);
 const ProductViewModel = mongoose.model('ProductView', ProductView.schema);
@@ -43,6 +45,18 @@ const ReviewModel = mongoose.model('Review', Review.schema);
 const ContactInfoModel = mongoose.model('ContactInfo', ContactInfo.schema);
 const userSignUpModel = mongoose.model('UserSignUp', userSignUpInfo.schema);
 const AllProductsModel = mongoose.model('AllProducts', AllProducts.schema);
+
+const authMiddleware = (req, res, next) => {
+    const token = req.cookies.token;
+    if (!token) return res.status(401).json({ message: "Unauthorized - No token provided" });
+
+    jwt.verify(token, "rupesh", (err, decoded) => {
+        if (err) return res.status(403).json({ message: "Forbidden - Invalid token" });
+        req.user = decoded;
+        next();
+    });
+};
+
 
 // Multer Storage
 const storage = multer.diskStorage({
@@ -74,48 +88,50 @@ app.post("/auth/signup", async (req, res) => {
 
 // Login Route
 app.post("/auth/login", async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        if (!email || !password) return res.status(400).json({ message: "All fields are required" });
+    const { email, password } = req.body;
+    // console.log(email, password)
 
-        const user = await userSignUpModel.findOne({ email });
-        if (!user || !(await bcrypt.compare(password, user.password))) return res.status(401).json({ message: "Invalid email or password" });
-
-        const token = jwt.sign({ email: user.email }, "rupesh");
-        res.cookie("token", token, { httpOnly: true, secure: false, sameSite: "strict" });
-        res.status(200).json({ message: "Login successful", token, user: { fullName: user.fullName, email: user.email } });
-    } catch (error) {
-        res.status(500).json({ message: "Internal Server Error" });
+    if (!email || !password) {
+        return res.status(400).json({ message: "All fields are required" });
     }
-});
 
-const razorpay = new Razorpay({
-    key_id: "rzp_test_xxDux3IIvlBSYN",
-    key_secret: "XIxKbKjgBPr6hp8499mq1n50",
-});
-
-// Razorpay Checkout
-app.post("/create-order", async (req, res) => {
     try {
-        const { user, cartItems } = req.body;
-
-        if (!user || cartItems.length === 0) {
-            return res.status(400).json({ success: false, message: "Invalid order data" });
+        const user = await userSignUpModel.findOne({ email });
+        // console.log(user);
+        if (!user) {
+            return res.status(401).json({ message: "Invalid email or password" });
         }
 
-        const amount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0) * 100; // INR paisa me hota hai
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        console.log(isPasswordValid);
+        if (isPasswordValid) {
+            let token = jwt.sign({ email: user.email }, "rupesh");
+            res.cookie("token", token, {
+                httpOnly: true, // Prevent client-side JavaScript access for security
+                secure: false, // Set to `true` if using HTTPS
+                sameSite: "strict", // Ensures the cookie is sent only with same-site requests
+            });
+            console.log("Cookie sent:", token);
+            return res.status(200).json({
+                message: "Login successful",
+                token,
+                user: { fullName: user.fullName, email: user.email },
+            });
+            return res.status(200).json({ message: "Login successful", token });
+        } else {
+            return res.status(401).json({ message: "Invalid email or password" });
 
-        const order = await razorpay.orders.create({
-            amount,
-            currency: "INR",
-            receipt: `order_rcptid_${Date.now()}`,
-        });
+        }
 
-        res.json({ success: true, orderId: order.id, amount: order.amount, currency: order.currency });
     } catch (error) {
         console.error("Error creating order:", error);
         res.status(500).json({ success: false, message: "Failed to create order" });
     }
+});
+
+app.post("/auth/logout", (req, res) => {
+    res.clearCookie("token");
+    res.status(200).json({ message: "Logout successful" });
 });
 
 app.post("/verify-payment", async (req, res) => {
