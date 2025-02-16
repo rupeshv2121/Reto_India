@@ -18,6 +18,7 @@ import UPIPaymentTemplate from "./components/PaymentPage/Upi.jsx";
 import Product from "./components/ProductPage/ProductPage.jsx";
 import ProductView from "./components/ProductView/ProductView";
 import TrackingPage from "./components/Track_order/TrackingPage";
+import SuccessPage from "./components/SucessPage/SuccessPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,11 @@ const router = createBrowserRouter([
       {
         path: "/card",
         element: <CardPaymentTemplate />,
+      },
+      
+      {
+        path: "/success",
+        element: <SuccessPage/>,
       },
     ],
   },
