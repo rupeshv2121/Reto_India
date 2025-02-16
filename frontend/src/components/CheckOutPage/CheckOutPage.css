@@ -133,6 +133,9 @@
   align-items: center;
   z-index: 1000;
 }
+.empty-cart{
+  text-align: center;
+}
 
 .popup-content {
   background: #fff;

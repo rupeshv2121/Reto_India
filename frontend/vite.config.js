@@ -9,6 +9,7 @@ export default defineConfig({
     hmr: {
       overlay: false, // Optional: Disables the overlay for errors
     },
+   
   },
   plugins: [react()],
 });
