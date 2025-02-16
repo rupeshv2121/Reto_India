@@ -44,7 +44,9 @@ const CheckoutPage = () => {
     email: "",
     address: "",
     pinCode: "",
-    cartItems: [],
+    cartItems: [
+      // {"ABC", 5 , 10}
+    ],
   });
 
   const [isPopupVisible, setPopupVisible] = useState(false);
@@ -131,7 +133,7 @@ const CheckoutPage = () => {
           <div className="review">
             <h3>Review Your Cart Item</h3>
             <div className="review-photo">
-              {cartItems.length ? (
+              {/* {cartItems.length ? ( */}
                 <>
                   {cartItems.map((item, index) => (
                     <div key={index} className="items-info">
@@ -143,11 +145,11 @@ const CheckoutPage = () => {
                   <hr />
                   <div className="items-info">
                     <p>Total Price:</p>
-                    <p>{totalPrice}</p>
+                    <p>{totalPrice} </p>
                   </div>
                 </>
-              ) : (
-                <h2
+              {/* ) : ( */}
+                {/* <h2
                   style={{
                     display: "flex",
                     justifyContent: "center",
@@ -156,8 +158,8 @@ const CheckoutPage = () => {
                   }}
                 >
                   Cart is empty
-                </h2>
-              )}
+                </h2> */}
+              {/* )} */}
             </div>
           </div>
 
