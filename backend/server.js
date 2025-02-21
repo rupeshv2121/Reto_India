@@ -6,8 +6,7 @@ const path = require("path");
 const multer = require("multer");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
-const Razorpay = require("razorpay");
+const cookieParser = require("cookie-parser")
 
 const userOrderInfo = require("./models/user");
 const ProductView = require("./models/ProductView");
@@ -19,26 +18,28 @@ const AllProducts = require("./models/AllProduct");
 const app = express();
 
 // Configure CORS
-app.use(cors({
+const corsOptions = {
     origin: "http://localhost:5173",
-    methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
-}));
+};
 
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
-app.use(express.json());
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(cookieParser());
 
-// MongoDB Connection
+// MongoDB connection URIs
 const MONGO_URL = "mongodb://localhost:27017/reto_india";
 mongoose
     .connect(MONGO_URL)
     .then(() => { console.log("connected to reto_india DB") })
     .catch((err) => { console.log("Error in connecting DB : ", err) });
 
+// Models need to be defined on each connection
 const UserOrderInfo = mongoose.model('UserOrderInfo', userOrderInfo.schema);
 const ProductViewModel = mongoose.model('ProductView', ProductView.schema);
 const ReviewModel = mongoose.model('Review', Review.schema);
@@ -58,30 +59,49 @@ const authMiddleware = (req, res, next) => {
 };
 
 
-// Multer Storage
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, 'uploads/'),
-    filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
-});
-const upload = multer({ storage });
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage: storage });
+
+// Routes
 // Signup Route
 app.post("/auth/signup", async (req, res) => {
     try {
         const { fullName, email, password } = req.body;
-        if (!fullName || !email || !password) return res.status(400).json({ message: "All fields are required" });
 
+        // Validate input
+        if (!fullName || !email || !password) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        // Check if user already exists
         const existingUser = await userSignUpModel.findOne({ email });
-        if (existingUser) return res.status(400).json({ message: "Email already exists" });
+        if (existingUser) {
+            return res.status(400).json({ message: "Email already exists" });
+        }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+        // Hash the password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Save the new user
         const newUser = new userSignUpModel({ fullName, email, password: hashedPassword });
+        let token = jwt.sign({ email }, "rupesh");
+        res.cookie("token", token);
+        console.log("Cookie sent:", token);
         await newUser.save();
 
-        const token = jwt.sign({ email }, "rupesh");
-        res.cookie("token", token, { httpOnly: true });
-        res.status(201).json({ message: "Signup successful!", token });
+        // Respond with success
+        res.status(201).json({ message: "Signup successful!" });
     } catch (error) {
+        console.error("Error during signup:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
@@ -89,43 +109,28 @@ app.post("/auth/signup", async (req, res) => {
 // Login Route
 app.post("/auth/login", async (req, res) => {
     const { email, password } = req.body;
-    // console.log(email, password)
-
     if (!email || !password) {
         return res.status(400).json({ message: "All fields are required" });
     }
 
     try {
         const user = await userSignUpModel.findOne({ email });
-        // console.log(user);
         if (!user) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
-        console.log(isPasswordValid);
-        if (isPasswordValid) {
-            let token = jwt.sign({ email: user.email }, "rupesh");
-            res.cookie("token", token, {
-                httpOnly: true, // Prevent client-side JavaScript access for security
-                secure: false, // Set to `true` if using HTTPS
-                sameSite: "strict", // Ensures the cookie is sent only with same-site requests
-            });
-            console.log("Cookie sent:", token);
-            return res.status(200).json({
-                message: "Login successful",
-                token,
-                user: { fullName: user.fullName, email: user.email },
-            });
-            return res.status(200).json({ message: "Login successful", token });
-        } else {
+        if (!isPasswordValid) {
             return res.status(401).json({ message: "Invalid email or password" });
-
         }
 
+        const token = jwt.sign({ email: user.email }, "rupesh", { expiresIn: "1h" });
+        res.cookie("token", token, { httpOnly: true, secure: false, sameSite: "strict" });
+
+        return res.status(200).json({ message: "Login successful", token, user: { fullName: user.fullName, email: user.email } });
     } catch (error) {
-        console.error("Error creating order:", error);
-        res.status(500).json({ success: false, message: "Failed to create order" });
+        console.error("Error during login:", error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
@@ -134,110 +139,28 @@ app.post("/auth/logout", (req, res) => {
     res.status(200).json({ message: "Logout successful" });
 });
 
-app.post("/verify-payment", async (req, res) => {
+app.post("/checkout", async (req, res) => {
     try {
-        const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = req.body;
-
-        if (!razorpay_payment_id || !razorpay_order_id || !razorpay_signature) {
-            return res.status(400).json({ success: false, message: "Invalid payment details" });
-        }
-
-        // ✅ **Payment Verification Logic**
-        const crypto = require("crypto");
-        const secret = "XIxKbKjgBPr6hp8499mq1n50"; // 🔴 Secret key ko .env me store karein
-        const expectedSignature = crypto
-            .createHmac("sha256", secret)
-            .update(`${razorpay_order_id}|${razorpay_payment_id}`)
-            .digest("hex");
-
-        if (expectedSignature !== razorpay_signature) {
-            return res.status(400).json({ success: false, message: "Payment verification failed" });
-        }
-
-        console.log("Payment verified successfully!");
-        console.log(razorpay_payment_id);
-
-
-        // ✅ **Redirect on success**
-        return res.json({ success: true, orderId: razorpay_order_id });
-
-    } catch (error) {
-        console.error("Error verifying payment:", error);
-        return res.status(500).json({ success: false, message: "Payment verification failed" });
+        const newUser = new UserOrderInfo(req.body);
+        await newUser.save();
+        console.log('Received order data:', req.body);
+        res.status(200).send("User details saved.");
+    } catch (e) {
+        console.error(e);
+        res.status(500).send("Error saving user details.");
     }
 });
 
-
-app.get("/order-details/:orderId", async (req, res) => {
+app.get('/Review', async (req, res) => {
     try {
-        const { orderId } = req.params;
-
-        // ✅ Step 1: Razorpay se order details fetch karein
-        const order = await razorpay.orders.fetch(orderId);
-
-        if (!order) {
-            return res.status(404).json({ success: false, message: "Order not found" });
-        }
-
-        console.log("Order Data:", order); // Debugging ke liye
-
-        let paymentId = null;
-        let paymentDetails = null;
-
-        try {
-            // ✅ Step 2: Razorpay se payments list fetch karein
-            const payments = await razorpay.payments.all({ order_id: orderId });
-
-            if (payments.items.length > 0) {
-                paymentId = payments.items[0].id; // ✅ First payment ID le raha hai
-            } else {
-                console.warn("No payments found for order:", orderId);
-            }
-        } catch (paymentListError) {
-            console.error("Error fetching payment list:", paymentListError);
-        }
-
-        if (paymentId) {
-            try {
-                // ✅ Payment ID se Razorpay se payment details fetch karein
-                const payment = await razorpay.payments.fetch(paymentId);
-                paymentDetails = {
-                    paymentId: payment.id.split(),
-                    amount: payment.amount / 100, // Convert paise to rupees
-                    currency: payment.currency,
-                    method: payment.method.toUpperCase(), // ✅ UPI, Card, Netbanking, Wallet, etc.
-                    status: payment.status.toUpperCase(), // ✅ "captured", "failed", etc.
-                    email: payment.email,
-                    contact: payment.contact,
-                };
-            } catch (paymentError) {
-                console.error("Error fetching payment details:", paymentError);
-                paymentDetails = { error: "Payment details not found" };
-            }
-        }
-
-        return res.json({
-            success: true,
-            data: {
-                orderId: order.id,
-                amount: order.amount / 100, // Convert paise to rupees
-                currency: order.currency,
-                created_at: order.created_at,
-                paymentDetails, // ✅ Payment ka pura data return karega
-            },
-        });
-
+        const reviews = await ReviewModel.find();
+        res.json(reviews);
     } catch (error) {
-        console.error("Error fetching order details:", error);
-        return res.status(500).json({ success: false, message: "Server error" });
+        console.error("Error fetching reviews:", error);
+        res.status(500).json({ error: "Error fetching reviews" });
     }
 });
 
-
-
-
-
-// Fetch Products
 app.get("/product", async (req, res) => {
     try {
         const products = await AllProductsModel.find({});
@@ -245,26 +168,58 @@ app.get("/product", async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: "Error fetching products" });
     }
-});
+})
 
-app.get("/product/:productId", async (req, res) => {
+app.get('/product/:productId', async (req, res) => {
     try {
-        const product = await ProductViewModel.findById(req.params.productId);
+        const product = await ProductViewModel.findById({ productId: req.params.productId });
+        console.log(req.params);
         res.json(product);
     } catch (error) {
+        console.error("Error fetching product:", error);
         res.status(500).json({ error: "Error fetching product" });
     }
 });
 
-// Contact Info
-app.post("/ContactInfo", async (req, res) => {
+app.post('/ContactInfo', async (req, res) => {
+    const { name, email, PhoneNo, Message } = req.body;
+    console.log("info received:");
+
     try {
-        const newContactInfo = await ContactInfoModel.create(req.body);
+        const newContactInfo = await ContactInfoModel.create({
+            name: name,
+            email: email,
+            PhoneNo: PhoneNo,
+            Message: Message,
+        });
+        await newContactInfo.save();
         res.json({ message: "Contact info added successfully", newContactInfo });
     } catch (error) {
-        res.status(500).json({ error: "Failed to add contact info" });
+        console.error("Error while adding contactInfo:", error);
+        res.status(500).json({ error: "Failed to add contactInfo" });
     }
 });
 
+app.post('/ReviewText', upload.single('image'), async (req, res) => {
+    const reviewData = req.body;
+    console.log('Received the review data:', reviewData);
+
+    try {
+        const newReview = await ReviewModel.create({
+            name: reviewData.name,
+            Rating: reviewData.Rating,
+            Reviews: reviewData.Reviews,
+            image: req.file ? path.posix.join('/uploads', req.file.filename) : null
+        });
+        res.json({ message: 'Review added successfully', newReview });
+    } catch (error) {
+        console.error("Error while adding review:", error);
+        res.status(500).json({ error: "Failed to add review" });
+    }
+});
+
+// Server listen
 const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
