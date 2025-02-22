@@ -3,7 +3,6 @@ import { useMutation } from "@tanstack/react-query";
 import { gsap } from "gsap";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { checkout } from "../../API/api";
 import "./CheckOutPage.css";
@@ -45,7 +44,7 @@ const CheckoutPage = () => {
     email: "",
     address: "",
     pinCode: "",
-    cartItems: [],
+    cartItems: cartItems,
   });
 
   const [isPopupVisible, setPopupVisible] = useState(false);
@@ -69,7 +68,7 @@ const CheckoutPage = () => {
         email: "",
         address: "",
         pinCode: "",
-        cartItems: [],
+        cartItems: cartItems,
       });
       setPopupVisible(false);
     },
@@ -92,6 +91,8 @@ const CheckoutPage = () => {
       return;
     }
 
+    const updatedUser = { ...user, cartItems };
+
     // Check if cartItems is not empty before mutation
     if (user.cartItems.length === 0) {
       toast("Your cart is empty!");
@@ -99,9 +100,9 @@ const CheckoutPage = () => {
     }
 
     // Ensure we log the data being sent
-    console.log("Sending order data:", user);
+    console.log("Sending order data:", updatedUser);
     setPopupVisible(true);
-    mutate(user); // Trigger the mutation
+    mutate(updatedUser); // Trigger the mutation
   };
 
   return (
