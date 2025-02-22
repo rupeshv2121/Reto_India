@@ -39,7 +39,6 @@
 .review .review-photo {
   height: 75%;
   background-color: rgb(248, 224, 178);
-  border-radius: 2rem;
   width: 75%;
   margin: 1rem auto 0;
   border: 1px solid black;
@@ -73,7 +72,8 @@
   box-shadow: 6px 2px 44px -11px orange;
 }
 
-.details h3, .review h3 {
+.details h3,
+.review h3 {
   margin-top: 1rem;
   text-align: center;
   font-size: 18px;
@@ -316,4 +316,26 @@
     margin: auto;
     padding: 0 6px;
   }
+}
+.review-photo {
+  max-height: 250px;
+  /* Adjust as needed */
+  overflow-y: auto;
+  /* Enables vertical scrolling */
+  padding-right: 5px;
+  /* Prevents cut-off scrollbar */
+}
+
+/* Optional: Style the scrollbar */
+.review-photo::-webkit-scrollbar {
+  width: 8px;
+}
+
+.review-photo::-webkit-scrollbar-thumb {
+  background-color: #f6b655;
+  /* Scrollbar color */
+}
+
+.review-photo::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
 }/*# sourceMappingURL=checkoutPage.css.map */

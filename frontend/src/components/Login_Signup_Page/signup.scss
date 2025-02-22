@@ -1,11 +1,7 @@
-/* @import "../../assets/themes/mainTheme";
-@import "../../assets/fonts/customFonts"; */
-
-/* bulma overrides */
-
 .card-content-padding {
     padding: 4rem;
 }
+
 .input {
     box-shadow: inset 0 .0625em .125em rgba(10, 10, 10, .05);
     max-width: 100%;
@@ -15,31 +11,36 @@
     border-color: #dbdbdb;
     border-radius: 4px;
     color: #363636;
-     font-size: 1.25rem;
-     padding: 0.5rem;
+    font-size: 1.25rem;
+    padding: 0.5rem;
 }
+
 .input-shadow {
     box-shadow: unset;
 }
+
 .input-border-color {
     border-color: #666666;
 }
+
 .input-color {
     color: #444444;
 }
+
 .input-placeholder-color {
     color: #444444;
 }
 
-.input-field{
-   width: 100%;
+.input-field {
+    width: 100%;
 }
 
 .input-field button {
- position: absolute;
- top: 42.5%;
- left: 72.5%;
+    position: absolute;
+    top: 42.5%;
+    left: 72.5%;
 }
+
 /* Full background styling for the modal-like effect */
 .ca-signup-container::before {
     content: '';
@@ -76,8 +77,16 @@
     text-align: center;
 }
 
-body{
-    background-color:  #ffdaaa;
+body {
+    background-color: #ffdaaa;
+}
+
+.already-account {
+    margin-top: 1rem;
+}
+
+.already-account:hover {
+    color: #4c4b4b;
 }
 
 @media screen and (max-width: 1560px) {
@@ -117,6 +126,7 @@ body{
     .ca-signup-container .signup-card {
         width: 50%;
     }
+
     .input-field button {
         top: 54%;
         left: 64%;
@@ -134,21 +144,24 @@ body{
     .ca-signup-container .signup-card .card-content {
         padding: 2rem;
     }
-    .signup-card{
+
+    .signup-card {
         margin-top: 6rem;
     }
-        .ca-signup-container .signup-card {
-            width: 60%;
-        }
-        .ca-signup-container .heading-text {
-            font-size: 2rem;
-        }
 
-        .input-field button {
-            top: 57%;
-            left: 69%;
-        }
- 
+    .ca-signup-container .signup-card {
+        width: 60%;
+    }
+
+    .ca-signup-container .heading-text {
+        font-size: 2rem;
+    }
+
+    .input-field button {
+        top: 57%;
+        left: 69%;
+    }
+
 }
 
 .ca-signup-container .signup-card .card-content .signup-content .signup-btn-border {
@@ -163,7 +176,7 @@ body{
     border-radius: 9px !important;
     transition: 0.2s;
     display: block;
-    margin: 1.5rem auto;
+    margin: 1rem auto;
 }
 
 .ca-signup-container .signup-card .card-content .signup-content .signup-btn-border:hover {
@@ -252,15 +265,16 @@ body{
     text-align: center;
 }
 
-.is-size-7{
+.is-size-7 {
     text-align: center;
     font-size: 0.75rem;
 }
 
 @media screen and (max-width:432px) {
-    .ca-signup-container .signup-card{
+    .ca-signup-container .signup-card {
         width: 90%;
     }
+
     .input-field button {
         left: 75%;
     }
@@ -270,15 +284,17 @@ body{
     .nav-container-auth {
         padding: 10px 14px 10px 14px;
     }
+
     .ca-signup-container .signup-card .card-content {
         padding: 2rem 1.5rem;
     }
-    .ca-signup-container .signup-card .card-content .signup-content .signup-btn-border{
+
+    .ca-signup-container .signup-card .card-content .signup-content .signup-btn-border {
         font-size: 14px;
         margin: 0.8rem auto;
     }
 
-    .input{
+    .input {
         font-size: 1rem;
     }
 

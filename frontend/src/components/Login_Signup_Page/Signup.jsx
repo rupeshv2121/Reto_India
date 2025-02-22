@@ -3,6 +3,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { IconButton } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
+import { NavLink } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 import { signUpUser } from "../../API/api";
 import "./Signup.css";
@@ -63,7 +64,7 @@ const Signup = () => {
       });
       return;
     }
-    // console.log(user);
+    console.log(user);
     mutate(user);
   };
 
@@ -116,6 +117,9 @@ const Signup = () => {
                   placeholder="Password"
                   onChange={handleOnChange}
                 />
+                <div className="already-account">
+                  <NavLink to={'/auth/login'}>Already have account ?</NavLink>
+                </div>
                 <IconButton
                   aria-label={
                     showPassword ? "hide the password" : "display the password"

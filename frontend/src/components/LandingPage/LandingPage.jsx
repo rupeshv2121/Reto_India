@@ -1,4 +1,8 @@
 // import React from "react";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import XIcon from "@mui/icons-material/X";
 import "./LandingPage.css";
 
 const LandingPage = () => {
@@ -114,17 +118,17 @@ const LandingPage = () => {
 
       {/* <!-- Social Media Icons --> */}
       <div className="social-icons">
-        <a href="#">
-          <i className="fab fa-twitter"></i>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <XIcon sx={{ fontSize: "2rem" }} />
         </a>
-        <a href="#">
-          <i className="fab fa-facebook"></i>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <FacebookIcon sx={{ fontSize: "2rem" }} />
         </a>
-        <a href="#">
-          <i className="fab fa-instagram"></i>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <InstagramIcon sx={{ fontSize: "2rem" }} />
         </a>
-        <a href="#">
-          <i className="fab fa-linkedin"></i>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <LinkedInIcon sx={{ fontSize: "2rem" }} />
         </a>
       </div>
     </div>

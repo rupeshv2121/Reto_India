@@ -1,6 +1,3 @@
-/* @import "../../assets/themes/mainTheme";
-@import "../../assets/fonts/customFonts"; */
-/* bulma overrides */
 .card-content-padding {
   padding: 4rem;
 }
@@ -83,6 +80,14 @@ body {
   background-color: #ffdaaa;
 }
 
+.already-account {
+  margin-top: 1rem;
+}
+
+.already-account:hover {
+  color: #4c4b4b;
+}
+
 @media screen and (max-width: 1560px) {
   .ca-signup-container .heading-text {
     font-size: 2.5rem;
@@ -159,7 +164,7 @@ body {
   border-radius: 9px !important;
   transition: 0.2s;
   display: block;
-  margin: 1.5rem auto;
+  margin: 1rem auto;
 }
 
 .ca-signup-container .signup-card .card-content .signup-content .signup-btn-border:hover {

@@ -26,7 +26,7 @@ export const checkout = async (userData) => {
 export const signUpUser = async (userData) => {
   try {
     console.log("Signup successful:");
-    const response = await api.post("/auth/signup", userData);
+    const response = await api.post("/auth/signup", userData, { withCredentials: true });
     return response?.data;
   } catch (error) {
     console.error(
