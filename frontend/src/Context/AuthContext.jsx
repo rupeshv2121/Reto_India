@@ -5,6 +5,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fullName, setFullName] = useState("");
+  const [userId,setUserId] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -13,6 +14,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       setIsLoggedIn(true);
       setFullName(storedUser);
+      setUserId(localStorage.getItem("userId"));
       console.log("AuthContext Loaded: ", { token, storedUser });
     }
   }, []);

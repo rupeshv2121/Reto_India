@@ -101,23 +101,23 @@ const CartPage = () => {
                     <tbody>
                       {cartItems.map((item) => (
                         <tr
-                          key={item.id}
+                          key={item._id}
                           className="border-b max-md:flex max-md:flex-col"
                         >
                           <td className="md:px-4 py-4 px-0  flex items-center max-md:w-full max-md:justify-between">
                             <img
-                              src={item.src}
-                              alt={item.name}
+                              src={`http://localhost:3000${item.image1}`}
+                              alt={item.title}
                               className="w-16 h-16 object-cover rounded-md mr-4"
                             />
                             <div>
                               <h3 className="text-sm font-medium text-gray-800">
-                                {item.name}
+                                {item.title}
                               </h3>
                               <p>
                                 <button
                                   onClick={() =>
-                                    handleRemoveCompletely(item.id)
+                                    handleRemoveCompletely(item._id)
                                   }
                                   className="text-gray-500 hover:underline hover:text-red-600 text-sm"
                                 >
@@ -128,7 +128,7 @@ const CartPage = () => {
                           </td>
                           <td className="md:px-2 py-2 px-0 text-sm text-gray-700">
                             <button
-                              onClick={() => handleDecrement(item.id)}
+                              onClick={() => handleDecrement(item._id)}
                               className="hover:bg-gray-200 rounded-md text-black font-semibold py-1 px-2 text-lg mr-2"
                             >
                               -
