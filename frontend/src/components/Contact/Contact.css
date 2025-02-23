@@ -45,7 +45,8 @@
   border: solid;
 }
 
-.heading::before, .heading::after {
+.heading::before,
+.heading::after {
   content: "";
   position: absolute;
   bottom: -5px;
@@ -63,7 +64,9 @@
   right: -15%;
 }
 
-.heading::before, .heading::after, .heading {
+.heading::before,
+.heading::after,
+.heading {
   display: inline-block;
 }
 
@@ -343,11 +346,11 @@ form {
   .photo {
     order: -1;
     margin-bottom: 20px;
-    width: 80%;
+    width: 40%;
   }
   .contact-form {
     margin-left: 0;
-    width: 90%;
+    width: 65%;
   }
   .form-group {
     display: block;
@@ -366,10 +369,21 @@ form {
   }
   .contact-social-icons {
     bottom: 10px;
-    left: 10px;
-    gap: 10px;
+    left: 12px;
+    gap: 12px;
   }
   .popup {
     padding: 40px 50px;
+  }
+  .contact-social-icons a svg {
+    font-size: 1.8rem;
+  }
+}
+@media screen and (max-width: 320px) {
+  .contact-social-icons a svg {
+    font-size: 1.5rem;
+  }
+  .contact-social-icons {
+    left: 6px;
   }
 }/*# sourceMappingURL=contact.css.map */
