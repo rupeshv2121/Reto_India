@@ -1,77 +1,47 @@
 import StarRateIcon from "@mui/icons-material/StarRate";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router";
+import { NavLink, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./Product.css";
 import Review from "./Reviews/Review";
 
 const ProductView = () => {
-  const [data, setData] = useState([{}]);
   const { productId } = useParams();
+
+  const location = useLocation();
+  const { product } = location.state || {};
   console.log(productId);
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:5000/products/${productId}`
-  //     );
-  //     setData(response.data);
-  //   } catch (error) {
-  //     console.error("error fetching data", error);
-  //   }
-  // };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/products/${productId}`
-        );
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data", error);
-      }
-    };
-
-    if (productId) {
-      fetchData();
-    }
-  }, [productId]);
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    nextArrow: <div style={{ fontSize: "30px", right: "10px"}}>&#9654;</div>,
+    prevArrow: <div style={{ fontSize: "30px", left: "10px" }}>&#9664;</div>,
+  };
 
   return (
     <div className="MainPage">
       <div className="ProductPage">
         <div className="ProdSection">
-          <div className="ProdHead">
-            <img
-              src={`http://localhost:5000${data[0].HeadImg}`}
-              alt="sofa"
-              className="sofa_img_head"
-            />
-          </div>
-
-          <div className="sofa_other">
-            <img
-              src={`http://localhost:5000${data[0].Img1}`}
-              alt="bed"
-              className="sofa_img"
-            />
-            <img
-              src={`http://localhost:5000${data[0].Img2}`}
-              alt="chair"
-              className="sofa_img"
-            />
-            <img
-              src={`http://localhost:5000${data[0].Img3}`}
-              alt="chair"
-              className="sofa_img"
-            />
-            <img
-              src={`http://localhost:5000${data[0].Img4}`}
-              alt="chair"
-              className="sofa_img"
-            />
-          </div>
+          <Slider {...sliderSettings}>
+            {[product.image1, product.image2, product.image3, product.image4, product.image5].map((img, index) => (
+              <div key={index} className="ProdSection flex justify-center items-center">
+                <img
+                  src={`http://localhost:3000${img}`}
+                  alt={`product-${index}`}
+                  className="w-full h-full object-cover rounded p-2"
+                />
+              </div>
+            ))}
+          </Slider>
         </div>
 
         <div className="content_section">
@@ -79,31 +49,31 @@ const ProductView = () => {
             <div id="header">
               <div>
                 <div>
-                  <h1 className="content_heading">{data[0].name}</h1>
+                  <h1 className="content_heading">{product.title}</h1>
                   <div className="rating">
-                    {Array.from({ length: data[0].Rating }, (_, i) => (
+                    {Array.from({ length: 5 }, (_, i) => (
                       <StarRateIcon
                         key={i}
                         className="RatingStar text-yellow-400"
                       />
                     ))}
                     <p className="rating-text">
-                      {data[0].Rating} ({data[0].NoOfRating})
+                      4 (35)
                     </p>
                   </div>
                 </div>
 
                 <div>
                   <h2>
-                    INR {data[0].Price} ({data[0].Discount} off)
+                    INR {product.price} ({product.discount_percentage}% off)
                   </h2>
-                  <h2>Offer Price: INR {data[0].OfferPrice}</h2>
+                  <h2>Offer Price: INR {product.discounted_price}</h2>
                 </div>
 
                 <div>
                   <h1 id="description">About this Gem</h1>
                   <div className="prod_description">
-                    <p>{data[0].ProdDescription}</p>
+                    <p>{product.description}</p>
                   </div>
                 </div>
               </div>
@@ -119,9 +89,9 @@ const ProductView = () => {
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <Review />
-      </div>
+      </div> */}
     </div>
   );
 };

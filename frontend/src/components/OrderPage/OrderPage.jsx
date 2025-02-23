@@ -1,22 +1,81 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom"; // Import useNavigate
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const OrderPage = () => {
-  const cartItems = useSelector((state) => state.cart.items);
-  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
-  const totalPrice = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+  const navigate = useNavigate();
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedCartItem, setSelectedCartItem] = useState(null); // State to store the selected cart item
+
+  // Fetch orders from the backend
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("token"); // Retrieve token
+        console.log("Token in Local Storage:", token); // Debugging step
+  
+        if (!token) {
+          console.error("No token found. User not authenticated.");
+          setError("Authentication error. Please log in again.");
+          setLoading(false);
+          return;
+        }
+  
+        const response = await axios.get("http://localhost:5000/OrderPage", {
+          headers: {
+            Authorization: `Bearer ${token}` // Attach token in request headers
+          }
+        });
+  
+        console.log("Response Data:", response.data); // Debugging step
+        setOrders(response.data);
+  
+        if (response.data.length > 0 && response.data[0].cartItems.length > 0) {
+          setSelectedCartItem(response.data[0].cartItems[0]);
+        }
+  
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error.response?.data || error.message);
+        setError("Failed to fetch orders. Please try again later.");
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
+  // Calculate total quantity and price from fetched orders
+  const totalQuantity = orders.reduce(
+    (acc, order) =>
+      acc + order.cartItems.reduce((sum, item) => sum + item.quantity, 0),
+    0
+  );
+  const totalPrice = orders.reduce(
+    (acc, order) =>
+      acc + order.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
     0
   );
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize navigate
+  // Handle row click to set the selected cart item
+  const handleRowClick = (cartItem) => {
+    setSelectedCartItem(cartItem);
+  };
 
   const handleContinueShopping = () => {
-    navigate("/product"); // Redirect to the home page
+    navigate("/product");
   };
+
+  if (loading) {
+    return <div className="text-center py-10">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center py-10 text-red-500">{error}</div>;
+  }
 
   return (
     <div
@@ -31,19 +90,20 @@ const OrderPage = () => {
         </h2>
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Cart Items */}
-          <div className="lg:col-span-2 order-2 lg:order-1 bg-white rounded-lg flex justify-center items-center shadow-xl p-6">
-            {cartItems.length === 0 ? (
+          <div className="lg:col-span-2 order-2 lg:order-1 bg-white rounded-lg shadow-xl p-6">
+            {orders.length === 0 ? (
               <div className="flex flex-col gap-6 items-center">
                 <p className="text-center text-4xl max-md:text-2xl text-gray-600">
-                  No order
+                  No orders found
                 </p>
                 <button
                   onClick={handleContinueShopping}
-                  className="text-black  text-sm font-medium md:mb-0 mb-3"
+                  className="text-black text-sm font-medium"
                 >
                   <NavLink
                     to="/product"
-                    className="background px-4 py-3 rounded-md  border-[1px] border-orange-200 hover:bg-orange-400 hover:scale-105 duration-200 ease-linear"
+
+                    className="background px-4 py-3 rounded-md border-[1px] border-orange-200 hover:bg-orange-400 hover:scale-105 duration-200 ease-linear"
                   >
                     Continue Shopping
                   </NavLink>
@@ -52,52 +112,61 @@ const OrderPage = () => {
             ) : (
               <div className="w-full">
                 <table className="w-full border-collapse">
-                  <thead className="max-md:hidden">
-                    <tr className="border-b text-left">
-                      <th className="p-2">Product Details</th>
-                      <th className="p-2">Quantity</th>
-                      <th className="p-2">Price</th>
-                      <th className="p-2">Total</th>
-                      <th className="p-2"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cartItems.map((item) => (
+                <thead className="max-md:hidden">
+                  <tr className="border-b text-left">
+                    <th className="p-2">Product</th>
+                    <th className="p-2">Quantity</th>
+                    <th className="p-2">Price</th>
+                    <th className="p-2">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order) =>
+                    order.cartItems.map((cartItem, index) => (
                       <tr
-                        key={item.id}
-                        className="border-b max-md:flex max-md:flex-col"
+                        key={`${order._id}-${index}`}
+                        className={`border-b max-md:flex max-md:flex-col max-md:mb-4 hover:bg-gray-100 cursor-pointer `}
+                        onClick={() => handleRowClick(cartItem)} // Handle row click
                       >
-                        <td className="md:px-4 py-4 px-0  flex items-center max-md:w-full max-md:justify-between">
-                          <img
-                            src={item.src}
-                            alt={item.name}
-                            className="w-16 h-16 object-cover rounded-md mr-4"
-                          />
-                          <div>
+                        {/* Product Column (Image + Title) */}
+                        <td className="md:px-4 py-4 px-0 flex items-center max-md:w-full max-md:justify-between">
+                          <div className="flex items-center">
+                            <img
+                              src={`http://localhost:3000${cartItem.image1}`}
+                              alt={cartItem.title}
+                              className="w-16 h-16 object-cover rounded-md mr-4"
+                            />
                             <h3 className="text-sm font-medium text-gray-800">
-                              {item.name}
+                              {cartItem.title}
                             </h3>
                           </div>
                         </td>
+
+                        {/* Quantity Column */}
                         <td className="md:px-2 py-2 px-0 text-sm text-gray-700">
-                          <span className="text-sm  px-3 py-2 text-center">
-                            Qty: {item.quantity}
+                          <span className="text-sm px-3 py-2 text-center">
+                            Qty: {cartItem.quantity}
                           </span>
                         </td>
+
+                        {/* Price Column */}
                         <td className="p-2 text-sm text-gray-700">
-                          ${item.price}
+                          ${cartItem.price}
                         </td>
-                        <td className="p-2">
-                          ${(item.price * item.quantity).toFixed(2)}
+
+                        {/* Total Column */}
+                        <td className="p-2 text-sm text-gray-700">
+                          ${(cartItem.price * cartItem.quantity).toFixed(2)}
                         </td>
                       </tr>
-                    ))}
-                  </tbody>
+                    ))
+                  )}
+                </tbody>
                 </table>
-                <div className="mt-6 md:flex md:justify-between text-center ">
+                <div className="mt-6 md:flex md:justify-between text-center">
                   <button
                     onClick={handleContinueShopping}
-                    className="text-blue-500 hover:underline text-sm font-medium md:mb-0 mb-3 flex justify-center items-center gap-3"
+                    className="text-blue-500 hover:underline text-sm font-medium flex justify-center items-center gap-3"
                   >
                     <FaArrowLeftLong />
                     Continue Shopping
@@ -108,14 +177,14 @@ const OrderPage = () => {
           </div>
 
           {/* Order Summary */}
-          <div className="bg-slate-200 order-1 lg:oder-2 rounded-lg shadow p-6">
+          <div className="bg-slate-200 order-1 lg:order-2 rounded-lg shadow p-6">
             <div className="pb-4 mb-4">
               <div className="flex justify-between items-center pt-2 mb-2">
                 <span className="text-sm font-medium text-gray-600">
                   Order ID:
                 </span>
                 <span className="text-sm font-medium text-gray-800">
-                  #2312343
+                  {selectedCartItem ? selectedCartItem.itemId : "#2312343"}
                 </span>
               </div>
               <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] border-gray-300 ">
@@ -123,7 +192,7 @@ const OrderPage = () => {
                   Delivery Status:
                 </span>
                 <span className="text-sm font-medium text-gray-800">
-                  Delivered
+                  {selectedCartItem ? selectedCartItem.Status : "Delivered"}
                 </span>
               </div>
               <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] border-gray-300 ">
@@ -145,7 +214,7 @@ const OrderPage = () => {
                   Delivery Address:
                 </span>
                 <span className="text-sm text-right font-medium text-gray-800">
-                  247,Aagman Society, Surat
+                  {orders.length > 0 ? orders[0].address : "247,Aagman Society, Surat"}
                 </span>
               </div>
               <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] border-gray-300">
@@ -153,7 +222,7 @@ const OrderPage = () => {
                   Total Items:
                 </span>
                 <span className="text-sm font-medium text-gray-800">
-                  {totalQuantity}
+                  {selectedCartItem ? selectedCartItem.quantity : totalQuantity}
                 </span>
               </div>
               <div className="flex justify-between items-center pt-2 mb-2 border-t-[1px] border-gray-300 ">
@@ -161,7 +230,10 @@ const OrderPage = () => {
                   Total Price:
                 </span>
                 <span className="text-sm font-medium text-gray-800">
-                  $ {totalPrice}.00
+                  ${" "}
+                  {selectedCartItem
+                    ? (selectedCartItem.price * selectedCartItem.quantity).toFixed(2)
+                    : totalPrice.toFixed(2)}
                 </span>
               </div>
               <div className="flex justify-between items-center pt-2 border-t-[1px] border-gray-300 ">
@@ -180,7 +252,12 @@ const OrderPage = () => {
                   Total Cost:
                 </span>
                 <span className="text-sm font-medium text-gray-800">
-                  $ {(totalPrice + 5).toFixed(2)}
+                  ${" "}
+                  {selectedCartItem
+                    ? (
+                        selectedCartItem.price * selectedCartItem.quantity + 5
+                      ).toFixed(2)
+                    : (totalPrice + 5).toFixed(2)}
                 </span>
               </div>
             </div>
