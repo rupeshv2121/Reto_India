@@ -27,11 +27,11 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(cookieParser());
 
 // MongoDB connection URIs
 const MONGO_URL = "mongodb://localhost:27017/reto_india";
