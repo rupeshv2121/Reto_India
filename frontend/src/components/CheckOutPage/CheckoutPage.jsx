@@ -4,8 +4,9 @@ import { gsap } from "gsap";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { checkout } from "../../API/api";
+import { checkout,createOrder } from "../../API/api";
 import "./CheckOutPage.css";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {
   useGSAP(() => {
@@ -49,6 +50,8 @@ const CheckoutPage = () => {
 
   const [isPopupVisible, setPopupVisible] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({
@@ -78,31 +81,104 @@ const CheckoutPage = () => {
     },
   });
 
-  const handleOnClick = (e) => {
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      if (window.Razorpay) {
+        resolve(true); // If already loaded, resolve immediately
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
+  const handleOnClick = async (e) => {
     e.preventDefault();
-    if (
-      !user.name ||
-      !user.phone ||
-      !user.email ||
-      !user.address ||
-      !user.pinCode
-    ) {
+   
+    // 🛑 Validate user details
+    if (!user.name || !user.phone || !user.email || !user.address || !user.pinCode) {
       toast("Enter details in all fields");
       return;
     }
 
-    const updatedUser = { ...user, cartItems };
-
-    // Check if cartItems is not empty before mutation
-    if (user.cartItems.length === 0) {
+    if (cartItems.length === 0) {
       toast("Your cart is empty!");
       return;
     }
 
-    // Ensure we log the data being sent
-    console.log("Sending order data:", updatedUser);
-    setPopupVisible(true);
-    mutate(updatedUser); // Trigger the mutation
+    // ✅ Load Razorpay SDK before using it
+    const isRazorpayLoaded = await loadRazorpayScript();
+    if (!isRazorpayLoaded) {
+      toast("Failed to load Razorpay SDK. Check your internet connection.");
+      return;
+    }
+
+    try {
+      // 🎯 Create order (amount in paise)
+      const orderData = await createOrder({ amount: totalPrice });
+
+      const options = {
+        key: "rzp_test_xxDux3IIvlBSYN", // ⚠️ Replace with your Razorpay key
+        amount: orderData.amount,
+        currency: "INR",
+        name: "Reto-India",
+        description: "Order Payment",
+        order_id: orderData.id,
+        handler: async function (response) {
+          console.log("Payment successful", response);
+
+          // 🛡️ Verify payment
+          try {
+            const verifyResponse = await fetch("http://localhost:5000/verify-payment", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              }),
+            });
+
+            const verifyData = await verifyResponse.json();
+
+            if (verifyResponse.ok) {
+              toast("Payment verified successfully!");
+              navigate(`/order/${response.razorpay_order_id}/success?success=true&verify=done`, {
+                state: {
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_order_id:response.razorpay_order_id,
+                  amount: orderData.amount,
+                  cartItems: cartItems, 
+                }
+              })
+              mutate({ ...user, cartItems });
+            } else {
+              toast("Payment verification failed. Please contact support.");
+            }
+          } catch (error) {
+            console.error("Error verifying payment:", error);
+            toast("Payment verification error.");
+          }
+        },
+
+        prefill: {
+          name: user.name,
+          email: user.email,
+          contact: user.phone,
+        },
+        theme: { color: "#fde2c3" },
+      };
+
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open();
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+      toast("Failed to initiate payment");
+    }
   };
 
   return (
