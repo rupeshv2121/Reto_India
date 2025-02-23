@@ -1,0 +1,34 @@
+.prev-arrow-box,
+.next-arrow-box {
+  height: 3rem;
+  width: 3rem;
+  top: 50%;
+}
+
+.prev-arrow,
+.next-arrow {
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 769px) {
+  .prev-arrow-box,
+  .next-arrow-box {
+    top: 36%;
+  }
+}
+@media screen and (max-width: 426px) {
+  .banner-div {
+    padding-inline: 0.5rem;
+  }
+  .banner {
+    height: 250px;
+  }
+  .banner-image {
+    height: 250px;
+  }
+  .prev-arrow-box,
+  .next-arrow-box {
+    padding: 0.5rem;
+    top: 50%;
+  }
+}/*# sourceMappingURL=ThreeProduct.css.map */

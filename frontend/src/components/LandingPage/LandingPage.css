@@ -140,13 +140,13 @@
   margin-top: 10px;
 }
 .landing .social-icons {
-  position: absolute;
+  position: fixed;
   left: 20px;
-  top: 88%;
+  top: 86%;
+  gap: 10px;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 29px;
   margin-top: -30px;
 }
 .landing .social-icons a {
@@ -493,7 +493,8 @@
     color: #000;
   }
   .landing h2 {
-    font-size: 12vw; /* Adjust for smaller screens */
+    font-size: 12vw;
+    /* Adjust for smaller screens */
   }
   .landing .menu-toggle {
     display: flex;
@@ -589,7 +590,8 @@
     margin: 0;
   }
   .landing h2 {
-    font-size: 14vw; /* Further adjust for very small screens */
+    font-size: 14vw;
+    /* Further adjust for very small screens */
   }
 }
 @media screen and (max-width: 426px) {

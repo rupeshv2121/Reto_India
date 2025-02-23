@@ -6,10 +6,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import Slider from "react-slick";
 import { toast, ToastContainer } from "react-toastify";
-import slider1 from "../../../assets/slider1.png";
-import slider2 from "../../../assets/slider2.png";
-import slider3 from "../../../assets/slider3.png";
+import { default as slider1, default as slider2, default as slider3 } from "../../../assets/newslider1.png";
 import { addToCart } from "../../../Redux/CartSlice";
+import './ThreeProduct.css';
 
 const MainCarousel = () => {
   const dispatch = useDispatch();
@@ -26,33 +25,34 @@ const MainCarousel = () => {
     { src: slider3, name: "Product 9", price: 200, id: 9 },
   ];
 
+  const PrevArrow = ({ onClick }) => (
+    <div
+      className="prev-arrow-box absolute top-1/2 left-3 transform -translate-y-1/2 bg-gray-800 bg-opacity-20 text-white p-2 rounded-full cursor-pointer z-10"
+      onClick={onClick}
+    ><i class="fa-solid fa-arrow-left prev-arrow"></i>
+      {/* <AiOutlineLeft size={40} className="prev-arrow" /> */}
+    </div>
+  );
+ 
+  const NextArrow = ({ onClick }) => (
+    <div
+      className="next-arrow-box absolute top-1/2 right-3 transform -translate-y-1/2 bg-gray-800 bg-opacity-20 text-white p-2 rounded-full cursor-pointer z-10"
+      onClick={onClick}
+    ><i class="fa-solid fa-arrow-right next-arrow"></i>
+      {/* <AiOutlineRight size={40} /> */}
+    </div>
+  );
+
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     speed: 1000,
     autoplaySpeed: 3000,
     autoplay: true,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: false,
-        },
-      },
-    ],
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    prevArrow: <PrevArrow />, 
+    nextArrow: <NextArrow />, 
   };
 
   const navigate = useNavigate();
@@ -70,23 +70,25 @@ const MainCarousel = () => {
   };
 
   return (
-    <div className="w-full bg-white/20 rounded-lg shadow-2xl lg:max-w-[80%] mx-auto p-5">
+    <div className="w-full p-5 banner-div">
       <ToastContainer />
       <h1 className="md:text-3xl mb-4 text-black text-center font-semibold">
-        Trending Product
+        {/* Trending Product */}
       </h1>
       <Slider {...settings}>
+        
         {images.map((image, id) => (
           <>
-            <div
-              key={id}
-              className="p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group"
-            >
+           <div
+  key={id}
+  className="banner h-[450px]  p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group"
+>
+
               {/* Image */}
               <img
                 src={image.src}
                 alt={image.name}
-                className="h-full w-full mx-auto object-cover rounded-xl group-hover:scale-105 duration-300 ease-linear"
+                className="banner-image w-full object-cover rounded-xl group-hover:scale-105 duration-300 ease-linear"
               />
 
               {/* Hover Effects */}
@@ -109,10 +111,10 @@ const MainCarousel = () => {
               </div>
             </div>
             {/* Name and Price */}
-            <div className="text-center mt-2">
+            {/* <div className="text-center mt-2">
               <h3 className="text-lg font-semibold">{image.name}</h3>
               <p className="text-sm text-gray-600">{image.price}</p>
-            </div>
+            </div> */}
           </>
         ))}
       </Slider>

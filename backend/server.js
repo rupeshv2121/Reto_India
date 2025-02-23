@@ -7,8 +7,12 @@ const multer = require("multer");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser")
+
 const { v4: uuidv4 } = require("uuid"); 
 const UserOrdersInfo = require("./models/UserOrdersInfo");
+const Razorpay = require("razorpay");
+const crypto = require("crypto");
+
 const ProductView = require("./models/ProductView");
 const Review = require("./models/Review");
 const ContactInfo = require("./models/ContactInfo");
@@ -70,6 +74,47 @@ app.get('/Product', async (req, res) => {
     }
 });
 // Routes
+// Razorpay instance
+const razorpay = new Razorpay({
+    key_id: "rzp_test_xxDux3IIvlBSYN",
+    key_secret: "XIxKbKjgBPr6hp8499mq1n50"
+});
+
+// Create Order Route
+app.post("/create-order", async (req, res) => {
+    try {
+        const { amount, currency } = req.body;
+        const options = {
+            amount: amount * 100, // Convert to paisa
+            currency,
+            receipt: `order_rcptid_${Date.now()}`
+        };
+        const order = await razorpay.orders.create(options);
+        res.status(200).json(order);
+    } catch (error) {
+        console.error("Error creating order:", error);
+        res.status(500).json({ error: "Failed to create order" });
+    }
+});
+
+// Verify Payment Route
+app.post("/verify-payment", async (req, res) => {
+    try {
+        const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+        const generated_signature = crypto.createHmac("sha256", "XIxKbKjgBPr6hp8499mq1n50")
+            .update(razorpay_order_id + "|" + razorpay_payment_id)
+            .digest("hex");
+
+        if (generated_signature === razorpay_signature) {
+            res.status(200).json({ message: "Payment verified successfully" });
+        } else {
+            res.status(400).json({ error: "Invalid payment signature" });
+        }
+    } catch (error) {
+        console.error("Error verifying payment:", error);
+        res.status(500).json({ error: "Failed to verify payment" });
+    }
+});
 // Signup Route
 app.post("/auth/signup", async (req, res) => {
     try {

@@ -36,7 +36,7 @@ export const checkout = async (userData) => {
 export const signUpUser = async (userData) => {
   try {
     console.log("Signup successful:");
-    const response = await api.post("/auth/signup", userData);
+    const response = await api.post("/auth/signup", userData, { withCredentials: true });
     return response?.data;
   } catch (error) {
     console.error(
@@ -62,6 +62,22 @@ export const loginUser = async (userData) => {
     );
     throw error;
   }
+};
+
+export const createOrder = async (orderData) => {
+  const response = await fetch("http://localhost:5000/create-order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(orderData),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to create order");
+  }
+
+  return await response.json();
 };
 
 

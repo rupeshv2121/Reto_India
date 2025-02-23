@@ -78,7 +78,12 @@ const OrderPage = () => {
   }
 
   return (
-    <div className="py-10 min-h-screen background">
+    <div
+      className="py-10 min-h-screen"
+      style={{
+        background: "linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%)",
+      }}
+    >
       <div className="container mx-auto px-3 md:px-4">
         <h2 className="text-3xl font-semibold mb-6 text-gray-800 text-center md:text-start">
           My Orders
@@ -97,6 +102,7 @@ const OrderPage = () => {
                 >
                   <NavLink
                     to="/product"
+
                     className="background px-4 py-3 rounded-md border-[1px] border-orange-200 hover:bg-orange-400 hover:scale-105 duration-200 ease-linear"
                   >
                     Continue Shopping
