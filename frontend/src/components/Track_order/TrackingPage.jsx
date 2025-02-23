@@ -54,6 +54,19 @@ export default function TrackingPage() {
                 <>
                   <div className="divtext"><strong>Order ID:</strong> {trackingData.orderId}</div>
                   <div className="divtext"><strong>Status:</strong> {trackingData.status}</div>
+                  <div className="divtext"><strong>Title:</strong> {trackingData.title}</div>
+                  <div className="divtext"><strong>Price:</strong> ₹{trackingData.price}</div>
+                  
+                  {/* Display all tracking locations */}
+                  {trackingData.trackLocations && trackingData.trackLocations.length > 0 ? (
+                    trackingData.trackLocations.map((loc, index) => (
+                      <div key={index} className="divtext">
+                        <strong>Product has reached:</strong> {loc.location} (at {new Date(loc.timestamp).toLocaleString()})
+                      </div>
+                    ))
+                  ) : (
+                    <div className="divtext">No tracking locations available.</div>
+                  )}
                 </>
               ) : (
                 <div className="divtext">No order found.</div>

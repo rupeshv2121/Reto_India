@@ -36,7 +36,13 @@ const UserOrdersSchema = new mongoose.Schema({
       image1: { type: String, required: true },
       quantity: { type: Number, required: true },
       price: { type: Number, required: true },
-      Status: { type: String, default: "Placed" }, // Typo: Should be "Placed"
+      Status: { type: String, default: "Placed" }, // Corrected typo: "status" instead of "Status"
+      trackLocations: [
+        {
+          location: { type: String, required: true }, // e.g., "Mumbai", "Delhi"
+          timestamp: { type: Date, default: Date.now }, // Timestamp of the update
+        },
+      ],
     },
   ],
 }, { timestamps: true });

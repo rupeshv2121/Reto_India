@@ -20,7 +20,7 @@ const generateShortId = () => crypto.randomBytes(4).toString("hex"); // 8-char u
 const app = express();
 // Configure CORS
 const corsOptions = {
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5174",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
@@ -180,7 +180,8 @@ app.get("/api/track-order", async (req, res) => {
       orderId, 
       status: item.Status, 
       title: item.title,
-      price: item.price
+      price: item.price,
+      trackLocations:item.trackLocations
     });
   });
 app.post("/checkout", async (req, res) => {
