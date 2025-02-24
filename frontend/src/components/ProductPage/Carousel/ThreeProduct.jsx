@@ -6,7 +6,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import Slider from "react-slick";
 import { toast, ToastContainer } from "react-toastify";
-import { default as slider1, default as slider2, default as slider3 } from "../../../assets/newslider1.png";
+import { default as slider1 } from "../../../assets/slider1.png";
+import slider2 from '../../../assets/slider2.png';
+import slider3 from '../../../assets/slider3.png';
 import { addToCart } from "../../../Redux/CartSlice";
 import './ThreeProduct.css';
 
@@ -79,15 +81,11 @@ const MainCarousel = () => {
         
         {images.map((image, id) => (
           <>
-           <div
-  key={id}
-  className="banner h-[450px]  p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group"
->
-
+           <div key={id} className="banner h-[450px]  p-[5px] overflow-hidden w-full mx-auto cursor-pointer rounded-xl relative group">
               {/* Image */}
               <img
-                src={image.src}
-                alt={image.name}
+                src={image.src? image.src: "#"}
+                alt={image.name ? image.name: "Product_Image" }  
                 className="banner-image w-full object-cover rounded-xl group-hover:scale-105 duration-300 ease-linear"
               />
 

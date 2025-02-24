@@ -14,7 +14,7 @@ const cartSlice = createSlice({
       console.log("Reducer received payload:", newItem);
 
       // Find if the item already exists in the cart
-      const existingItem = state.items.find((item) => item.id === newItem.id);
+      const existingItem = state.items.find((item) => item._id === newItem._id);
 
       if (existingItem) {
         // If item exists, increment its quantity
@@ -30,33 +30,33 @@ const cartSlice = createSlice({
     },
 
     incrementQuantity: (state, action) => {
-      const id = action.payload;
-      const existingItem = state.items.find((item) => item.id === id);
+      const _id = action.payload;
+      const existingItem = state.items.find((item) => item._id === _id);
       if (existingItem) {
         existingItem.quantity++;
         state.totalQuantity++;
       }
     },
     decrementQuantity: (state, action) => {
-      const id = action.payload;
-      const existingItem = state.items.find((item) => item.id === id);
+      const _id = action.payload;
+      const existingItem = state.items.find((item) => item._id === _id);
       if (existingItem && existingItem.quantity > 1) {
         existingItem.quantity--;
         state.totalQuantity--;
       } else if (existingItem && existingItem.quantity === 1) {
-        state.items = state.items.filter((item) => item.id !== id);
+        state.items = state.items.filter((item) => item._id !== _id);
         state.totalQuantity--;
       }
     },
 
     removeItemCompletely: (state, action) => {
-      const id = action.payload;
-      const existingItem = state.items.find((item) => item.id === id);
+      const _id = action.payload;
+      const existingItem = state.items.find((item) => item._id === _id);
       if (existingItem) {
         // Deduct the item's total quantity from the totalQuantity count
         state.totalQuantity -= existingItem.quantity;
         // Remove the item from the cart
-        state.items = state.items.filter((item) => item.id !== id);
+        state.items = state.items.filter((item) => item._id !== _id);
       }
     },
   },

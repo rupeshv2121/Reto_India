@@ -74,7 +74,7 @@ const LandingPage = () => {
             <h1 className="na-ste">NAMASTE!</h1>
             <p>
               Lets connect with our soil,
-              <br />
+              {/* <br /> */}
               again!
             </p>
             <div className="btns">

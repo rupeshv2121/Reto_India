@@ -363,8 +363,8 @@ form {
   }
   .contact-social-icons {
     bottom: 10px;
-    left: 10px;
-    gap: 10px;
+    left: 12px;
+    gap: 12px;
   }
   .popup {
     padding: 40px 50px;
