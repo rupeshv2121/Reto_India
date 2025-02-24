@@ -36,6 +36,9 @@ const CheckoutPage = () => {
   });
 
   const cartItems = useSelector((state) => state.cart.items);
+  
+  console.log("Recent Product Added : ",cartItems);
+  
   const totalPrice =
     cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) + 5; // Including shipping fee
 

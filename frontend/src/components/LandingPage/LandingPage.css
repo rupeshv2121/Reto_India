@@ -611,7 +611,21 @@
     left: 10px;
   }
 }
+@media screen and (max-width: 376px) {
+  .landing .css-r0vxuw-MuiSvgIcon-root {
+    font-size: 1.8rem;
+  }
+  .landing .social-icons {
+    gap: 7px;
+  }
+}
 @media screen and (max-width: 320px) {
+  .landing .css-r0vxuw-MuiSvgIcon-root {
+    font-size: 1.7rem;
+  }
+  .landing .social-icons {
+    top: 90%;
+  }
   .landing body {
     margin: 0;
     padding: 0;

@@ -762,8 +762,25 @@
     }
   }
 
+  @media screen and (max-width:376px) {
+    .css-r0vxuw-MuiSvgIcon-root {
+      font-size: 1.8rem;
+    }
+
+    .social-icons {
+      gap: 7px;
+    }
+  }
 
   @media screen and (max-width: 320px) {
+    .css-r0vxuw-MuiSvgIcon-root {
+      font-size: 1.7rem;
+    }
+
+    .social-icons {
+      top: 90%;
+    }
+
     body {
       margin: 0;
       padding: 0;
