@@ -3,10 +3,10 @@ import { useMutation } from "@tanstack/react-query";
 import { gsap } from "gsap";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import { checkout,createOrder } from "../../API/api";
-import "./CheckOutPage.css";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { checkout, createOrder } from "../../API/api";
+import "./CheckOutPage.css";
 
 const CheckoutPage = () => {
   useGSAP(() => {
@@ -34,6 +34,9 @@ const CheckoutPage = () => {
     });
   });
   const cartItems = useSelector((state) => state.cart.items);
+  
+  console.log("Recent Product Added : ",cartItems);
+  
   const totalPrice =
     cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) + 5; // Including shipping fee
 
