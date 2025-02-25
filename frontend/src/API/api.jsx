@@ -8,6 +8,33 @@ const api = axios.create({
   withCredentials: true,
 });
 
+// New function to save cart data for the logged-in user
+export const saveCartData = async (cartData) => {
+  try {
+    const token = localStorage.getItem("token"); // Ensure this token is set during login
+    if (!token) {
+      throw new Error("No token found. Please log in.");
+    }
+    
+    console.log("Saving cart data to backend:", cartData);
+    const response = await api.post("/cart", cartData, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Send the token in the header for authentication
+      },
+    });
+    console.log("Cart data saved successfully:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error saving cart data:",
+      error.response?.data || error.message
+    );
+    throw new Error(
+      error.response?.data?.message || "Failed to save cart data."
+    );
+  }
+};  
+
 // For Checkout Page
 export const checkout = async (userData) => {
   try {

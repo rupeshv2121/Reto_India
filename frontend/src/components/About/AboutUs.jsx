@@ -3,7 +3,7 @@ import firstImage from "../../assets/first.jpeg";
 import FourthImage from "../../assets/fourth.jpeg";
 import SecondImage from "../../assets/second.jpeg";
 import ThirdImage from "../../assets/third.jpeg";
-import "./AboutUs.css";
+import "./Aboutus.css";
 
 const AboutPage = () => {
   return (

@@ -33,12 +33,15 @@
 
 .input-field {
   width: 100%;
+  position: relative;
 }
 
 .input-field button {
   position: absolute;
-  top: 42.5%;
-  left: 72.5%;
+  /* top: 42.5%;
+  left: 72.5%; */
+  right: 2%;
+  top: 5%;
 }
 
 /* Full background styling for the modal-like effect */
@@ -124,8 +127,7 @@ body {
     width: 50%;
   }
   .input-field button {
-    top: 54%;
-    left: 64%;
+    right: 5%;
   }
 }
 @media screen and (max-width: 865px) {
@@ -147,10 +149,10 @@ body {
   .ca-signup-container .heading-text {
     font-size: 2rem;
   }
-  .input-field button {
+  /* .input-field button {
     top: 57%;
     left: 69%;
-  }
+  } */
 }
 .ca-signup-container .signup-card .card-content .signup-content .signup-btn-border {
   font-family: "Inter", Sans-serif;
@@ -260,9 +262,9 @@ body {
   .ca-signup-container .signup-card {
     width: 90%;
   }
-  .input-field button {
+  /* .input-field button {
     left: 75%;
-  }
+  } */
 }
 @media screen and (max-width: 325px) {
   .nav-container-auth {
@@ -278,8 +280,8 @@ body {
   .input {
     font-size: 1rem;
   }
-  .input-field button {
+  /* .input-field button {
     top: 55.5%;
     left: 74%;
-  }
+  } */
 }/*# sourceMappingURL=signup.css.map */

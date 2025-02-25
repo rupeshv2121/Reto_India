@@ -9,10 +9,11 @@ import Slider from "react-slick";
 import { toast, ToastContainer } from "react-toastify";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import { addToCart } from "../../../Redux/CartSlice";
+import { addToCart, saveCartAsync } from "../../../Redux/CartSlice";
 import axios from 'axios';
 const ProductPage = () => {
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
   const [products, setProducts] = useState([]);
   const fetchData = async () => {
     try {
@@ -26,6 +27,18 @@ const ProductPage = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+
+   // When the cart changes, save the updated cart in the backend
+   useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    if (authToken && cart.items.length > 0) {
+      // Optionally debounce this dispatch if needed
+      dispatch(saveCartAsync(cart));
+    }
+    // If the cart becomes empty you might also want to save that state.
+  }, [cart, dispatch]);
+
 
   const settings = {
     dots: true,

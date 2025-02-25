@@ -37,8 +37,10 @@
 
 .input-field button {
     position: absolute;
-    top: 42.5%;
-    left: 72.5%;
+    // top: 42.5%;
+    // left: 72.5%;
+    right: 2%;
+    top: 5%;
 }
 
 /* Full background styling for the modal-like effect */
@@ -128,8 +130,8 @@ body {
     }
 
     .input-field button {
-        top: 54%;
-        left: 64%;
+        // top: 54%;
+        right: 5%;
     }
 }
 
@@ -157,10 +159,10 @@ body {
         font-size: 2rem;
     }
 
-    .input-field button {
-        top: 57%;
-        left: 69%;
-    }
+    // .input-field button {
+    //     top: 57%;
+    //     left: 69%;
+    // }
 
 }
 
@@ -275,9 +277,9 @@ body {
         width: 90%;
     }
 
-    .input-field button {
-        left: 75%;
-    }
+    // .input-field button {
+    //     left: 75%;
+    // }
 }
 
 @media screen and (max-width:325px) {
@@ -298,8 +300,8 @@ body {
         font-size: 1rem;
     }
 
-    .input-field button {
-        top: 55.5%;
-        left: 74%;
-    }
+    // .input-field button {
+    //     top: 55.5%;
+    //     left: 74%;
+    // }
 }

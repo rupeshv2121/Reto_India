@@ -1,9 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
   totalQuantity: 0,
 };
+
+// Async thunk to save cart data in the backend
+export const saveCartAsync = createAsyncThunk(
+  "cart/saveCart",
+  async (cart, { rejectWithValue }) => {
+    try {
+      const response = await saveCartData(cart);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const cartSlice = createSlice({
   name: "cart",
@@ -58,6 +71,17 @@ const cartSlice = createSlice({
         // Remove the item from the cart
         state.items = state.items.filter((item) => item._id !== _id);
       }
+    },
+
+
+    extraReducers: (builder) => {
+      builder
+        .addCase(saveCartAsync.fulfilled, (state, action) => {
+          console.log("Cart saved in DB successfully", action.payload);
+        })
+        .addCase(saveCartAsync.rejected, (state, action) => {
+          console.error("Failed to save cart in DB", action.payload);
+        });
     },
   },
 });

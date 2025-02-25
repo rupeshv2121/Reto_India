@@ -19,6 +19,7 @@ const ContactInfo = require("./models/ContactInfo");
 const userSignUpInfo = require("./models/signup");
 const AllProducts = require("./models/AllProduct");
 const AddProduct = require('./models/AddProduct');
+const cart = require('./models/Cart');
 const generateShortId = () => crypto.randomBytes(4).toString("hex"); // 8-char unique ID
 const app = express();
 // Configure CORS
@@ -95,6 +96,41 @@ app.post("/create-order", async (req, res) => {
     res.status(500).json({ error: "Failed to create order" });
   }
 });
+
+// Save Cart Data Route
+app.post("/cart", authenticateUser, async (req, res) => {
+  try {
+    // Get the logged-in user's ID from the token (populated by authenticateUser)
+    const userId = req.user.userId;
+    // Expecting cart data from the client: an array of items and totalQuantity
+    const { items, totalQuantity } = req.body;
+
+    // Check if a cart already exists for this user
+    let cart = await Cart.findOne({ userId });
+
+    if (cart) {
+      // Update existing cart data
+      cart.items = items;
+      cart.totalQuantity = totalQuantity;
+      await cart.save();
+    } else {
+      // Create a new cart document for the user
+      cart = new Cart({
+        userId,
+        items,
+        totalQuantity,
+      });
+      await cart.save();
+    }
+
+    console.log("Cart saved successfully for user:", userId);
+    res.status(200).json({ message: "Cart saved successfully", cart });
+  } catch (error) {
+    console.error("Error saving cart:", error);
+    res.status(500).json({ message: "Error saving cart", error: error.message });
+  }
+});
+
 
 // Verify Payment Route
 app.post("/verify-payment", async (req, res) => {
