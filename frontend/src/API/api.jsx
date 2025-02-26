@@ -32,11 +32,12 @@ export const checkout = async (userData) => {
     throw new Error(error.response?.data?.message || "Failed to place order. Please try again.");
   }
 };
+
 // For Signup Page
 export const signUpUser = async (userData) => {
   try {
-    console.log("Signup successful:");
     const response = await api.post("/auth/signup", userData, { withCredentials: true });
+    console.log("Signup successful:");
     return response?.data;
   } catch (error) {
     console.error(
@@ -81,4 +82,4 @@ export const createOrder = async (orderData) => {
 };
 
 
-// export default api;
+export default api;

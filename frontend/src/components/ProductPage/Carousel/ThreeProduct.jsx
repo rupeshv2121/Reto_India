@@ -31,7 +31,7 @@ const MainCarousel = () => {
     <div
       className="prev-arrow-box absolute top-1/2 left-3 transform -translate-y-1/2 bg-gray-800 bg-opacity-20 text-white p-2 rounded-full cursor-pointer z-10"
       onClick={onClick}
-    ><i class="fa-solid fa-arrow-left prev-arrow"></i>
+    ><i className="fa-solid fa-arrow-left prev-arrow"></i>
       {/* <AiOutlineLeft size={40} className="prev-arrow" /> */}
     </div>
   );
@@ -40,7 +40,7 @@ const MainCarousel = () => {
     <div
       className="next-arrow-box absolute top-1/2 right-3 transform -translate-y-1/2 bg-gray-800 bg-opacity-20 text-white p-2 rounded-full cursor-pointer z-10"
       onClick={onClick}
-    ><i class="fa-solid fa-arrow-right next-arrow"></i>
+    ><i className="fa-solid fa-arrow-right next-arrow"></i>
       {/* <AiOutlineRight size={40} /> */}
     </div>
   );
