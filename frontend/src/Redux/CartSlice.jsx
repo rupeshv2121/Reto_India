@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   items: [],
@@ -10,10 +11,27 @@ export const saveCartAsync = createAsyncThunk(
   "cart/saveCart",
   async (cart, { rejectWithValue }) => {
     try {
-      const response = await saveCartData(cart);
-      return response;
+      const authToken = localStorage.getItem("authToken");
+      if (!authToken) {
+        throw new Error("User not authenticated");
+      }
+      console.log("Sending cart data to backend:", cart); // Debugging
+      
+      const response = await axios.post(
+        "http://localhost:5000/cart",
+        cart,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
+
+      console.log("Backend response:", response.data); // Debugging
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      console.error("Error saving cart:", error);
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -30,13 +48,16 @@ const cartSlice = createSlice({
       const existingItem = state.items.find((item) => item._id === newItem._id);
 
       if (existingItem) {
-        // If item exists, increment its quantity
         existingItem.quantity++;
       } else {
-        // If item does not exist, add it to the cart with quantity = 1
-        state.items.push({ ...newItem, quantity: 1 });
+        state.items.push({
+          productId: newItem._id,
+          title: newItem.title,
+          price: newItem.price,
+          image: newItem.image1,
+          quantity: 1,
+        });
       }
-
       // Update the total quantity of items in the cart
       state.totalQuantity++;
       console.log("Updated cart state:", state);

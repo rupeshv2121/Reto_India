@@ -1,7 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import { useMutation } from "@tanstack/react-query";
 import { gsap } from "gsap";
-// import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -45,11 +44,9 @@ const CheckoutPage = () => {
   // Function to extract userId from the JWT token
   const getUserIdFromToken = () => {
     const token = localStorage.getItem("token"); // Assuming the token is stored in localStorage
-    if (token) {
-      // // const decoded = jwtDecode(token); // Use jwtDecode here
-      return decoded.userId; // Extract userId from the token
+    if (!token) {
+      return null;
     }
-    return null;
   };
 
   const userId = getUserIdFromToken(); // Get userId from the JWT token

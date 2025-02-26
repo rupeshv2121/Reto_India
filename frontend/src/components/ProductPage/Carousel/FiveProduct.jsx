@@ -3,7 +3,7 @@ import React, { useState ,useEffect} from "react";
 import { AiFillStar } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import { toast, ToastContainer } from "react-toastify";
@@ -29,14 +29,11 @@ const ProductPage = () => {
   }, []);
 
 
-   // When the cart changes, save the updated cart in the backend
-   useEffect(() => {
+  useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (authToken && cart.items.length > 0) {
-      // Optionally debounce this dispatch if needed
       dispatch(saveCartAsync(cart));
     }
-    // If the cart becomes empty you might also want to save that state.
   }, [cart, dispatch]);
 
 
@@ -70,13 +67,27 @@ const ProductPage = () => {
   };
 
   const navigate = useNavigate();
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
-      setTimeout(() => {
-        navigate("/auth/signup");
-      });
+      toast.error("Please login to add items to cart");
+      navigate("/auth/login");
       return;
+    }
+    try {
+      // Dispatch addToCart action
+      dispatch(addToCart(product));
+  
+      // Save cart to backend
+      const updatedCart = useSelector((state) => state.cart);
+      console.log("Updated cart state:", updatedCart); // Debugging
+
+         // Save cart to backend
+      await dispatch(saveCartAsync(updatedCart));
+      toast.success("Item added to cart!");
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      toast.error("Failed to add item to cart");
     }
 
     console.log("Product added to cart:", product);
