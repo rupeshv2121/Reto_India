@@ -87,7 +87,23 @@ body {
 .already-account:hover {
   color: #4c4b4b;
 }
+.full-screen-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9); /* Light overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+}
 
+.full-screen-animation {
+  width: 300px;
+  height: 300px;
+}
 @media screen and (max-width: 1560px) {
   .ca-signup-container .heading-text {
     font-size: 2.5rem;

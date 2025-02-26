@@ -2,20 +2,21 @@ import React, { useState, useEffect } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import LottieAnimation from "../LottieAnimation/LottieAnimation";
+import LoadingAnimation from "../../Lottie/Animation_Loading.json";
 
 const OrderPage = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedCartItem, setSelectedCartItem] = useState(null); // State to store the selected cart item
+  const [selectedCartItem, setSelectedCartItem] = useState(null);
 
-  // Fetch orders from the backend
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem("token"); // Retrieve token
-        console.log("Token in Local Storage:", token); // Debugging step
+        const token = localStorage.getItem("token");
+        console.log("Token in Local Storage:", token);
   
         if (!token) {
           console.error("No token found. User not authenticated.");
@@ -26,18 +27,22 @@ const OrderPage = () => {
   
         const response = await axios.get("http://localhost:5000/OrderPage", {
           headers: {
-            Authorization: `Bearer ${token}` // Attach token in request headers
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
   
-        console.log("Response Data:", response.data); // Debugging step
-        setOrders(response.data);
+        console.log("Response Data:", response.data);
   
-        if (response.data.length > 0 && response.data[0].cartItems.length > 0) {
-          setSelectedCartItem(response.data[0].cartItems[0]);
-        }
+       
+        setTimeout(() => {
+          setOrders(response.data);
   
-        setLoading(false);
+          if (response.data.length > 0 && response.data[0].cartItems.length > 0) {
+            setSelectedCartItem(response.data[0].cartItems[0]);
+          }
+  
+          setLoading(false);
+        }, 800); 
       } catch (error) {
         console.error("Error fetching data:", error.response?.data || error.message);
         setError("Failed to fetch orders. Please try again later.");
@@ -47,8 +52,8 @@ const OrderPage = () => {
   
     fetchData();
   }, []);
+  
 
-  // Calculate total quantity and price from fetched orders
   const totalQuantity = orders.reduce(
     (acc, order) =>
       acc + order.cartItems.reduce((sum, item) => sum + item.quantity, 0),
@@ -56,11 +61,11 @@ const OrderPage = () => {
   );
   const totalPrice = orders.reduce(
     (acc, order) =>
-      acc + order.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+      acc +
+      order.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
     0
   );
 
-  // Handle row click to set the selected cart item
   const handleRowClick = (cartItem) => {
     setSelectedCartItem(cartItem);
   };
@@ -70,7 +75,11 @@ const OrderPage = () => {
   };
 
   if (loading) {
-    return <div className="text-center py-10">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <LottieAnimation animationData={LoadingAnimation} width={200} height={200} />
+      </div>
+    );
   }
 
   if (error) {

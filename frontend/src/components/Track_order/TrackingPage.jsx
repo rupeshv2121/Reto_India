@@ -4,6 +4,8 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import XIcon from "@mui/icons-material/X";
 import { useState } from "react";
 import "./TrackingPage.css";
+import LottieAnimation from "../LottieAnimation/LottieAnimation";
+import TrackAnimation from "../../Lottie/Animation_track.json";
 
 export default function TrackingPage() {
   const [showTracking, setShowTracking] = useState(false);
@@ -24,22 +26,27 @@ export default function TrackingPage() {
       );
 
       const data = await response.json();
-      console.log("API Response:", data); // ✅ Debug log
+      console.log("API Response:", data); 
 
-      if (response.ok && data) {
-        setTrackingData(data);
-        setShowTracking(true);
-      } else {
-        setError(data?.message || "Order not found.");
+      setTimeout(() => {
+        if (response.ok && data) {
+          setTrackingData(data);
+          setShowTracking(true);
+        } else {
+          setError(data?.message || "Order not found.");
+          setTrackingData(null);
+          setShowTracking(false);
+        }
+        setLoading(false);
+      }, 2000);
+      
+    } catch (err) {
+      setTimeout(() => {
+        setError("Something went wrong. Please try again.");
         setTrackingData(null);
         setShowTracking(false);
-      }
-    } catch (err) {
-      setError("Something went wrong. Please try again.");
-      setTrackingData(null);
-      setShowTracking(false);
-    } finally {
-      setLoading(false);
+        setLoading(false);
+      }, 2000); 
     }
   }
 
@@ -50,7 +57,7 @@ export default function TrackingPage() {
       <div className="tracking_content">
         <div className="track-box">
           {loading ? (
-            <div className="divtext">Fetching order details...</div>
+            <LottieAnimation animationData={TrackAnimation} />
           ) : showTracking ? (
             <div className="replace_dmd_box">
               {trackingData ? (
@@ -60,7 +67,6 @@ export default function TrackingPage() {
                   <div className="divtext"><strong>Title:</strong> {trackingData.title}</div>
                   <div className="divtext"><strong>Price:</strong> ₹{trackingData.price}</div>
                   
-                  {/* Display all tracking locations */}
                   {trackingData.trackLocations && trackingData.trackLocations.length > 0 ? (
                     trackingData.trackLocations.map((loc, index) => (
                       <div key={index} className="divtext">
@@ -84,6 +90,7 @@ export default function TrackingPage() {
               />
             </div>
           )}
+
           <div className="trackingPage-divider"></div>
           <div className="order-form-div">
             <form className="order-form" onSubmit={handleSubmit}>
