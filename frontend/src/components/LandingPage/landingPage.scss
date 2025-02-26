@@ -2,20 +2,10 @@
 
 .landing {
   background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%);
-  // height: 100vh;
 
-  // * {
-  //   margin: 0;
-  //   padding: 0;
-  //   box-sizing: border-box;
-  // }
-
-  // body {
-  //   font-family: "Bricolage Grotesque", Sans-serif !important;
-  //   background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%);
-  //   color: #333;
-  //   width: 100%;
-  // }
+  .css-r0vxuw-MuiSvgIcon-root {
+    font-size: 2.1rem;
+  }
 
   header {
     display: flex;
@@ -552,8 +542,9 @@
       position: fixed;
       /* top: 400px; */
       flex-direction: column;
-      gap: 15px;
+      gap: 2px;
       justify-content: center;
+
     }
   }
 
@@ -668,7 +659,10 @@
       bottom: 20px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+    }
+
+    .css-r0vxuw-MuiSvgIcon-root {
+      font-size: 1.9rem;
     }
 
     main .landing-logo-main {
@@ -735,16 +729,12 @@
     }
   }
 
-  /* @media (max-width: 376px) {
-  .circle-sm {
-    width: 150px;
-    height: 150px;
-  }
-} */
   @media screen and (max-width : 426px) {
-    .social-icons>a {
-      font-size: 29px;
+    .social-icons {
+      gap: 0px;
+      left: 10px;
     }
+
 
     .btn-2 {
       width: 260px;
@@ -758,18 +748,12 @@
       font-size: 1rem;
     }
 
-    .social-icons {
-      left: 10px;
-    }
-  }
-
-  @media screen and (max-width:376px) {
     .css-r0vxuw-MuiSvgIcon-root {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
     }
 
-    .social-icons {
-      gap: 7px;
+    .btn-2 {
+      padding: 10px;
     }
   }
 
@@ -779,7 +763,13 @@
     }
 
     .social-icons {
-      top: 90%;
+      top: 92%;
+      left: 4px;
+    }
+
+    .btn-2 {
+      padding: 12px 11px;
+      width: 228px;
     }
 
     body {

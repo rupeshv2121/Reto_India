@@ -37,7 +37,7 @@
 
 .input-field button {
   position: absolute;
-  top: 42.5%;
+  top: 51.5%;
   left: 72.5%;
 }
 
@@ -108,6 +108,9 @@ body {
   .ca-signup-container .subtitle-text {
     font-size: 1.25rem;
   }
+  .input-field button {
+    top: 51.5%;
+  }
 }
 .ca-signup-container .signup-card {
   width: 60%;
@@ -124,7 +127,7 @@ body {
     width: 50%;
   }
   .input-field button {
-    top: 54%;
+    top: 65%;
     left: 64%;
   }
 }
@@ -145,10 +148,10 @@ body {
     width: 60%;
   }
   .ca-signup-container .heading-text {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   .input-field button {
-    top: 57%;
+    top: 62.5%;
     left: 69%;
   }
 }
@@ -262,6 +265,26 @@ body {
   }
   .input-field button {
     left: 75%;
+    top: 56.5%;
+  }
+  .ca-signup-container {
+    padding-top: 0px;
+  }
+  .input {
+    font-size: 1rem;
+  }
+  .already-account {
+    font-size: 1rem;
+    margin-left: 5px;
+  }
+  .already-account:hover {
+    color: #4c4b4b;
+  }
+  .signup-btn-border {
+    padding: 10px 15px 10px 15px !important;
+  }
+  .ca-signup-container .signup-card .card-content .signup-content .signup-btn-border {
+    font-size: 16px;
   }
 }
 @media screen and (max-width: 325px) {
@@ -279,7 +302,7 @@ body {
     font-size: 1rem;
   }
   .input-field button {
-    top: 55.5%;
+    top: 57%;
     left: 74%;
   }
 }/*# sourceMappingURL=signup.css.map */

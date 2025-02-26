@@ -39,6 +39,7 @@
   margin: 20px 0;
   font-weight: 600;
   font-size: 40px;
+
 }
 
 .heading hr {
@@ -409,11 +410,15 @@ form {
   }
 
   .photo img {
-    width: 80% !important;
+    width: 95% !important;
   }
 
   .contact-form {
     width: 80%;
+  }
+
+  .heading {
+    font-size: 30px;
   }
 }
 

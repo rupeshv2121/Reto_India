@@ -185,11 +185,11 @@ textarea::placeholder {
 .social-links {
   position: fixed;
   z-index: 10;
-  top: 63%;
-  left: 2%;
+  top: 65%;
+  left: 22px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 11px;
   font-size: 32px;
 }
 
@@ -253,6 +253,11 @@ textarea::placeholder {
     bottom: -9%;
     left: 59%;
   }
+  .social-links {
+    top: 64%;
+    left: 16px;
+    gap: 4px;
+  }
 }
 @media screen and (max-width: 768px) {
   .tracking_content {
@@ -268,9 +273,12 @@ textarea::placeholder {
 }
 @media screen and (max-width: 426px) {
   .social-links {
-    top: 65%;
-    gap: 30px;
+    top: 66%;
+    gap: 15px;
     font-size: 26px;
+  }
+  .MuiSvgIcon-root {
+    font-size: 1.8rem !important;
   }
   .dotsandline {
     left: 28%;

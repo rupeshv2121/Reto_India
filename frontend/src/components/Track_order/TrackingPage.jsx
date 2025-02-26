@@ -1,5 +1,8 @@
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import XIcon from "@mui/icons-material/X";
 import { useState } from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import "./TrackingPage.css";
 
 export default function TrackingPage() {
@@ -109,10 +112,20 @@ export default function TrackingPage() {
         </div>
       </div>
       <div className="social-links">
-        <div><FaTwitter /></div>
-        <div><FaFacebook /></div>
-        <div><FaInstagram /></div>
-        <div><FaLinkedin /></div>
+      
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <XIcon sx={{ fontSize: "2rem" }} />
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <FacebookIcon sx={{ fontSize: "2rem" }} />
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <InstagramIcon sx={{ fontSize: "2rem" }} />
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <LinkedInIcon sx={{ fontSize: "2rem" }} />
+        </a>
+   
       </div>
     </div>
   );

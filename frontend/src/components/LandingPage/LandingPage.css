@@ -13,12 +13,9 @@
   /* Responsive Menu for Mobile */
   /* 31-12-2024 */
   /* //......................................  */
-  /* @media (max-width: 376px) {
-    .circle-sm {
-      width: 150px;
-      height: 150px;
-    }
-  } */
+}
+.landing .css-r0vxuw-MuiSvgIcon-root {
+  font-size: 2.1rem;
 }
 .landing header {
   display: flex;
@@ -449,7 +446,7 @@
     position: fixed;
     /* top: 400px; */
     flex-direction: column;
-    gap: 15px;
+    gap: 2px;
     justify-content: center;
   }
 }
@@ -543,7 +540,9 @@
     bottom: 20px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+  }
+  .landing .css-r0vxuw-MuiSvgIcon-root {
+    font-size: 1.9rem;
   }
   .landing main .landing-logo-main {
     width: 85%;
@@ -596,8 +595,9 @@
   }
 }
 @media screen and (max-width: 426px) {
-  .landing .social-icons > a {
-    font-size: 29px;
+  .landing .social-icons {
+    gap: 0px;
+    left: 10px;
   }
   .landing .btn-2 {
     width: 260px;
@@ -608,16 +608,11 @@
   .landing main p {
     font-size: 1rem;
   }
-  .landing .social-icons {
-    left: 10px;
-  }
-}
-@media screen and (max-width: 376px) {
   .landing .css-r0vxuw-MuiSvgIcon-root {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
-  .landing .social-icons {
-    gap: 7px;
+  .landing .btn-2 {
+    padding: 10px;
   }
 }
 @media screen and (max-width: 320px) {
@@ -625,7 +620,12 @@
     font-size: 1.7rem;
   }
   .landing .social-icons {
-    top: 90%;
+    top: 92%;
+    left: 4px;
+  }
+  .landing .btn-2 {
+    padding: 12px 11px;
+    width: 228px;
   }
   .landing body {
     margin: 0;
