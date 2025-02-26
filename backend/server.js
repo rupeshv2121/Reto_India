@@ -382,13 +382,31 @@ app.post("/cart", authenticateUser, async (req, res) => {
     console.log("Existing cart:", cart); // Log the existing cart
 
 
+    
     if (cart) {
-      // Update existing cart
-      cart.items = items;
-      cart.totalQuantity = totalQuantity;
+      // Merge new items with existing items
+      newItems.forEach((newItem) => {
+        const existingItem = cart.items.find(
+          (item) => item.productId === newItem.productId
+        );
+
+        if (existingItem) {
+          // If item already exists, update the quantity
+          existingItem.quantity += newItem.quantity;
+        } else {
+          // If item doesn't exist, add it to the cart
+          cart.items.push(...newItem);
+        }
+      });
+
+      // Update total quantity
+      cart.totalQuantity = cart.items.reduce(
+        (total, item) => total + item.quantity,
+        0
+      );
     } else {
       // Create new cart
-      cart = new CartModel({ userId, items, totalQuantity });
+      cart = new CartModel({ userId, items: newItems, totalQuantity });
     }
 
     await cart.save();

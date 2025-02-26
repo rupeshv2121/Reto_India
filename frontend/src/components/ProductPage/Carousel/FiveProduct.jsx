@@ -95,6 +95,8 @@ const ProductPage = () => {
     dispatch(addToCart(product));
   };
 
+  
+
   return (
     
     <div className="flex items-center justify-center">
