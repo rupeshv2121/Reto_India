@@ -23,7 +23,7 @@ const generateShortId = () => crypto.randomBytes(4).toString("hex"); // 8-char u
 const app = express();
 // Configure CORS
 const corsOptions = {
-  origin: "http://localhost:5174",
+  origin: "http://localhost:5173",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
@@ -55,6 +55,7 @@ const authMiddleware = (req, res, next) => {
     next();
   });
 };
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -114,6 +115,7 @@ app.post("/verify-payment", async (req, res) => {
     res.status(500).json({ error: "Failed to verify payment" });
   }
 });
+
 // Signup Route
 app.post("/auth/signup", async (req, res) => {
   try {
@@ -156,6 +158,7 @@ app.post("/auth/signup", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
 // Login Route
 app.post("/auth/login", async (req, res) => {
   try {
@@ -199,10 +202,12 @@ app.post("/auth/login", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
 app.post("/auth/logout", (req, res) => {
   res.clearCookie("token");
   res.status(200).json({ message: "Logout successful" });
 });
+
 app.get("/api/track-order", async (req, res) => {
   const { orderId, email } = req.query;
 
@@ -278,6 +283,7 @@ app.post("/checkout", async (req, res) => {
     res.status(500).json({ message: "Error placing order", error: error.message });
   }
 });
+
 const authenticateUser = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
