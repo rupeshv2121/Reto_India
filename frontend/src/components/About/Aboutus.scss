@@ -1,20 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap");
+
 body {
   margin: 0;
   font-family: "Bricolage Grotesque", sans-serif;
 }
 
 .about-page {
-    background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%);
+  background: linear-gradient(462deg, #fdf2e3 51%, #ffd39c 70%);
   color: #333;
   padding: 20px;
 }
 
-h1, h3 {
+h1,
+h3 {
   color: #FC8E04;
 }
 
-h2{
+h2 {
   color: #000000;
 }
 
@@ -36,7 +38,7 @@ p {
   font-weight: bold;
 }
 
-.movement{
+.movement {
   color: #FC8E04;
 }
 
@@ -69,6 +71,7 @@ p {
   flex-wrap: wrap;
   gap: 50px;
   margin-bottom: 40px;
+  justify-content: space-evenly;
 }
 
 .image-container img {
@@ -76,12 +79,12 @@ p {
   border-radius: 8px;
 }
 
-.content {
+.about-content {
   flex: 1;
   max-width: 600px;
 }
 
-.content h2 {
+.about-content h2 {
   margin-top: 0;
   margin-bottom: 10px;
 }
@@ -120,7 +123,7 @@ p {
 .card img {
   width: 100%;
   border-radius: 8px;
-  object-fit: cover; 
+  object-fit: cover;
   height: 150px;
 }
 
@@ -151,27 +154,29 @@ p {
     text-align: center;
   }
 
-  .content {
+  .about-content {
     max-width: 100%;
   }
 
   .image-container img {
     width: auto;
+    margin: auto;
   }
 
   .cards-section {
-    justify-content: center; 
+    justify-content: center;
   }
 
   .card {
-    flex: 1 1 calc(100% - 20px); 
-    max-width: 100%; 
+    flex: 1 1 calc(100% - 20px);
+    max-width: 100%;
   }
 
   .card img {
     height: 200px;
   }
 }
+
 @media (max-width: 520px) {
   .image-container img {
     width: 100%;

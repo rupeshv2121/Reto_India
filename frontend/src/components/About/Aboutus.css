@@ -10,7 +10,8 @@ body {
   padding: 20px;
 }
 
-h1, h3 {
+h1,
+h3 {
   color: #FC8E04;
 }
 
@@ -69,6 +70,7 @@ p {
   flex-wrap: wrap;
   gap: 50px;
   margin-bottom: 40px;
+  justify-content: space-evenly;
 }
 
 .image-container img {
@@ -76,12 +78,12 @@ p {
   border-radius: 8px;
 }
 
-.content {
+.about-content {
   flex: 1;
   max-width: 600px;
 }
 
-.content h2 {
+.about-content h2 {
   margin-top: 0;
   margin-bottom: 10px;
 }
@@ -150,11 +152,12 @@ p {
     flex-direction: column;
     text-align: center;
   }
-  .content {
+  .about-content {
     max-width: 100%;
   }
   .image-container img {
     width: auto;
+    margin: auto;
   }
   .cards-section {
     justify-content: center;

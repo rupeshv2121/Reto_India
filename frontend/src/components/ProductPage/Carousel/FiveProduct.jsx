@@ -1,5 +1,6 @@
 // import React from "react";
-import React, { useState ,useEffect} from "react";
+import axios from 'axios';
+import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
@@ -10,7 +11,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { addToCart } from "../../../Redux/CartSlice";
-import axios from 'axios';
 const ProductPage = () => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);

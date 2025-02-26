@@ -3,7 +3,7 @@ import firstImage from "../../assets/first.jpeg";
 import FourthImage from "../../assets/fourth.jpeg";
 import SecondImage from "../../assets/second.jpeg";
 import ThirdImage from "../../assets/third.jpeg";
-import "./AboutUs.css";
+import "./Aboutus.css";
 
 const AboutPage = () => {
   return (
@@ -27,7 +27,7 @@ const AboutPage = () => {
         <div className="image-container">
           <img src={firstImage} alt="Artisan Painting" />
         </div>
-        <div className="content">
+        <div className="about-content">
           <h2>WHY YOU JOIN US?</h2>
           <p>
             At <span className="highlight">RETO INDIA</span>, we believe in

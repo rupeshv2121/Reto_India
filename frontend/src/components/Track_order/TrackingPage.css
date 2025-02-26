@@ -36,6 +36,7 @@ body {
   color: black;
   position: absolute;
   left: 39.2rem;
+  top: 20%;
 }
 
 .tracking_content {
@@ -341,5 +342,8 @@ textarea::placeholder {
   }
   .order-form-div {
     width: 100%;
+  }
+  .tracking-btn {
+    left: 7%;
   }
 }/*# sourceMappingURL=trackingPage.css.map */
