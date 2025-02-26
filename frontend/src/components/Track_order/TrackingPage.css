@@ -32,11 +32,12 @@ body {
 }
 
 .tracking_container h2 {
-  font-size: 40px;
-  color: black;
+  width: 217px;
+  height: 3px;
+  background-color: black;
   position: absolute;
-  left: 39.2rem;
-  top: 20%;
+  left: 41%;
+  top: 191px;
 }
 
 .tracking_content {
@@ -276,15 +277,19 @@ textarea::placeholder {
     top: 66%;
     gap: 15px;
     font-size: 26px;
+    left: 9px;
   }
   .MuiSvgIcon-root {
     font-size: 1.8rem !important;
   }
   .dotsandline {
     left: 28%;
+    width: 195px;
+    top: 171px;
   }
   .tracking_container h2 {
     left: 7.6rem;
+    font-size: 35px;
   }
   .trackingPage-divider {
     display: none;
@@ -299,7 +304,7 @@ textarea::placeholder {
     height: 160px;
     width: 200px;
     position: relative;
-    left: -8%;
+    left: -14%;
   }
   .diamond-div {
     padding: 0;
@@ -323,10 +328,10 @@ textarea::placeholder {
 }
 @media screen and (max-width: 376px) {
   .dotsandline {
-    left: 22%;
+    left: 27%;
   }
   .tracking_container h2 {
-    left: 5.6rem;
+    left: 6.5rem;
   }
   .tracking_content {
     margin-left: 4rem;
@@ -340,13 +345,16 @@ textarea::placeholder {
     padding: 27px 9px;
     padding-top: 2rem;
   }
+  .css-r0vxuw-MuiSvgIcon-root {
+    font-size: 1.2rem !important;
+  }
 }
 @media screen and (max-width: 321px) {
   .dotsandline {
-    left: 17%;
+    left: 21%;
   }
   .tracking_container h2 {
-    left: 3.6rem;
+    left: 4.6rem;
   }
   .order-form-div {
     width: 100%;
