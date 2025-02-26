@@ -7,6 +7,7 @@ import { useState } from "react";
 import ModalCard from "../ModalCard/ModalCard";
 import "./Contact.css";
 import ContactI from "./assets/Contact.png";
+import msganimation from "../../Lottie/Animation_message_delievered.json"; // Import animation
 
 const Contact = () => {
   const [info, setInfo] = useState({
@@ -34,7 +35,7 @@ const Contact = () => {
     if (name && email && PhoneNo && Message) {
       try {
         await axios.post("http://localhost:5000/ContactInfo", info);
-        setPopupVisible(true);
+        setPopupVisible(true); // Show animation on success
       } catch (error) {
         console.error("An error occurred:", error);
         alert("Failed to send the message. Please try again.");
@@ -121,9 +122,11 @@ const Contact = () => {
         </a>
       </div>
 
+      {/* Pass animationData as a prop */}
       <ModalCard
         isPopupVisible={isPopupVisible}
         closePopup={() => setPopupVisible(false)}
+        animationData={msganimation} 
       />
     </div>
   );
